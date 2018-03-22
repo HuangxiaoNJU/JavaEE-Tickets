@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tickets</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/util.css" rel="stylesheet">
+    <link href="../css/managerAllocate.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="head"></div>
+
+<header class="btnView col-lg-3">
+    <ul class="nav navbar-fixed" style="top: 20%;">
+        <span style="margin-left: 50px">经理中心 > 收入分配</span>
+        <li><a id="not_allocated" class="btn-self active">待分配</a></li>
+        <li><a id="already_allocated" class="btn-self">已分配</a></li>
+    </ul>
+</header>
+
+<div class="col-lg-9">
+
+    <div class="table row">
+        <label>设置平台分成比例 ：</label>
+        <input id="ratio" class="input" type="text" value="25" placeholder="请输入平台收入分配比例">
+        <label>%</label>
+    </div>
+    <hr width="1100px">
+
+    <div id="list" class="table row">
+        <!--<div class="col-lg-8">-->
+            <!--<h5 id="id">活动名</h5>-->
+            <!--<span>2018-12-12 12:00:00&nbsp;至&nbsp;2018-12-13 12:00:00</span><br><br>-->
+            <!--<label>场馆 : </label><span>&nbsp;南京大学</span><br>-->
+            <!--<label>地点 : </label><span>&nbsp;南京大学鼓楼校区</span><br>-->
+        <!--</div>-->
+        <!--<div class="col-lg-4">-->
+            <!--<a href="/project/detail?project_id=${item.id}" class="btn btn-link">查看详情 >></a><br>-->
+            <!--<label>线上总收入：</label><span>信息暂无</span><br>-->
+            <!--<label>线上总收入：</label><span>信息暂无</span><br><br>-->
+            <!--&lt;!&ndash;<input class="input" type="text" placeholder="Tickets分配比例"><br>&ndash;&gt;-->
+            <!--<a class="btn btn-info">立即分配</a>-->
+        <!--</div>-->
+        <!--<hr width="1100px">-->
+    </div>
+</div>
+
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.scrollTo.js"></script>
+<script src="../js/util.js"></script>
+<script src="../js/managerAllocate.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+.orderState {
+    height: 40px;
+    margin: 10%;
+    padding: 5px;
+    border-radius: 0.45em;
+    border: 2px #2a6496;
+    background-color: rgba(0, 84, 173, 0.2);
+}
+
+.orderInfo {
+    margin-top: -8%;
+    margin-bottom: 20px;
+}
+
+.priceInfo {
+    margin-top: 4%;
+}
+
+.btn-list {
+    margin-top: 10%;
+    margin-left: 35%;
+}
+
+.price {
+    font-weight: normal;
+    font-size: 30px;
+    color: orange;
+}

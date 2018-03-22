@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tickets</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/calendar.css" rel="stylesheet">
+    <link href="../css/util.css" rel="stylesheet">
+    <link href="../css/managerStatistics.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="head"></div>
+
+<header class="btnView col-lg-3">
+    <ul class="nav navbar-fixed" style="top: 20%;">
+        <span style="margin-left: 50px">经理中心 > 统计信息</span>
+        <li><a id="user_statistics" class="btn-self active">会员信息统计</a></li>
+        <li><a id="venue_statistics" class="btn-self">场馆信息统计</a></li>
+        <!--<li><a id="project_statistics" class="btn-self">活动信息统计</a></li>-->
+    </ul>
+</header>
+
+<div class="col-lg-9">
+    <!--<div class="table row">-->
+        <!--<label>实时总收入： </label><span id="income">1000</span><br>-->
+        <!--<label>结算所得收入：</label><span id="profit">2000</span>-->
+    <!--</div>-->
+
+    <div id="user_list" class="table row">
+        <div id="user_level" style="width: 600px;height:400px;">
+
+        </div>
+    </div>
+
+    <div id="venues_list" class="table row" style="display: none;">
+        <div id="venues_income" style="width: 600px;height:400px;">
+
+        </div>
+    </div>
+
+</div>
+
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.scrollTo.js"></script>
+<script src="../js/echarts.js"></script>
+<script src="../js/util.js"></script>
+<script src="../js/managerStatistics.js"></script>
+</body>
+</html>

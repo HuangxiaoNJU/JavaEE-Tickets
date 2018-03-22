@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tickets</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/util.css" rel="stylesheet">
+    <link href="../css/projectDetail.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="head"></div>
+
+<div class="container projectBasic">
+    <h5 id="project_name">活动名字</h5>
+    <label id="project_location">地点</label><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span id="project_description">介绍</span>
+</div>
+<hr width="1100px">
+
+<div class="container">
+    <div id="basic_info_list" class="row text-center">
+        <div class="col-lg-3">
+            <label>开始时间 : </label>
+        </div>
+        <div class="col-lg-3">
+            <label id="project_begin_time">2018-12-24 10:00:00</label>
+        </div>
+        <div class="col-lg-3">
+            <label>结束时间 : </label>
+        </div>
+        <div class="col-lg-3">
+            <label id="project_end_time">2018-12-24 10:00:00</label>
+        </div>
+        <div class="col-lg-3">
+            <label>类型 : </label>
+        </div>
+        <div class="col-lg-3">
+            <label id="project_type">信息暂无</label>
+        </div>
+        <div class="col-lg-3">
+            <label>总人数 : </label>
+        </div>
+        <div class="col-lg-3">
+            <label id="project_total_people">1000人</label>
+        </div>
+        <hr width="1100px">
+    </div>
+    <br>
+    <label style="margin-left: 4%">座位类型及票价 : </label><br><br>
+    <div id="seat_price_list" class="row text-center">
+        <!--<div class="col-lg-4">-->
+            <!--<span>座位类型 : </span>-->
+            <!--<label>VIP</label>-->
+        <!--</div>-->
+        <!--<div class="col-lg-4">-->
+            <!--<span>总人数 : </span>-->
+            <!--<label>1000人</label>-->
+        <!--</div>-->
+        <!--<div class="col-lg-4">-->
+            <!--<button class="btn btn-info" data-toggle="modal" data-target="#makeOrderWindow">立即购买</button>-->
+            <!--<button class="btn btn-info" data-toggle="modal" data-target="#makeOrderWindow">选座购买</button>-->
+        <!--</div>-->
+        <!--<div class="col-lg-4">-->
+            <!--<span>座位类型 : </span>-->
+            <!--<label>普通座</label>-->
+        <!--</div>-->
+        <!--<div class="col-lg-4">-->
+            <!--<span>总人数 : </span>-->
+            <!--<label>800人</label>-->
+        <!--</div>-->
+        <!--<div class="col-lg-4">-->
+            <!--<button class="btn btn-info">立即购买</button>-->
+            <!--<button class="btn btn-info">选座购买</button>-->
+        <!--</div>-->
+    </div>
+</div>
+
+<!-- 下单弹窗 -->
+<!--<div class="modal fade" id="makeOrderWindow" tabindex="-1" role="dialog">-->
+    <!--<div class="modal-dialog" role="document">-->
+        <!--<div class="modal-content">-->
+            <!--<div class="modal-header">-->
+                <!--<span>下单</span>-->
+            <!--</div>-->
+            <!--<div class="modal-body inputView">-->
+                <!--<label>座位类型 : </label>-->
+                <!--<label id="seat_type">VIP专座</label><br>-->
+                <!--<label>座位单价 : </label>-->
+                <!--<label id="seat_price">¥ 200.0</label>-->
+
+                <!--<label for="new_order_seat_num">购票数量 : </label>-->
+                <!--<input id="new_order_seat_num" type="text" class="input" value="1"><br>-->
+
+                <!--&lt;!&ndash;优惠券选择&ndash;&gt;-->
+
+                <!--<label>当前会员折扣 : </label>-->
+                <!--<label id="level_discount"></label>-->
+
+                <!--<label>总价 : </label>-->
+                <!--<label id="real_time_money">¥ 200.0</label><br>-->
+            <!--</div>-->
+            <!--<div class="modal-footer">-->
+                <!--<button id="confirm_make_order" class="btn login" data-dismiss="modal">下单</button>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.scrollTo.js"></script>
+<script src="../js/util.js"></script>
+<script src="../js/projectDetail.js"></script>
+</body>
+</html>

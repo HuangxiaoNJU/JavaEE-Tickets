@@ -1,0 +1,69 @@
+.input {
+    width: 225px;
+    height: 36px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 0.5em;
+}
+
+.login {
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    background-color: rgba(0, 84, 183, 0.85);
+    border-radius: 0.5em;
+}
+
+.login:hover {
+    -webkit-text-fill-color: white;
+    background-color: skyblue;
+}
+
+.inputView {
+    margin-left: 28%;
+    margin-top: 13%;
+}
+
+.col-lg-10, .col-lg-8 {
+    padding-left: 0;
+}
+
+.modal-body {
+    height: auto;
+}
+
+.search {
+    border-radius: 0.75em;
+    border-color: #b6b6b6;
+    border-width: 1px;
+    width: 175px;
+    height: 28px;
+    padding-left: 10px;
+    margin: 18% 15% -25px;
+}
+
+.searchBtn {
+    position: absolute;
+    top: 63%;
+    right: 25%;
+    background: transparent;
+    border: transparent;
+}
+
+.btn-link {
+    color: darkblue;
+}
+
+.btn-list {
+    width: 150px;
+    border-radius: 0.5em;
+    background: rgba(0, 84, 183, 0.85);
+}
+
+.btn-list:hover, .btn-list:focus {
+    -webkit-text-fill-color: darkgray;
+}
+
+.uneditable {
+    background-color: #e3e3e3;
+}

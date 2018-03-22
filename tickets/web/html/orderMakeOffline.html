@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tickets</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../css/jquery.seat-charts.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/util.css" rel="stylesheet">
+    <link href="../css/orderMake.css" rel="stylesheet">
+</head>
+<body>
+<div id="head"></div>
+
+<div class="container orderInfo">
+    <h5 id="order_form_project_name">信息暂无</h5>
+    <label id="order_form_time_section">信息暂无</label><br>
+    <span id="order_form_project_location">信息暂无</span>
+</div>
+<hr width="1100px">
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-lg-3">
+            <label>座位类型 : </label>
+        </div>
+        <div class="col-lg-3">
+            <label id="order_form_seat_type">信息暂无</label>
+        </div>
+        <div class="col-lg-3">
+            <label>座位价格 : </label>
+        </div>
+        <div class="col-lg-3">
+            <label id="order_form_seat_price">信息暂无</label>
+        </div>
+
+        <!--<div class="col-lg-3">-->
+            <!--<label>会员折扣 : </label>-->
+        <!--</div>-->
+        <!--<div class="col-lg-3">-->
+            <!--<label id="order_form_discount">信息暂无</label>-->
+        <!--</div>-->
+        <!--<div class="col-lg-3">-->
+            <!--<label>优惠券 : </label>-->
+        <!--</div>-->
+        <!--<div class="col-lg-3">-->
+            <!--<label id="order_form_coupon_name">信息暂无</label>-->
+        <!--</div>-->
+    </div>
+    <hr width="1100px">
+
+    <!--<div class="row text-center">-->
+        <!--<div class="col-lg-2">-->
+            <!--<label>购买类型：</label>-->
+        <!--</div>-->
+        <!--<div class="col-lg-2">-->
+            <!--<label>-->
+                <!--<input type="radio" name="purchase_type" value="0" checked="checked">-->
+            <!--</label>-->
+            <!--<label>选座购买</label>-->
+        <!--</div>-->
+
+        <!--<div class="col-lg-2">-->
+            <!--<label>-->
+                <!--<input type="radio" name="purchase_type" value="1">-->
+            <!--</label>-->
+            <!--<label>立即购买</label>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <div id="choose_seat" class="seat-container">
+        <div id="seat-map">
+            <div class="front-indicator">座位</div>
+
+        </div>
+        <div class="booking-details">
+            <div id="legend"></div>
+        </div>
+    </div>
+
+    <!--<div id="not_choose_seat" class="row text-center" style="display: none; margin-top: 4%">-->
+        <!--<div class="col-lg-2">-->
+            <!--<label for="buy_seat_number">购买座位数：</label>-->
+        <!--</div>-->
+        <!--<div class="col-lg-2">-->
+            <!--<input id="buy_seat_number" type="text" class="input">-->
+        <!--</div>-->
+    <!--</div>-->
+    <hr width="1100px">
+
+    <div class="container">
+        <label style="margin-right: 2%">订单总金额 : </label>
+        <span id="real_time_money" class="price">¥ 0</span>
+        <button id="confirm_make_order" class="btn btn-list" style="margin-left: 10%">确认下单</button>
+    </div>
+</div>
+
+<footer class="modal-footer">
+
+</footer>
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.scrollTo.js"></script>
+<script src="../js/jquery.seat-charts.min.js"></script>
+<script src="../js/util.js"></script>
+<script src="../js/orderMakeOffline.js"></script>
+</body>
+</html>

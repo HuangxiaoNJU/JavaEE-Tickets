@@ -1,0 +1,15 @@
+
+.price {
+    font-weight: normal;
+    font-size: 36px;
+    color: orange;
+}
+
+.status {
+    font-size: 34px;
+    font-weight: normal;
+}
+
+.purchaseType {
+    font-size: 14px;
+}

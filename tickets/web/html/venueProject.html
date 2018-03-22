@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tickets</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/calendar.css" rel="stylesheet">
+    <link href="../css/util.css" rel="stylesheet">
+    <link href="../css/venueProject.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="head"></div>
+
+<header class="btnView col-lg-3">
+    <ul class="nav navbar-fixed" style="top: 20%;">
+        <span style="margin-left: 50px">场馆中心 > 场馆活动</span>
+        <li><a id="not_begin" class="btn-self active">未开始</a></li>
+        <li><a id="underway" class="btn-self">进行中</a></li>
+        <li><a id="finished" class="btn-self">已结束</a></li>
+        <li><a id="release_project" class="btn-self">发布新活动</a></li>
+    </ul>
+</header>
+
+<div class="col-lg-9">
+    <div class="table row">
+        <input id="check_in_order_id" class="input" type="text" placeholder="订单号">
+        <button id="check_in_btn" class="btn btn-list" style="margin-left: 5%">确认检票</button>
+    </div>
+    <hr width="1100px">
+
+    <div id="list" class="table row">
+
+    </div>
+    <div id="release_project_info" class="table row">
+        <div class="col-lg-4">
+            <label for="new_project_name">活动名 : </label>
+        </div>
+        <div class="col-lg-8">
+            <input id="new_project_name" class="input">
+        </div>
+        <div class="col-lg-4">
+            <label for="new_project_begin_time">开始时间 : </label>
+        </div>
+        <div class="col-lg-8">
+            <input id="new_project_begin_time" class="input">
+            <div id="begin_time_calendar"></div>
+        </div>
+        <div class="col-lg-4">
+            <label for="new_project_end_time">结束时间 : </label>
+        </div>
+        <div class="col-lg-8">
+            <input id="new_project_end_time" class="input">
+            <div id="end_time_calendar"></div>
+        </div>
+        <div class="col-lg-4">
+            <label for="new_project_type">活动类型 : </label>
+        </div>
+        <div class="col-lg-8">
+            <input id="new_project_type" class="input">
+        </div>
+        <div class="col-lg-4">
+            <label for="num_of_seat_type">座位种类数 : </label>
+        </div>
+        <div class="col-lg-8">
+            <input id="num_of_seat_type" class="dropdown-toggle input" data-toggle="dropdown" value="1">
+            <ul class="dropdown-menu choose_seat_type">
+                <li><a>1</a></li>
+                <li><a>2</a></li>
+                <li><a>3</a></li>
+                <li><a>4</a></li>
+            </ul>
+        </div>
+
+        <div id="seat_type">
+            <div class="col-lg-4">
+                <label>座位类型1 : </label>
+            </div>
+            <div class="col-lg-8">
+                <input id="new_project_seat_type_1" class="input_seat input" placeholder="座位名称">
+                <!--<input id="new_project_seat_number_1" class="input_seat input" placeholder="座位数量">-->
+                <input id="new_project_seat_price_1" class="input_seat input" placeholder="座位单价">
+                <input id="new_project_seat_row_1" class="input_seat input" placeholder="行数">
+                <input id="new_project_seat_column_1" class="input_seat input" placeholder="列数">
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <label for="new_project_description">活动描述 : </label>
+        </div>
+        <div class="col-lg-8">
+            <textarea id="new_project_description"></textarea>
+        </div>
+
+        <div class="confirmBtn">
+            <button id="confirm_release_btn" class="btn btn-list">确认发布</button>
+        </div>
+    </div>
+</div>
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.scrollTo.js"></script>
+<script src="../js/calendar.js"></script>
+<script src="../js/util.js"></script>
+<script src="../js/venueProject.js"></script>
+</body>
+</html>

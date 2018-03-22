@@ -1,0 +1,14 @@
+.orderInfo {
+    margin-top: 10%;
+    margin-bottom: 20px;
+}
+
+.booking-details {
+    margin-top: 10%;
+}
+
+.price {
+    font-weight: normal;
+    font-size: 30px;
+    color: orange;
+}

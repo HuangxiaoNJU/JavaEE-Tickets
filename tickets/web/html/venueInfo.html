@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tickets</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/util.css" rel="stylesheet">
+    <link href="../css/venueInfo.css" rel="stylesheet">
+</head>
+<body>
+<div id="head"></div>
+
+<header class="btnView col-lg-3">
+    <ul class="nav navbar-fixed" style="top: 20%;">
+        <span style="margin-left: 50px">场馆中心 > 场馆信息</span>
+        <li><a id="information" class="btn-self active">基本信息</a></li>
+    </ul>
+</header>
+
+<div class="col-lg-9">
+    <div id="list" class="table row">
+        <div class="col-lg-4">
+            <label for="my_email">邮箱 : </label>
+        </div>
+        <div class="col-lg-8">
+            <input id="my_email" class="input uneditable" type="text" disabled="disabled" value="信息暂无">
+        </div>
+        <div class="col-lg-4">
+            <label for="my_name">场馆名 : </label>
+        </div>
+        <div class="col-lg-8">
+            <input id="my_name" class="input" type="text" value="信息暂无">
+        </div>
+        <div class="col-lg-4">
+            <label for="my_seats">座位数 : </label>
+        </div>
+        <div class="col-lg-8">
+            <input id="my_seats" class="input" type="text" value="信息暂无">
+        </div>
+        <div class="col-lg-4">
+            <label for="my_location">地址: </label>
+        </div>
+        <div class="col-lg-8">
+            <input id="my_location" class="input" type="text" value="信息暂无">
+        </div>
+        <div class="col-lg-4">
+            <label>注册时间 : </label>
+        </div>
+        <div class="col-lg-8">
+            <span id="my_register_time">信息暂无</span>
+        </div>
+    </div>
+    <br><br>
+    <div class="view">
+        <button id="modify_btn" class="btn btn-list" style="margin-left: 18%">申请修改</button>
+    </div>
+</div>
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.scrollTo.js"></script>
+<script src="../js/util.js"></script>
+<script src="../js/venueInfo.js"></script>
+</body>
+</html>

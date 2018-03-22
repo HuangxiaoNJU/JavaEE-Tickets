@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tickets</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/util.css" rel="stylesheet">
+    <link href="../css/person.css" rel="stylesheet">
+</head>
+<body>
+<div id="head"></div>
+
+<header class="btnView col-lg-3">
+    <ul class="nav navbar-fixed" style="top: 20%;">
+        <span style="margin-left: 50px">个人中心 > 用户信息</span>
+        <li><a id="information" class="btn-self active">基本信息</a></li>
+        <li><a id="coupon" class="btn-self">我的优惠券</a></li>
+    </ul>
+</header>
+
+<div class="col-lg-9">
+    <div id="my_info">
+        <div class="info_table row">
+            <div class="col-lg-4">
+                <label for="my_email">邮箱 : </label>
+            </div>
+            <div class="col-lg-8">
+                <input id="my_email" type="text" class="input uneditable" value="信息暂无" disabled="disabled">
+            </div>
+            <div class="col-lg-4">
+                <label for="my_nickname">昵称 : </label>
+            </div>
+            <div class="col-lg-8">
+                <input id="my_nickname" class="input" type="text" placeholder="请输入修改后内容">
+            </div>
+            <div class="col-lg-4">
+                <label>等级 : </label>
+            </div>
+            <div class="col-lg-8">
+                <label id="my_level">信息暂无</label>
+            </div>
+            <div class="col-lg-4">
+                <label>积分 : </label>
+            </div>
+            <div class="col-lg-8">
+                <label id="my_points">信息暂无</label>
+            </div>
+            <div class="col-lg-4">
+                <label>注册时间 : </label>
+            </div>
+            <div class="col-lg-8">
+                <label id="my_register_time">信息暂无</label>
+            </div>
+            <div class="col-lg-4">
+                <label>绑定账户 : </label>
+            </div>
+            <div id="my_accounts" class="col-lg-8">
+                <label>信息暂无</label>
+            </div>
+        </div>
+        <div class="view">
+            <button id="modify_nickname" class="btn btn-list">修改信息</button>
+            <button id="cancel_btn" class="btn btn-list" style="margin-left: 20px">注销账户</button>
+        </div>
+    </div>
+    <div id="list" class="table row" style="display: none">
+        <!--优惠券模版-->
+        <!--<div class="col-lg-8">-->
+        <!--<h5 id="id">10元优惠券</h5>-->
+        <!--<label>优惠金额 : </label><span>10元</span><br>-->
+        <!--<label>兑换所需积分 : </label><span>100</span><br>-->
+        <!--</div>-->
+        <!--<div class="col-lg-4">-->
+        <!--<label>我拥有0张</label><br>-->
+        <!--<a class="btn btn-primary">立即兑换</a>-->
+        <!--</div>-->
+        <!--<hr width="1100px">-->
+    </div>
+</div>
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.scrollTo.js"></script>
+<script src="../js/util.js"></script>
+<script src="../js/person.js"></script>
+</body>
+</html>
