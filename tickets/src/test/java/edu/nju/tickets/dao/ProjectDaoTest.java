@@ -50,17 +50,17 @@ public class ProjectDaoTest {
 //        projectDao.save(project);
     }
 
-    @Test
-    public void testFind() {
-        Project project = projectDao.get(11);
-        List<ProjectPrice> list = project.getPriceList();
-        list.forEach(p -> System.out.println(p.getSeatName() + "\t" + p.getPrice()));
-    }
-
-    @Test
-    public void testFindAll() {
-        List<Project> projects = projectDao.findAll("id", "desc");
-        projects.forEach(p -> System.out.println(p.getName()));
-    }
+//    @Test
+//    public void testFind() {
+//        Project project = projectDao.get(11);
+//        List<ProjectPrice> list = project.getPriceList();
+//        list.forEach(p -> System.out.println(p.getSeatName() + "\t" + p.getPrice()));
+//    }
+//
+//    @Test
+//    public void testFindAll() {
+//        List<Project> projects = projectDao.findAll("id", "desc");
+//        projects.forEach(p -> System.out.println(p.getName()));
+//    }
 
 }

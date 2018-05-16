@@ -61,9 +61,9 @@ $('#head').append(`
                                             <a class="dropdown-toggle" data-toggle="dropdown">欢迎,
                                                 <label id="manager_name"></label></a>
                                             <ul class="dropdown-menu">
-                                                <li><a href="/manager/check">审核场馆</a></li>
-                                                <li><a href="/manager/allocate">收入分配</a></li>
-                                                <li><a href="/manager/statistics">统计信息</a></li>
+                                                <li><a href="/manage/check">审核场馆</a></li>
+                                                <li><a href="/manage/allocate">收入分配</a></li>
+                                                <li><a href="/manage/statistics">统计信息</a></li>
                                                 <li><a id="manager_logout">登出</a></li>
                                             </ul>
                                         </li>

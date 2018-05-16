@@ -14,18 +14,18 @@ public class ScheduleManager {
     private OrderFormStateChange orderFormStateChange;
 
     /**
-     * 每分钟检查是否有超时未付款订单
+     * 定时检查是否有超时未付款订单
      */
-    @Scheduled(cron = "0 0/1 * * * ?")
+    @Scheduled(cron = "0 0/5 * * * ?")
     private void handleExceedOrders() {
         System.out.println(LocalDateTime.now() + ": 检查未支付订单");
         orderFormStateChange.convertNotPaidToCanceled();
     }
 
     /**
-     * 每5分钟检查是否有待分配订单
+     * 定时检查是否有待分配订单
      */
-    @Scheduled(cron = "0 0/1 * * * ?")
+    @Scheduled(cron = "0 0/10 * * * ?")
     private void handleNotAllocatedOrders() {
         System.out.println(LocalDateTime.now() + ": 检查未分配订单");
         orderFormStateChange.convertNotAllocatedToFinished();

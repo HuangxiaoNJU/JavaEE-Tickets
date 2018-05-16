@@ -15,12 +15,12 @@ public class PayDaoTest {
 
     @Test
     public void testSumMoneyByProjectIdAndIsOnline() {
-        System.out.println(payDao.sumMoneyByProjectIdAndIsOnline(1, false));
+//        System.out.println(payDao.sumMoneyByProjectIdAndIsOnline(1, false));
     }
 
     @Test
     public void testFindProjectIncomeByVenueId() {
-        System.out.println(payDao.findProjectIncomeByVenueId(2).get(0)[0]);
+//        System.out.println(payDao.findProjectIncomeByVenueId(2).get(0)[0]);
     }
 
 }

@@ -46,17 +46,17 @@ public class ViewController {
         return "venueStatistics";
     }
 
-    @GetMapping("/manager/check")
+    @GetMapping("/manage/check")
     public String managerCheck() {
         return "managerCheck";
     }
 
-    @GetMapping("/manager/allocate")
+    @GetMapping("/manage/allocate")
     public String managerAllocate() {
         return "managerAllocate";
     }
 
-    @GetMapping("/manager/statistics")
+    @GetMapping("/manage/statistics")
     public String managerStatistics() {
         return "managerStatistics";
     }

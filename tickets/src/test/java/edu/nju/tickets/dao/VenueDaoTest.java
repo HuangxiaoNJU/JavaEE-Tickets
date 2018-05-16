@@ -26,23 +26,23 @@ public class VenueDaoTest {
 //        venueDao.save(venue);
     }
 
-    @Test
-    public void testSearch() {
-        List<Venue> venues = venueDao.findByNameLike("%南%");
-        System.out.println(venues.size());
-        venues.forEach(v -> System.out.println(v.getName()));
-    }
-
-    @Test
-    public void testFind() {
-        Venue venue = venueDao.get(1);
-        System.out.println(venue.isChecked());
-    }
-
-    @Test
-    public void testFindUnChecked() {
-        List<Venue> venues = venueDao.findByCheckedOrderByRegisterTime(false);
-        System.out.println(venues.size());
-    }
+//    @Test
+//    public void testSearch() {
+//        List<Venue> venues = venueDao.findByNameLike("%南%");
+//        System.out.println(venues.size());
+//        venues.forEach(v -> System.out.println(v.getName()));
+//    }
+//
+//    @Test
+//    public void testFind() {
+//        Venue venue = venueDao.get(1);
+//        System.out.println(venue.isChecked());
+//    }
+//
+//    @Test
+//    public void testFindUnChecked() {
+//        List<Venue> venues = venueDao.findByCheckedOrderByRegisterTime(false);
+//        System.out.println(venues.size());
+//    }
 
 }

@@ -18,8 +18,8 @@ public class ProjectServiceTest {
 
     @Test
     public void testGetProjects() {
-        List<ProjectInfoVO> projects = projectService.getProjects("id", "desc");
-        projects.forEach(p -> System.out.println(p.getName()));
+//        List<ProjectInfoVO> projects = projectService.getProjects("id", "desc");
+//        projects.forEach(p -> System.out.println(p.getName()));
     }
 
 }

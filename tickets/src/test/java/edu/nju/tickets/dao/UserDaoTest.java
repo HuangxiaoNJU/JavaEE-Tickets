@@ -28,8 +28,8 @@ public class UserDaoTest {
 
     @Test
     public void testFindByEmailAndPassword() {
-        User user = userDao.findByEmailAndPassword("hx36w35@163.com", "123456");
-        System.out.println(user.getNickname());
+//        User user = userDao.findByEmailAndPassword("hx36w35@163.com", "123456");
+//        System.out.println(user.getNickname());
     }
 
 }
