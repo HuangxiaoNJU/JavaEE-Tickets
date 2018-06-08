@@ -6,56 +6,130 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/util.css" rel="stylesheet">
+    <link href="../css/image.css" rel="stylesheet">
 </head>
 <body>
+<!--<iframe src="html/util.html" style="width: 100%; height: 90px;"></iframe>-->
+
 <div id="head"></div>
 
-<header class="btnView col-lg-3">
-    <ul class="nav navbar-fixed">
-        <li><a id="hot_project" class="btn-self active">热门活动</a></li>
-        <li><a id="hot_venue" class="btn-self">热门场馆</a></li>
-        <li><a id="manager_introduce" class="btn-self">经理介绍</a></li>
-    </ul>
-</header>
+<!--<header class="btnView col-lg-3">-->
+    <!--<ul class="nav navbar-fixed">-->
+        <!--<li><a id="hot_project" class="btn-self active">热门活动</a></li>-->
+        <!--<li><a id="hot_venue" class="btn-self">热门场馆</a></li>-->
+        <!--<li><a id="manager_introduce" class="btn-self">经理介绍</a></li>-->
+    <!--</ul>-->
+<!--</header>-->
 
-<div class="col-lg-9 main">
+
+    <!--轮播 -->
+    <div class="main_div" id="imageTurn">
+        <ul class="ul_img">
+            <li class="li_img"><img src="../image/image1.jpg"/></li>
+            <li class="li_img"><img src="../image/image2.jpg"/></li>
+            <li class="li_img"><img src="../image/image1.jpg"/></li>
+            <li class="li_img"><img src="../image/image2.jpg"/></li>
+        </ul>
+
+        <div style="margin-left: 300px">
+            <div class="div_btn"></div>
+            <div class="div_btn"></div>
+            <div class="div_btn"></div>
+            <div class="div_btn"></div>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+<div class="container" style="margin-top: 13%">
+    <h4>热门活动</h4>
     <div id="list" class="table row">
-        <!--场馆项模版-->
-        <!--<div class="col-lg-8">-->
-        <!--<h5 id="id">南大</h5>-->
-        <!--<label>地址 : </label><span>&nbsp;中华人民共和国江苏省南京市汉口路22号南京大学费祎民楼</span><br>-->
-        <!--<label>人数 : </label><span>&nbsp;500人</span><br>-->
-        <!--<label>联系方式 : </label><span>&nbsp;123456789</span>-->
-        <!--</div>-->
-        <!--<div class="col-lg-4">-->
-        <!--<a class="btn btn-primary">查看场馆活动</a>-->
-        <!--</div>-->
-        <!--<hr width="1100px">-->
-
-        <!--活动项模版-->
-        <!--<div class="col-lg-8">-->
-        <!--<h5 id="id">开学典礼</h5>-->
-        <!--<span>2017-10-10&nbsp;至&nbsp;2017-12-12</span><br><br>-->
-        <!--<label>地点 : </label><span>&nbsp;南大费祎民楼</span><br>-->
-        <!--<label>可参与人数 : </label><span>&nbsp;500人</span><br>-->
-        <!--<label>活动介绍 : </label><br>-->
-        <!--<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-        <!--新校长吕建发表开学讲话新校长吕建发表开学讲话新校长吕建发表开学讲话新校长吕建发表开学讲话新校长吕建发表开学讲话新校长吕建发表开学讲话新校长吕建发表开学讲话。-->
-        <!--</span>-->
-        <!--</div>-->
-        <!--<div class="col-lg-4">-->
-        <!--<span>讲座</span><br>-->
-        <!--<a class="btn btn-primary">查看场馆活动</a>-->
-        <!--</div>-->
-        <!--<hr width="1100px">-->
-
     </div>
 </div>
 
+<script>
+    //跑动的次数
+    let count = 0;
+    //动画的执行方向
+    let isgo = false;
+    //定义计时器对象
+    let timer;
+
+    window.onload = function () {
+        /*获取ul元素*/
+        let ul_img = document.getElementsByClassName("ul_img")[0];
+        //获取所有的li图片元素
+        let li_img = document.getElementsByClassName("li_img");
+        //获取所有按钮元素
+        let div_btn = document.getElementsByClassName("div_btn");
+        div_btn[0].style.backgroundColor = "gray";
+
+
+        /*定义计时器，控制图片移动*/
+        showtime();
+        function showtime() {
+            timer = setInterval(function () {
+                if (isgo === false) {
+                    count++;
+                    ul_img.style.transform = "translate(" + -940 * count + "px)";
+                    if (count >= li_img.length - 1) {
+                        count = li_img.length - 1;
+                        isgo = true;
+                    }
+                }
+                else {
+                    count--;
+                    ul_img.style.transform = "translate(" + -940 * count + "px)";
+                    if (count <= 0) {
+                        count = 0;
+                        isgo = false;
+                    }
+                }
+
+                for (let i = 0; i < div_btn.length; i++) {
+                    div_btn[i].style.backgroundColor = "gainsboro";
+                }
+
+                div_btn[count].style.backgroundColor = "gray";
+
+            }, 4000)
+        }
+
+
+        //鼠标悬停在底部按钮的操作
+        for (let b = 0; b < div_btn.length; b++) {
+            div_btn[b].index = b;
+            div_btn[b].onmouseover = function () {
+
+                clearInterval(timer);
+
+                for (let i = 0; i < div_btn.length; i++) {
+                    div_btn[i].style.backgroundColor = "gainsboro";
+                }
+                div_btn[this.index].style.backgroundColor = "gray";
+                //让count值对应
+                //为了控制方向
+                if (this.index === 3) {
+                    isgo = true;
+                }
+                if (this.index === 0) {
+                    isgo = false;
+                }
+                count = this.index;
+                ul_img.style.transform = "translate(" + -940 * this.index + "px)";
+            };
+            div_btn[b].onmouseout = function () {
+                //添加计时器
+                showtime();
+            }
+        }
+    }
+</script>
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/jquery.scrollTo.js"></script>
 <script src="../js/util.js"></script>
 <script src="../js/index.js"></script>
+<script src="../js/project.js"></script>
 </body>
 </html>

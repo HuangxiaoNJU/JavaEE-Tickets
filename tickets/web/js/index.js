@@ -2,7 +2,7 @@
 
 $().ready(function () {
     checkIdentity();
-    $('#hot_project').click();
+    showProjects();
 });
 
 function showVenues() {
@@ -31,25 +31,3 @@ function showProjects() {
     });
 }
 
-function showLeftNavItem(item) {
-    $('#hot_venue').removeClass("active");
-    $('#hot_project').removeClass("active");
-    $('#manager_introduce').removeClass("active");
-
-    $('#' + item).addClass("active");
-}
-
-$('#hot_venue').click(function () {
-    showLeftNavItem('hot_venue');
-    showVenues();
-});
-
-$('#hot_project').click(function () {
-    showLeftNavItem('hot_project');
-    showProjects();
-});
-
-$('#manager_introduce').click(function () {
-    showLeftNavItem('manager_introduce');
-
-});
