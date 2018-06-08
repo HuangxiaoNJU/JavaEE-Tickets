@@ -27,12 +27,9 @@ $('#head').append(`
                         </div>
                         <div class="mob-menu">
                             <div class="row">
-                                <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
-                                        <i class="fa fa-bars"></i>
-                                    </button>
-                                </div>
                                 <div class="collapse navbar-collapse" id="menu">
+                                    <input id="search_project" type="text" placeholder="请输入活动名称" class="search">
+                                    <button class="searchBtn"><img src="../image/search.png"></button>
                                     <ul class="nav navbar-nav navbar-right">
                                         <li class="active"><a href="/">主页</a></li>
                                         <li><a href="/project">活动</a></li>
@@ -89,7 +86,7 @@ $('#head').append(`
                         <th><a class="btn-self" id="manager_login">经理登录</a></th>
                     </table>
                     <div class="inputView">
-                        <input id="username" class="input" type="text" placeholder="用户名"/>
+                        <input id="username" class="input" type="text" placeholder="邮箱"/>
                         <br>
                         <input id="password" class="input" type="password" placeholder="密码"/>
                         <br>
@@ -390,22 +387,21 @@ function addProjectInfo(projects) {
     for (let i = 0; i < projects.length; i++) {
         let item = projects[i];
         list.append(`
-            <div class="col-lg-8">
-                <h5 id="id">${item.name}</h5>
-                <span>${item.beginTime}&nbsp;至&nbsp;${item.endTime}</span><br><br>
-                <label>人数 : </label><span>&nbsp;${item.totalPeople}人</span><br>
-                <label>场馆 : </label><span>&nbsp;${item.venueInfoVO.name}</span><br>
-                <label>活动介绍 : </label><br>
-                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    ${item.description}
-                </span>
+            <div class="col-lg-6">
+                <div class="col-lg-8">
+                    <h5 id="id">${item.name}</h5>
+                    <span>${item.beginTime}&nbsp;至&nbsp;${item.endTime}</span><br><br>
+                    <label>活动简介 : </label><br>
+                    <p  style="margin-left: 5%">
+                        ${item.description.substr(0, 40)} · · ·
+                    </p>
+                </div>
+                <div class="col-lg-4">
+                    <span style="margin: 8%">${item.type}</span><br>
+                    <a href="/project/detail?project_id=${item.id}" class="btn btn-link">查看详情 >></a>   
+                </div>
+                <br>
             </div>
-            <div class="col-lg-4">
-                <span>${item.type}</span><br>
-                <a href="/project/detail?project_id=${item.id}" class="btn btn-link">查看详情 >></a>   
-            </div>
-            <br>
-            <hr width="1100px">
         `);
     }
 }

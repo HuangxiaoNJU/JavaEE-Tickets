@@ -36,18 +36,20 @@
     border-radius: 0.75em;
     border-color: #b6b6b6;
     border-width: 1px;
-    width: 175px;
-    height: 28px;
+    width: 255px;
+    height: 30px;
     padding-left: 10px;
-    margin: 18% 15% -25px;
+    position: absolute;
+    top: 35%;
+    left: 40%;
 }
 
 .searchBtn {
     position: absolute;
-    top: 63%;
-    right: 25%;
     background: transparent;
     border: transparent;
+    top: 34%;
+    left: 57%;
 }
 
 .btn-link {
@@ -66,4 +68,8 @@
 
 .uneditable {
     background-color: #e3e3e3;
+}
+
+.main {
+    margin-top: 13%;
 }

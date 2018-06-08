@@ -1,10 +1,10 @@
 
 $().ready(function () {
     checkIdentity();
-    $('#recent').click();
+    showProjects();
 });
 
-function showRecentProjects() {
+function showProjects() {
     $.ajax({
         type: 'GET',
         url: '/api/projects',
@@ -18,33 +18,19 @@ function showRecentProjects() {
     });
 }
 
-function showHotProjects() {
-
-}
-
-function showLeftNavItem(item) {
-    $('#recent').removeClass("active");
-    $('#hot').removeClass("active");
-
-    $('#' + item).addClass("active");
-}
-
-$('#hot').click(function () {
-    showLeftNavItem('hot');
-    showHotProjects();
-});
-
-$('#recent').click(function () {
-    showLeftNavItem('recent');
-    showRecentProjects();
-});
-
 $('#search_project').on('input', function () {
+    let search_info = $('#search_project').val();
+
+    if (search_info === "") {
+        $('#imageTurn').show();
+    } else {
+        $('#imageTurn').hide();
+    }
     $.ajax({
         type: 'GET',
         url: '/api/projects/search',
         data: {
-            keywords: $('#search_project').val()
+            keywords: search_info
         },
         success: function (result) {
             if (result.success) {

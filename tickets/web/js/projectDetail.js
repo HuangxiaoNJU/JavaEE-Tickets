@@ -59,9 +59,33 @@ function addProjectInfo(project) {
                 <label>${item.price}</label>
             </div>
             <div class="col-lg-3">
-                <a id="make_order_btn_${item.id}" href="/order/make?project_id=${project.id}&project_price_id=${item.id}" class="btn btn-info">线上购票</a>
-                <a id="offline_order_btn_${item.id}" href="/order/make-offline?project_id=${project.id}&project_price_id=${item.id}" class="btn btn-info">线下购票</a>
+                <button id="make_order_btn_${item.id}" class="btn btn-info online" 
+                        onclick="judgeOnlinePurchase(${project.id}, ${item.id})">
+                    线上购票
+                </button>
+                <button id="offline_order_btn_${item.id}" class="btn btn-info underline"
+                        onclick="judgeOfflinePurchase(${project.id}, ${item.id})">
+                    线下购票
+                </button>
             </div>
         `);
     }
+}
+
+function judgeOnlinePurchase(projectId, itemId) {
+    let identity = checkIdentity();
+    if (identity !== 'user') {
+        alert('请以用户身份登录后下单');
+        return;
+    }
+    window.location.href = "/order/make?project_id=" + projectId + "&project_price_id=" + itemId;
+}
+
+function judgeOfflinePurchase(projectId, itemId) {
+    let identity = checkIdentity();
+    if (identity !== 'venue') {
+        alert('请以场馆身份登录后下单');
+        return;
+    }
+    window.location.href = "/order/make-offline?project_id=" + projectId + "&project_price_id=" + itemId;
 }

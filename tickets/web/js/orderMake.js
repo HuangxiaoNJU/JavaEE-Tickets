@@ -1,6 +1,6 @@
 
 let firstSeatLabel = 1;
-let choosedSeats = [];
+let choseSeats = [];
 
 $().ready(function() {
     let identity = checkIdentity();
@@ -85,18 +85,18 @@ function setSeatMap(seatPrice) {
 
 function reCollect(sc, id) {
     let isExist = false;
-    choosedSeats.splice(0, choosedSeats.length);
+    choseSeats.splice(0, choseSeats.length);
     sc.find('selected').each(function () {
         if (this.settings.id === id) {
             isExist = true;
             return;
         }
-        choosedSeats.push(this.settings.id);
+        choseSeats.push(this.settings.id);
     });
     if (!isExist) {
-        choosedSeats.push(id);
+        choseSeats.push(id);
     }
-    showRealTimeOrderPrice(choosedSeats.length);
+    showRealTimeOrderPrice(choseSeats.length);
 }
 
 function addProjectInfo(project) {
@@ -150,7 +150,7 @@ $('input[type=radio][name=purchase_type]').change(function () {
     if (purchaseType === '0') {
         $('#not_choose_seat').hide();
         $('#choose_seat').show();
-        showRealTimeOrderPrice(choosedSeats.length);
+        showRealTimeOrderPrice(choseSeats.length);
     } else if (purchaseType === '1') {
         $('#not_choose_seat').show();
         $('#choose_seat').hide();
@@ -166,10 +166,10 @@ $('#confirm_make_order').click(function() {
     let purchaseType = $('input[name="purchase_type"]:checked').val();
     orderFormAddVO.purchaseType = purchaseType;
     orderFormAddVO.projectPriceId = getQueryVariable('project_price_id');
-    orderFormAddVO.seatList = choosedSeats;
+    orderFormAddVO.seatList = choseSeats;
 
     if (purchaseType === '0') {
-        orderFormAddVO.seatNumber = choosedSeats.length;
+        orderFormAddVO.seatNumber = choseSeats.length;
     } else {
         orderFormAddVO.seatNumber = $('#buy_seat_number').val();
     }
