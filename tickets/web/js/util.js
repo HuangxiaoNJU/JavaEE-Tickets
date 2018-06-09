@@ -28,8 +28,6 @@ $('#head').append(`
                         <div class="mob-menu">
                             <div class="row">
                                 <div class="collapse navbar-collapse" id="menu">
-                                    <input id="search_project" type="text" placeholder="请输入活动名称" class="search">
-                                    <button class="searchBtn"><img src="../image/search.png"></button>
                                     <ul class="nav navbar-nav navbar-right">
                                         <li class="active"><a href="/">主页</a></li>
                                         <li><a href="/project">活动</a></li>
