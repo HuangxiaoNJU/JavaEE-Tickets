@@ -16,6 +16,8 @@ $().ready(function () {
 function showUserInfo() {
     $('#list').hide();
     $('#my_info').show();
+    $('#info').show();
+    $('#discount').hide();
     showBasicInfo();
     showAccountInfo();
 }
@@ -28,8 +30,8 @@ function showBasicInfo() {
         success: function (result) {
             if (result.success) {
                 let vo = result.data;
-                $('#my_email').val(vo.email);
-                $('#my_nickname').val(vo.nickname);
+                $('#my_email').text(vo.email);
+                $('#my_nickname').text(vo.nickname);
                 $('#my_level').text(vo.level);
                 $('#my_points').text(vo.points);
                 $('#my_register_time').text(vo.registerTime);
@@ -191,6 +193,8 @@ $('#information').click(function () {
 });
 
 $('#coupon').click(function () {
+    $('#info').hide();
+    $('#discount').show();
     showLeftNavItem('coupon');
     showCouponInfo();
 });

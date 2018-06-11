@@ -14,53 +14,67 @@
 <header class="btnView col-lg-3">
     <ul class="nav navbar-fixed" style="top: 20%;">
         <span style="margin-left: 50px">个人中心 > 用户信息</span>
-        <li><a id="information" class="btn-self active">基本信息</a></li>
-        <li><a id="coupon" class="btn-self">我的优惠券</a></li>
+        <li>
+            <a id="information" class="btn-self active">
+            <img src="../image/user_info.png" class="nav_img">基本信息</a>
+            <div class="under" id="info"></div>
+        </li>
+        <li><a id="coupon" class="btn-self">
+            <img src="../image/discount.png" class="nav_img">我的优惠券</a>
+            <div class="under" id="discount"></div>
+        </li>
     </ul>
 </header>
 
-<div class="col-lg-9">
+<div class="col-lg-9 main">
     <div id="my_info">
+        <img src="../image/user_img.jpg" class="user-img">
         <div class="info_table row">
             <div class="col-lg-4">
-                <label for="my_email">邮箱 : </label>
+                <span for="my_nickname" class="text-gray">昵称</span>
             </div>
             <div class="col-lg-8">
-                <input id="my_email" type="text" class="input uneditable" value="信息暂无" disabled="disabled">
+                <!--<input id="my_nickname" class="input" type="text" placeholder="请输入修改后内容">-->
+                <label id="my_nickname"></label>
             </div>
+            <hr width="550px">
             <div class="col-lg-4">
-                <label for="my_nickname">昵称 : </label>
+                <span for="my_email">邮箱</span>
             </div>
             <div class="col-lg-8">
-                <input id="my_nickname" class="input" type="text" placeholder="请输入修改后内容">
+                <label id="my_email"></label>
             </div>
+            <hr width="550px">
             <div class="col-lg-4">
-                <label>等级 : </label>
+                <span>等级</span>
             </div>
             <div class="col-lg-8">
                 <label id="my_level">信息暂无</label>
             </div>
+            <hr width="550px">
             <div class="col-lg-4">
-                <label>积分 : </label>
+                <span>积分</span>
             </div>
             <div class="col-lg-8">
                 <label id="my_points">信息暂无</label>
             </div>
+            <hr width="550px">
             <div class="col-lg-4">
-                <label>注册时间 : </label>
+                <span>注册时间</span>
             </div>
             <div class="col-lg-8">
                 <label id="my_register_time">信息暂无</label>
             </div>
+            <hr width="550px">
             <div class="col-lg-4">
-                <label>绑定账户 : </label>
+                <span>已绑定账户</span>
             </div>
             <div id="my_accounts" class="col-lg-8">
                 <label>信息暂无</label>
             </div>
         </div>
         <div class="view">
-            <button id="modify_nickname" class="btn btn-list">修改信息</button>
+            <!--<button id="modify_nickname" class="btn btn-list">修改信息</button>-->
             <button id="cancel_btn" class="btn btn-list" style="margin-left: 20px">注销账户</button>
         </div>
     </div>

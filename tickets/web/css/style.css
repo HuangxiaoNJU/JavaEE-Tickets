@@ -462,11 +462,10 @@ a.btn:focus {
 }
 .btn-self {
     font-size: 18px;
-    -webkit-text-fill-color: black;
+    color: darkgray;
     width: 150px;
     padding: 20px;
     margin-left: 50px;
-    text-align: center;
     font-weight: bold;
     margin-top: 50px;
 }
@@ -475,12 +474,12 @@ a.btn:focus {
     border: transparent;
     box-shadow: transparent;
     background-color: transparent;
-    -webkit-text-fill-color: darkgray;
+    color: #3a78c3;
 }
 
 .btn-self.active {
     background-color: transparent;
-    -webkit-text-fill-color: darkgray;
+    color: #3a78c3;
 }
 
 .nav > li > label {

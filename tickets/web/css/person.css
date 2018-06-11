@@ -1,19 +1,31 @@
 .info_table {
-    margin: 20% 15%;
+    margin: 3%;
 }
 
-.col-lg-4 > label, .col-lg-8 > label {
-    font-size: 18px;
+.col-lg-8 > label {
+    font-size: 16px;
     font-weight: normal;
     margin-top: 5px;
 }
 
-.col-lg-4 > label {
-    -webkit-text-fill-color: black;
-}
-
 .view {
     margin-left: 20%;
-    margin-top: -15%;
 }
 
+.user-img {
+    border-radius: 5em;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    right: 25%;
+    top: -50px;
+}
+
+.col-lg-4 > span {
+    margin-top: 10px;
+    color: gray;
+}
+
+hr {
+    margin-left: -10px;
+}
