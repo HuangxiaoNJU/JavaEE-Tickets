@@ -12,6 +12,16 @@ $().ready(function() {
     showUserDiscount();
 });
 
+function getType() {
+    let type = getQueryVariable('type');
+    if (type === "choose") {
+        $('input[type=radio][name=purchase_type][value="0"]').attr("checked",true);
+    } else {
+        $('input[type=radio][name=purchase_type][value="1"]').attr("checked",true);
+    }
+
+}
+
 function showUserDiscount() {
     // 显示会员对应折扣
     $.ajax({

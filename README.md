@@ -1,2 +1,5 @@
 # JavaEE-Tickets
-J2EE homework
+
+JavaEE and Middleware Technology Course Project
+
+Spring + Spiring MVC + Hibernate

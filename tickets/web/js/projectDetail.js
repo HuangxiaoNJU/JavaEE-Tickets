@@ -45,7 +45,9 @@ function addProjectInfo(project) {
     seatPriceList.empty();
     for (let i = 0; i < project.prices.length; i++) {
         let item = project.prices[i];
-        seatPriceList.append(`
+        let identity = checkIdentity();
+        if (identity === 'venue') {
+            seatPriceList.append(`
             <div class="col-lg-3">
                 <span>座位类型 : </span>
                 <label>${item.seatName}</label>
@@ -60,32 +62,67 @@ function addProjectInfo(project) {
             </div>
             <div class="col-lg-3">
                 <button id="make_order_btn_${item.id}" class="btn btn-info online" 
-                        onclick="judgeOnlinePurchase(${project.id}, ${item.id})">
-                    线上购票
-                </button>
-                <button id="offline_order_btn_${item.id}" class="btn btn-info underline"
                         onclick="judgeOfflinePurchase(${project.id}, ${item.id})">
-                    线下购票
+                        线下购买
                 </button>
             </div>
         `);
+        } else {
+            seatPriceList.append(`
+            <div class="col-lg-3">
+                <span>座位类型 : </span>
+                <label>${item.seatName}</label>
+            </div>
+            <div class="col-lg-3">
+                <span>座位数 : </span>
+                <label>${item.seatNumber}人</label>
+            </div>
+            <div class="col-lg-3">
+                <span>价格 : </span>
+                <label>${item.price}</label>
+            </div>
+            <div class="col-lg-3">
+                <button id="make_order_btn_${item.id}" class="btn btn-info online" 
+                        onclick="judgeChoosePurchase(${project.id}, ${item.id})">
+                        选座购买
+                </button>
+                <button id="offline_order_btn_${item.id}" class="btn btn-info underline"
+                        onclick="judgeImmediatePurchase(${project.id}, ${item.id})">
+                        立即购买
+                </button>
+            </div>
+            `);
+
+        }
+
     }
 }
 
-function judgeOnlinePurchase(projectId, itemId) {
-    let identity = checkIdentity();
-    if (identity !== 'user') {
-        alert('请以用户身份登录后下单');
-        return;
-    }
-    window.location.href = "/order/make?project_id=" + projectId + "&project_price_id=" + itemId;
-}
 
 function judgeOfflinePurchase(projectId, itemId) {
+    window.location.href = "/order/make-offline?project_id=" + projectId + "&project_price_id=" + itemId;
+}
+
+// 立即购买
+function judgeImmediatePurchase(projectId, itemId) {
     let identity = checkIdentity();
-    if (identity !== 'venue') {
-        alert('请以场馆身份登录后下单');
+    if (identity === 'visitor') {
+        showSignInDialog();
         return;
     }
-    window.location.href = "/order/make-offline?project_id=" + projectId + "&project_price_id=" + itemId;
+    if (identity === 'user') {
+        window.location.href = "/order/make?project_id=" + projectId + "&project_price_id=" + itemId + "&type=immediate";
+    }
+}
+
+// 选座购买
+function judgeChoosePurchase(projectId, itemId) {
+    let identity = checkIdentity();
+    if (identity === 'visitor') {
+        showSignInDialog();
+        return;
+    }
+    if (identity === 'user') {
+        window.location.href = "/order/make?project_id=" + projectId + "&project_price_id=" + itemId + "&type=choose";
+    }
 }

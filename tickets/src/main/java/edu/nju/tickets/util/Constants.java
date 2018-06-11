@@ -47,6 +47,15 @@ public class Constants {
     }
 
     /**
+     * 每多少分钟检查未支付订单
+     */
+    public static final int CHECK_NOT_PAID_ORDER_MINUTES = 5;
+    /**
+     * 每多少分钟检查未分配订单
+     */
+    public static final int CHECK_NOT_ALLOCATED_ORDER_MINUTES = 15;
+
+    /**
      * 订单允许在多少分钟内进行支付
      */
     public static final int ORDER_ALLOW_PAY_MINUTES = 5;

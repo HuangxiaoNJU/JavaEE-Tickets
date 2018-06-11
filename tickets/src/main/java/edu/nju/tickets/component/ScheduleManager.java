@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
 
+import static edu.nju.tickets.util.Constants.CHECK_NOT_ALLOCATED_ORDER_MINUTES;
+import static edu.nju.tickets.util.Constants.CHECK_NOT_PAID_ORDER_MINUTES;
+
 @Component
 public class ScheduleManager {
 
@@ -16,7 +19,7 @@ public class ScheduleManager {
     /**
      * 定时检查是否有超时未付款订单
      */
-    @Scheduled(cron = "0 0/5 * * * ?")
+    @Scheduled(cron = "0 0/" + CHECK_NOT_PAID_ORDER_MINUTES + " * * * ?")
     private void handleExceedOrders() {
         System.out.println(LocalDateTime.now() + ": 检查未支付订单");
         orderFormStateChange.convertNotPaidToCanceled();
@@ -25,7 +28,7 @@ public class ScheduleManager {
     /**
      * 定时检查是否有待分配订单
      */
-    @Scheduled(cron = "0 0/10 * * * ?")
+    @Scheduled(cron = "0 0/" + CHECK_NOT_ALLOCATED_ORDER_MINUTES + " * * * ?")
     private void handleNotAllocatedOrders() {
         System.out.println(LocalDateTime.now() + ": 检查未分配订单");
         orderFormStateChange.convertNotAllocatedToFinished();
