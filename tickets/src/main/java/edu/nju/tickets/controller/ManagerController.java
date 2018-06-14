@@ -17,6 +17,14 @@ public class ManagerController {
     @Resource
     private ManagerService managerService;
 
+    /**
+     * 经理登录
+     *
+     * @param managerName       经理名
+     * @param password          密码
+     * @param response          HttpServletResponse：用于添加cookie
+     * @return                  登录结果
+     */
     @PostMapping("/login")
     public ResponseResult<Void> login(@RequestParam(name = "username") String managerName,
                                       @RequestParam(name = "password") String password,
