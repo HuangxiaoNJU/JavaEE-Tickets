@@ -9,15 +9,15 @@ public interface VenueService {
     /**
      * 搜索场馆
      *
-     * @param keywords  关键词
-     * @return          venue列表
+     * @param keywords          关键词
+     * @return                  venue列表
      */
     List<VenueInfoVO> searchVenue(final String keywords);
 
     /**
      * 场馆注册
      *
-     * @param vo    注册信息
+     * @param vo                注册信息
      */
     void register(final VenueRegisterVO vo);
 
@@ -32,24 +32,24 @@ public interface VenueService {
     /**
      * 审核场馆注册申请
      *
-     * @param venueId   id
-     * @param isPass    是否通过
+     * @param venueId           id
+     * @param isPass            是否通过
      */
     void checkVenueRegister(final Integer venueId, final boolean isPass);
 
     /**
      * 审核场馆信息修改申请
      *
-     * @param modifyId  修改记录id
-     * @param isPass    是否通过
+     * @param modifyId          修改记录id
+     * @param isPass            是否通过
      */
     void checkVenueModify(final Integer modifyId, final boolean isPass);
 
     /**
      * 根据id获取venue信息
      *
-     * @param id        id
-     * @return          venue信息
+     * @param id                id
+     * @return                  venue信息
      */
     VenueInfoVO getVenueInfoById(final Integer id);
 
@@ -64,9 +64,9 @@ public interface VenueService {
     /**
      * 按制定顺序获取全部场馆
      *
-     * @param property  排序属性
-     * @param order     顺序（正序／逆序）
-     * @return          venue列表
+     * @param property          排序属性
+     * @param order             顺序（正序／逆序）
+     * @return                  venue列表
      */
     List<VenueInfoVO> getVenues(final String property, final String order);
 
@@ -79,17 +79,18 @@ public interface VenueService {
     void applyForChangeInfo(final String identification, final VenueChangeVO vo);
 
     /**
-     * 获取未审核场馆
+     * 获取申请注册场馆列表
      *
-     * @return          venue列表
+     * @param isChecked         是否被审核
+     * @return                  venue列表
      */
-    List<VenueInfoVO> getUnCheckedVenues();
+    List<VenueInfoVO> getVenuesByIsChecked(boolean isChecked);
 
     /**
      * 获取场馆信息修改记录
      *
-     * @param isChecked     是否被审核
-     * @return              venueModifyInfo列表
+     * @param isChecked         是否被审核
+     * @return                  venueModifyInfo列表
      */
     List<VenueModifyInfoVO> getVenueModifyInfo(final boolean isChecked);
 
@@ -104,7 +105,7 @@ public interface VenueService {
     /**
      * 获取所有场馆统计信息
      *
-     * @return          所有场馆统计信息
+     * @return                  所有场馆统计信息
      */
     VenuesStatisticsVO getVenuesStatistics();
 

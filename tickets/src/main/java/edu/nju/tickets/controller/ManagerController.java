@@ -29,10 +29,10 @@ public class ManagerController {
         return new ResponseResult<>(result, result ? "登录成功": "登录失败", null);
     }
 
-    public ResponseResult<Void> handleVenueRegister(@CookieValue(value = MANAGER_COOKIE_NAME, required = false) String managerName,
-                                                    @RequestParam Integer venueId,
-                                                    @RequestParam boolean isPass) {
-        return null;
-    }
+//    public ResponseResult<Void> handleVenueRegister(@CookieValue(value = MANAGER_COOKIE_NAME, required = false) String managerName,
+//                                                    @RequestParam Integer venueId,
+//                                                    @RequestParam boolean isPass) {
+//        return null;
+//    }
 
 }
