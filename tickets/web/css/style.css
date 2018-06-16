@@ -474,12 +474,12 @@ a.btn:focus {
     border: transparent;
     box-shadow: transparent;
     background-color: transparent;
-    color: #3a78c3;
+    color: #bce8f1;
 }
 
 .btn-self.active {
     background-color: transparent;
-    color: #3a78c3;
+    color: #bce8f1;
 }
 
 .nav > li > label {

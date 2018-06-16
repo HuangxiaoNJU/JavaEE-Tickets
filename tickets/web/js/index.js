@@ -31,3 +31,12 @@ function showProjects() {
     });
 }
 
+
+$('#channel li').click(function(){
+    let type = document.getSelection().anchorNode.data;
+
+    $('#channel li').removeClass('active');
+    $(this).attr('class', 'active');
+    $('#channel li a div').hide();
+    $(document.getSelection().anchorNode.nextSibling).show();
+});

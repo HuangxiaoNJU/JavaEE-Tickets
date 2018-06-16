@@ -100,8 +100,8 @@
 }
 
 .under {
-    background-color: #3a78c3;
-    width: 35px;
+    background-color: #bce8f1;
+    width: 25%;
     height: 5px;
     margin-left: 90px;
 }
@@ -113,4 +113,14 @@
 
 .modal {
     z-index: 9999;
+}
+
+.border_bottom {
+    display: none;
+    position: relative;
+    top: -6px;
+    height: 4px;
+    width: 100%;
+    background-color: #bce8f1;
+    border-radius: 2px;
 }
