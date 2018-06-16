@@ -17,6 +17,14 @@ public class ManagerController {
     @Resource
     private ManagerService managerService;
 
+    /**
+     * 经理登录
+     *
+     * @param managerName       经理名
+     * @param password          密码
+     * @param response          HttpServletResponse：用于添加cookie
+     * @return                  登录结果
+     */
     @PostMapping("/login")
     public ResponseResult<Void> login(@RequestParam(name = "username") String managerName,
                                       @RequestParam(name = "password") String password,
@@ -29,10 +37,10 @@ public class ManagerController {
         return new ResponseResult<>(result, result ? "登录成功": "登录失败", null);
     }
 
-    public ResponseResult<Void> handleVenueRegister(@CookieValue(value = MANAGER_COOKIE_NAME, required = false) String managerName,
-                                                    @RequestParam Integer venueId,
-                                                    @RequestParam boolean isPass) {
-        return null;
-    }
+//    public ResponseResult<Void> handleVenueRegister(@CookieValue(value = MANAGER_COOKIE_NAME, required = false) String managerName,
+//                                                    @RequestParam Integer venueId,
+//                                                    @RequestParam boolean isPass) {
+//        return null;
+//    }
 
 }

@@ -252,9 +252,9 @@ public class VenueServiceImpl implements VenueService, VenueInfo {
     }
 
     @Override
-    public List<VenueInfoVO> getUnCheckedVenues() {
+    public List<VenueInfoVO> getVenuesByIsChecked(boolean isChecked) {
         return venueDao
-                .findByCheckedOrderByRegisterTime(false)
+                .findByCheckedOrderByRegisterTime(isChecked)
                 .stream()
                 .map(this::convertVenueToVO)
                 .collect(Collectors.toList());

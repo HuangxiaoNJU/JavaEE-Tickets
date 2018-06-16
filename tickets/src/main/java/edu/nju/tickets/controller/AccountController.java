@@ -21,6 +21,12 @@ public class AccountController {
     @Resource
     private AccountService accountService;
 
+    /**
+     * 获取某用户所有账户信息
+     *
+     * @param email     cookie中用户email
+     * @return          账户列表
+     */
     @GetMapping
     public ResponseResult<List<AccountInfoVO>> getUserAccounts(@CookieValue(value = USER_COOKIE_NAME, required = false) String email) {
         if (email == null) {

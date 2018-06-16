@@ -20,11 +20,23 @@ public class VenueController {
     @Resource
     private VenueService venueService;
 
+    /**
+     * 根据关键词搜索场馆
+     *
+     * @param keywords  关键词
+     * @return          场馆列表
+     */
     @GetMapping("/search")
     public ResponseResult<List<VenueInfoVO>> search(@RequestParam String keywords) {
         return new ResponseResult<>(true, "", new ArrayList<>(venueService.searchVenue(keywords)));
     }
 
+    /**
+     * 场馆注册
+     *
+     * @param vo        注册信息
+     * @return          注册结果
+     */
     @PostMapping
     public ResponseResult<Void> register(@RequestBody VenueRegisterVO vo) {
         try {
@@ -35,6 +47,14 @@ public class VenueController {
         return new ResponseResult<>(true, "注册成功，请等待审核");
     }
 
+    /**
+     * 场馆登录
+     *
+     * @param email             登录邮箱
+     * @param identification    识别码
+     * @param response          HttpServletResponse：用于加入Cookie
+     * @return                  登录结果
+     */
     @PostMapping("/login")
     public ResponseResult<Void> login(@RequestParam(name = "username") String email,
                                       @RequestParam(name = "password") String identification,
@@ -58,6 +78,12 @@ public class VenueController {
 //        return new ResponseResult<>(true, "已退出登录", null);
 //    }
 
+    /**
+     * 根据场馆id获取场馆信息
+     *
+     * @param id        场馆id
+     * @return          场馆信息
+     */
     @GetMapping("/id/{id}")
     public ResponseResult<VenueInfoVO> getVenueInfoById(@PathVariable Integer id) {
         VenueInfoVO vo = venueService.getVenueInfoById(id);
@@ -67,6 +93,12 @@ public class VenueController {
         return new ResponseResult<>(true, "", vo);
     }
 
+    /**
+     * 根据Cookie获取场馆信息
+     *
+     * @param identification    cookie中的识别码信息
+     * @return                  场馆信息
+     */
     @GetMapping("/cookie")
     public ResponseResult<VenueInfoVO> getVenueInfo(@CookieValue(value = VENUE_COOKIE_NAME, required = false) String identification) {
         if (identification == null) {
@@ -79,6 +111,13 @@ public class VenueController {
         return new ResponseResult<>(true, "", vo);
     }
 
+    /**
+     * 获取所有场馆信息
+     *
+     * @param property          属性（默认为id）
+     * @param order             排序方式（asc|desc，默认为asc）
+     * @return                  场馆列表
+     */
     @GetMapping
     public ResponseResult<List<VenueInfoVO>> getVenues(@RequestParam(required = false, defaultValue = "id") String property,
                                                        @RequestParam(required = false, defaultValue = "asc") String order) {
@@ -86,16 +125,30 @@ public class VenueController {
         return new ResponseResult<>(true, "", res);
     }
 
+    /**
+     * 获取申请注册场馆列表
+     *
+     * @param isChecked         是否被审核
+     * @param managerName       cookie中的manager name
+     * @return                  场馆列表
+     */
     @GetMapping("/check/register/{isChecked}")
     public ResponseResult<List<VenueInfoVO>> getApplyRegisterVenues(@PathVariable boolean isChecked,
                                                                     @CookieValue(value = MANAGER_COOKIE_NAME, required = false) String managerName) {
         if (managerName == null) {
             return new ResponseResult<>(false, "您尚未登录");
         }
-        List<VenueInfoVO> res = new ArrayList<>(venueService.getUnCheckedVenues());
+        List<VenueInfoVO> res = new ArrayList<>(venueService.getVenuesByIsChecked(isChecked));
         return new ResponseResult<>(true, "", res);
     }
 
+    /**
+     * 获取申请修改场馆列表
+     *
+     * @param isChecked         是否被审核
+     * @param managerName       cookie中的manager name
+     * @return                  场馆列表
+     */
     @GetMapping("/check/modify/{isChecked}")
     public ResponseResult<List<VenueModifyInfoVO>> getApplyModifyVenues(@PathVariable boolean isChecked,
                                                                         @CookieValue(value = MANAGER_COOKIE_NAME, required = false) String managerName) {
@@ -106,6 +159,13 @@ public class VenueController {
         return new ResponseResult<>(true, "", res);
     }
 
+    /**
+     * 场馆申请修改信息
+     *
+     * @param identification    识别码
+     * @param vo                修改信息
+     * @return                  申请结果
+     */
     @PostMapping("/modify")
     public ResponseResult<Void> applyForChangeInfo(@CookieValue(value = VENUE_COOKIE_NAME, required = false) String identification,
                                                    @RequestBody VenueChangeVO vo) {
@@ -120,6 +180,14 @@ public class VenueController {
         return new ResponseResult<>(true, "申请修改成功，请等待审核");
     }
 
+    /**
+     * 审核场馆注册
+     *
+     * @param id                场馆id
+     * @param isPass            是否通过注册
+     * @param managerName       cookie中的manager name
+     * @return                  审核结果
+     */
     @PostMapping("/id/{id}")
     public ResponseResult<Void> checkVenueRegister(@PathVariable Integer id,
                                                    @RequestParam boolean isPass,
@@ -135,6 +203,14 @@ public class VenueController {
         return new ResponseResult<>(true, "注册审核成功");
     }
 
+    /**
+     * 审核场馆修改信息
+     *
+     * @param modifyId          修改id
+     * @param isPass            是否通过
+     * @param managerName       cookie中的manager name
+     * @return                  审核结果
+     */
     @PostMapping("/modify/{modifyId}")
     public ResponseResult<Void> checkVenueModify(@PathVariable Integer modifyId,
                                                  @RequestParam boolean isPass,
@@ -150,6 +226,12 @@ public class VenueController {
         return new ResponseResult<>(true, "审核成功，结果为：" + (isPass ? "通过" : "未通过"));
     }
 
+    /**
+     * 获取某场馆统计信息
+     *
+     * @param identification        cookie中的识别码信息
+     * @return                      某场馆统计信息
+     */
     @GetMapping("/statistics/cookie")
     public ResponseResult<VenueStatisticsVO> getVenueStatistics(@CookieValue(value = VENUE_COOKIE_NAME, required = false) String identification) {
         if (identification == null) {
@@ -158,6 +240,12 @@ public class VenueController {
         return new ResponseResult<>(true, "", venueService.getVenueStatistics(identification));
     }
 
+    /**
+     * 获取所有场馆统计信息
+     *
+     * @param managerName           cookie中的manager name
+     * @return                      所有场馆统计信息
+     */
     @GetMapping("/statistics")
     public ResponseResult<VenuesStatisticsVO> getVenuesStatistics(@CookieValue(value = MANAGER_COOKIE_NAME, required = false) String managerName) {
         if (managerName == null) {
