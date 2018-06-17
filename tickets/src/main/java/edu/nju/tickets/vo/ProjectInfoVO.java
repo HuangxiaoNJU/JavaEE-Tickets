@@ -11,6 +11,7 @@ public class ProjectInfoVO {
     private String endTime;
     private String type;
     private int totalPeople;
+    private String posterURL;
     private VenueInfoVO venueInfoVO;
     private List<PriceInfoVO> prices;
 
@@ -70,6 +71,14 @@ public class ProjectInfoVO {
 
     public void setTotalPeople(int totalPeople) {
         this.totalPeople = totalPeople;
+    }
+
+    public String getPosterURL() {
+        return posterURL;
+    }
+
+    public void setPosterURL(String posterURL) {
+        this.posterURL = posterURL;
     }
 
     public VenueInfoVO getVenueInfoVO() {

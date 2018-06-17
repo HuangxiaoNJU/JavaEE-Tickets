@@ -11,15 +11,14 @@ import edu.nju.tickets.vo.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static edu.nju.tickets.util.Constants.ProjectState.FINISHED;
-import static edu.nju.tickets.util.Constants.ProjectState.NOT_BEGIN;
-import static edu.nju.tickets.util.Constants.ProjectState.UNDERWAY;
+import static edu.nju.tickets.util.Constants.ProjectState.*;
 
 @Service
 public class ProjectServiceImpl implements ProjectService, ProjectInfo {
@@ -76,6 +75,7 @@ public class ProjectServiceImpl implements ProjectService, ProjectInfo {
         vo.setType(project.getType());
         vo.setBeginTime(DateTimeUtil.convertTimestampToString(project.getBeginTime()));
         vo.setEndTime(DateTimeUtil.convertTimestampToString(project.getEndTime()));
+        vo.setPosterURL(project.getPosterURL());
 
         vo.setVenueInfoVO(venueInfo.getVenueInfoById(project.getVenue().getId()));
 
@@ -202,7 +202,7 @@ public class ProjectServiceImpl implements ProjectService, ProjectInfo {
     }
 
     @Override
-    public void releaseProject(String identification, ProjectAddVO vo) {
+    public Integer releaseProject(String identification, ProjectAddVO vo) {
         Venue venue = venueDao.findByIdentification(identification);
         if (venue == null) {
             throw new RuntimeException("场馆不存在");
@@ -233,6 +233,23 @@ public class ProjectServiceImpl implements ProjectService, ProjectInfo {
         project.setType(vo.getType());
         project.setPriceList(vo.getPrices().stream().map(v -> convertVoToProjectPrice(v, project)).collect(Collectors.toList()));
 
+        return projectDao.save(project);
+    }
+
+    @Override
+    public void uploadProjectPoster(String identification, Integer projectId, File poster) {
+        Venue venue = venueDao.findByIdentification(identification);
+        if (venue == null) {
+            throw new RuntimeException("场馆不存在");
+        }
+        Project project = projectDao.get(projectId);
+        if (project == null) {
+            throw new RuntimeException("活动不存在");
+        }
+        if (!project.getVenue().getId().equals(venue.getId())) {
+            throw new RuntimeException("非本场馆举办活动，不可上传海报");
+        }
+        project.setPosterURL("/" + Constants.POSTER_DIR + "/" + projectId + "/" + System.currentTimeMillis());
         projectDao.save(project);
     }
 

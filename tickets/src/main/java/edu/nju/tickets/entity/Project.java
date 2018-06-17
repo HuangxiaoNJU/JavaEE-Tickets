@@ -14,6 +14,7 @@ public class Project {
     private String type;
     private String description;
     private Venue venue;
+    private String posterURL;
     private List<ProjectPrice> priceList;
 
     public Project() {}
@@ -68,6 +69,15 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Column(name = "poster_url")
+    public String getPosterURL() {
+        return posterURL;
+    }
+
+    public void setPosterURL(String posterURL) {
+        this.posterURL = posterURL;
     }
 
     @ManyToOne(targetEntity = Venue.class, optional = false)

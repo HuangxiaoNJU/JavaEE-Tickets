@@ -1,13 +1,18 @@
 package edu.nju.tickets.controller;
 
 import edu.nju.tickets.service.ProjectService;
+import edu.nju.tickets.util.Constants;
 import edu.nju.tickets.vo.ProjectAddVO;
 import edu.nju.tickets.vo.ProjectIncomeVO;
 import edu.nju.tickets.vo.ProjectInfoVO;
 import edu.nju.tickets.vo.ResponseResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -119,17 +124,56 @@ public class ProjectController {
      * @return                  发布结果
      */
     @PostMapping
-    public ResponseResult<Void> releaseProject(@CookieValue(name = VENUE_COOKIE_NAME, required = false) String identification,
+    public ResponseResult<Integer> releaseProject(@CookieValue(name = VENUE_COOKIE_NAME, required = false) String identification,
                                                @RequestBody ProjectAddVO vo) {
         if (identification == null) {
             return new ResponseResult<>(false, "您尚未登录");
         }
         try {
-            projectService.releaseProject(identification, vo);
+            Integer id = projectService.releaseProject(identification, vo);
+            return new ResponseResult<>(true, "发布成功", id);
         } catch (RuntimeException e) {
             return new ResponseResult<>(false, e.getMessage());
         }
-        return new ResponseResult<>(true, "发布成功");
+    }
+
+    /**
+     * 上传活动海报
+     *
+     * @param request       HttpServletRequest
+     * @param id            活动Id
+     * @param poster        海报
+     * @return              上传结果
+     */
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    @PostMapping("/{id}/poster")
+    public ResponseResult<Void> uploadProjectPicture(HttpServletRequest request,
+                                                     @CookieValue(name = VENUE_COOKIE_NAME, required = false) String identification,
+                                                     @PathVariable Integer id,
+                                                     @RequestParam MultipartFile poster) {
+        if (poster.isEmpty()) {
+            return new ResponseResult<>(false, "图片发送失败");
+        }
+        // 保存文件
+        File pathFile = new File(
+                request.getServletContext().getRealPath("/" + Constants.POSTER_DIR + "/" + id), poster.getOriginalFilename());
+        if (!pathFile.getParentFile().exists()) {
+            pathFile.getParentFile().mkdirs();
+        }
+        try {
+            poster.transferTo(pathFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ResponseResult<>(false, e.getMessage());
+        }
+        // 记录URL，若出错，则删除文件
+        try {
+            projectService.uploadProjectPoster(identification, id, pathFile);
+        } catch (RuntimeException e) {
+            pathFile.delete();
+            return new ResponseResult<>(false, "上传失败");
+        }
+        return new ResponseResult<>(true, "上传成功");
     }
 
     /**

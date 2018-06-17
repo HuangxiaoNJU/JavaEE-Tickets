@@ -4,6 +4,7 @@ import edu.nju.tickets.vo.ProjectAddVO;
 import edu.nju.tickets.vo.ProjectIncomeVO;
 import edu.nju.tickets.vo.ProjectInfoVO;
 
+import java.io.File;
 import java.util.List;
 
 public interface ProjectService {
@@ -64,8 +65,19 @@ public interface ProjectService {
      *
      * @param identification    识别码
      * @param vo                发布信息
+     *
+     * @return                  活动id
      */
-    void releaseProject(final String identification, final ProjectAddVO vo);
+    Integer releaseProject(final String identification, final ProjectAddVO vo);
+
+    /**
+     * 上传活动海报
+     *
+     * @param identification    识别码
+     * @param projectId         活动id
+     * @param poster            海报图片
+     */
+    void uploadProjectPoster(final String identification, final Integer projectId, final File poster);
 
     /**
      * 结算活动收入

@@ -7,6 +7,9 @@ import java.util.HashMap;
  */
 public class Constants {
 
+    // 海报相对路径
+    public static final String POSTER_DIR = "poster";
+
     // 注册验证码长度
     public static final int VERIFICATION_CODE_LENGTH = 4;
 
