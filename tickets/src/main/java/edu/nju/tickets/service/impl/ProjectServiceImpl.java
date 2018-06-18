@@ -135,6 +135,15 @@ public class ProjectServiceImpl implements ProjectService, ProjectInfo {
     }
 
     @Override
+    public List<ProjectInfoVO> getProjectsByType(String type) {
+        return projectDao
+                .findByType(type)
+                .stream()
+                .map(this::convertProjectToVO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public List<ProjectInfoVO> getProjectsByVenue(Integer venueId, String state) {
         Venue venue = venueDao.get(venueId);
         // venue不存在
@@ -249,7 +258,7 @@ public class ProjectServiceImpl implements ProjectService, ProjectInfo {
         if (!project.getVenue().getId().equals(venue.getId())) {
             throw new RuntimeException("非本场馆举办活动，不可上传海报");
         }
-        project.setPosterURL("/" + Constants.POSTER_DIR + "/" + projectId + "/" + System.currentTimeMillis());
+        project.setPosterURL("/" + Constants.POSTER_DIR + "/" + projectId + "/" + poster.getName());
         projectDao.update(project);
     }
 

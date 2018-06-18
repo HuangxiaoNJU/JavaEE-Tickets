@@ -12,6 +12,8 @@ public interface ProjectDao extends BaseDao<Project, Integer> {
 
     List<Project> findAll(String property, String order);
 
+    List<Project> findByType(String type);
+
     List<Project> findByVenue(Venue venue);
 
     List<Project> findByVenueAndBeginTimeLargerThanOrderByBeginTime(Venue venue, Timestamp timestamp);

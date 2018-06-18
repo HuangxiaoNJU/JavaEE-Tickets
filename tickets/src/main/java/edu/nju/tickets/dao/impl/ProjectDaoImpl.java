@@ -22,6 +22,11 @@ public class ProjectDaoImpl extends BaseDaoImpl<Project, Integer> implements Pro
     }
 
     @Override
+    public List<Project> findByType(String type) {
+        return find("from Project p where p.type=? order by p.id desc", type);
+    }
+
+    @Override
     public List<Project> findByVenue(Venue venue) {
         return find("from Project p where p.venue = ?", venue);
     }

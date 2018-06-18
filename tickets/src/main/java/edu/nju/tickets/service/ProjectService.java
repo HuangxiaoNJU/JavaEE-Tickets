@@ -26,13 +26,21 @@ public interface ProjectService {
     ProjectInfoVO getProjectInfo(final Integer id);
 
     /**
-     * 按制定顺序获取全部活动
+     * 按指定顺序获取全部活动
      *
      * @param property  排序属性
      * @param order     顺序（正序／逆序）
      * @return          project列表
      */
     List<ProjectInfoVO> getProjects(final String property, final String order);
+
+    /**
+     * 按类别获取活动
+     *
+     * @param type      类别
+     * @return          project列表
+     */
+    List<ProjectInfoVO> getProjectsByType(final String type);
 
     /**
      * 获取场馆活动
