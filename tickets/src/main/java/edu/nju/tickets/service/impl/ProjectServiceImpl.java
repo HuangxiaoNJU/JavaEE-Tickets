@@ -250,7 +250,7 @@ public class ProjectServiceImpl implements ProjectService, ProjectInfo {
             throw new RuntimeException("非本场馆举办活动，不可上传海报");
         }
         project.setPosterURL("/" + Constants.POSTER_DIR + "/" + projectId + "/" + System.currentTimeMillis());
-        projectDao.save(project);
+        projectDao.update(project);
     }
 
     @Override
