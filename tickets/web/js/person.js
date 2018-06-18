@@ -11,7 +11,9 @@ $().ready(function () {
         return;
     }
     $('#information').click();
+
 });
+
 
 function showUserInfo() {
     $('#list').hide();
@@ -80,16 +82,18 @@ function addUserCouponInfo(userCoupons) {
     for (let i = 0; i < userCoupons.length; i++) {
         let item = userCoupons[i];
         coupon_list.append(`
-             <div class="col-lg-8">
-                <h5>${item.name}</h5>
-                <label>优惠金额 : &nbsp;&nbsp;</label><span>${item.money}</span><br>
-                <label>兑换所需积分 : &nbsp;&nbsp;</label><span>${item.requirePoints}</span><br>
+             <div class="col-lg-6">
+                <div class="coupon">
+                <div class="col-lg-6">
+                    <label class="money">¥<label class="number">${item.money}</label></label>
+                </div>
+                <div class="col-lg-6">
+                    <span>需 <label>${item.requirePoints}</label> 积分兑换</span><br>
+                    <span>我拥有 <label>${item.number}</label> 张</span><br>
+                </div>
+                    <a id="coupon_${item.id}" class="btn btn-link">立即兑换</a>
+                </div>
              </div>
-             <div class="col-lg-4">
-                <label>我拥有 ${item.number} 张</label><br>
-                <a id="coupon_${item.id}" class="btn btn-primary">立即兑换</a>
-             </div>
-             <hr width="1100px">    
              <script>
                 $("#coupon_${item.id}").click(function () {
                 $.ajax({
@@ -190,6 +194,7 @@ function showLeftNavItem(item) {
 $('#information').click(function () {
     showLeftNavItem('information');
     showUserInfo();
+    document.getElementById("view").innerText = "基本信息";
 });
 
 $('#coupon').click(function () {
@@ -197,4 +202,5 @@ $('#coupon').click(function () {
     $('#discount').show();
     showLeftNavItem('coupon');
     showCouponInfo();
+    document.getElementById("view").innerText = "优惠券中心";
 });

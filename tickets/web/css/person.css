@@ -29,3 +29,24 @@
 hr {
     margin-left: -10px;
 }
+
+.col-lg-6 {
+    margin-top: 15px;
+}
+
+.coupon {
+    background-color: pink;
+    color: white;
+    padding: 5%;
+}
+
+.number {
+    font-size: 100px;
+    margin: 25px 0;
+}
+
+.money {
+    margin-left: 20px;
+    font-size: 20px;
+}
+

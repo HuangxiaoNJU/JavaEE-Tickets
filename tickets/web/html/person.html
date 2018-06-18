@@ -13,20 +13,20 @@
 
 <header class="btnView col-lg-3">
     <ul class="nav navbar-fixed" style="top: 20%;">
-        <span style="margin-left: 50px">个人中心 > 用户信息</span>
         <li>
             <a id="information" class="btn-self active">
             <img src="../image/user_info.png" class="nav_img">基本信息</a>
             <div class="under" id="info"></div>
         </li>
         <li><a id="coupon" class="btn-self">
-            <img src="../image/discount.png" class="nav_img">我的优惠券</a>
+            <img src="../image/discount.png" class="nav_img">优惠券中心</a>
             <div class="under" id="discount"></div>
         </li>
     </ul>
 </header>
 
 <div class="col-lg-9 main">
+    <label>个人中心 > <label id="view"></label></label>
     <div id="my_info">
         <img src="../image/user_img.jpg" class="user-img">
         <div class="info_table row">
@@ -78,18 +78,21 @@
             <button id="cancel_btn" class="btn btn-list" style="margin-left: 20px">注销账户</button>
         </div>
     </div>
-    <div id="list" class="table row" style="display: none">
-        <!--优惠券模版-->
-        <!--<div class="col-lg-8">-->
-        <!--<h5 id="id">10元优惠券</h5>-->
-        <!--<label>优惠金额 : </label><span>10元</span><br>-->
-        <!--<label>兑换所需积分 : </label><span>100</span><br>-->
+    <div id="list" class="container row" style="display: none; width: 900px">
+        <!--<div class="col-lg-6">-->
+            <!--<div class="coupon">-->
+                <!--<div class="col-lg-6">-->
+                    <!--<label class="money">¥<label class="number">10</label></label>-->
+                <!--</div>-->
+                <!--<div class="col-lg-6">-->
+                    <!--<span>需 100 积分兑换</span><br>-->
+                    <!--<span>我拥有 0 张</span><br>-->
+                <!--</div>-->
+                <!--<a class="btn btn-link">立即兑换</a>-->
+            <!--</div>-->
         <!--</div>-->
-        <!--<div class="col-lg-4">-->
-        <!--<label>我拥有0张</label><br>-->
-        <!--<a class="btn btn-primary">立即兑换</a>-->
-        <!--</div>-->
-        <!--<hr width="1100px">-->
+
+
     </div>
 </div>
 
