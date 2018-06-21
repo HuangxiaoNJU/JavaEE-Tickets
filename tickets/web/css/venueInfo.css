@@ -1,3 +1,21 @@
-.table {
-    margin-top: 20%;
+/*body {*/
+    /*background-color: whitesmoke;*/
+/*}*/
+
+.info {
+    margin: 10% 15%;
+}
+
+.title {
+    padding: 12px;
+    font-size: 15px;
+    box-shadow: 0 1px gainsboro;
+}
+
+#list {
+    padding: 8% 25% 0 25%;
+}
+
+#modify_btn {
+    margin-left: 40%;
 }

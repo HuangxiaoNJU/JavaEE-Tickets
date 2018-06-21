@@ -15,61 +15,61 @@ function getQueryVariable(variable) {
 // 导航栏
 $('#head').append(`
     <div id="navigation">
-            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-2 mob-logo">
-                            <div class="row">
-                                <div class="site-logo">
-                                     <img src="../image/logo.png"/>
-                                </div>
+        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 mob-logo">
+                        <div class="row">
+                            <div class="site-logo">
+                                 <img src="../image/logo.png"/>
                             </div>
                         </div>
-                        <div class="mob-menu">
-                            <div class="row">
-                                <div class="collapse navbar-collapse" id="menu">
-                                    <ul class="nav navbar-nav navbar-right">
-                                        <li class="active"><a href="/">主页</a></li>
-                                        <li><a href="/project">活动</a></li>
-                                        <li><a href="/venue">场馆</a></li>
-                                        <li><a id="sign" data-toggle="modal" data-target="#loginWindow">登录/注册</a></li>
-                                        <li id="user_item" style="display: none" class="dropdown">
-                                            <a class="dropdown-toggle" data-toggle="dropdown">欢迎,
-                                            <label id="user_name"></label></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="/user/person">我的信息</a></li>
-                                                <li><a href="/user/order">我的订单</a></li>
-                                                <li><a id="user_logout">登出</a></li>
-                                            </ul>
-                                        </li>
-                                        <li id="venue_item" style="display: none" class="dropdown">
-                                            <a class="dropdown-toggle" data-toggle="dropdown">欢迎,
-                                                <label id="venue_name"></label></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="/venue/info">场馆信息</a></li>
-                                                <li><a href="/venue/project">场馆活动</a></li>
-                                                <li><a href="/venue/statistics">统计信息</a></li>
-                                                <li><a id="venue_logout">登出</a></li>
-                                            </ul>
-                                        </li>
-                                        <li id="manager_item" style="display: none" class="dropdown">
-                                            <a class="dropdown-toggle" data-toggle="dropdown">欢迎,
-                                                <label id="manager_name"></label></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="/manage/check">审核场馆</a></li>
-                                                <li><a href="/manage/allocate">收入分配</a></li>
-                                                <li><a href="/manage/statistics">统计信息</a></li>
-                                                <li><a id="manager_logout">登出</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
+                    </div>
+                    <div class="mob-menu">
+                        <div class="row">
+                            <div class="collapse navbar-collapse" id="menu">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="active"><a href="/">主页</a></li>
+                                    <li><a href="/project">活动</a></li>
+                                    <li><a href="/venue">场馆</a></li>
+                                    <li><a id="sign" data-toggle="modal" data-target="#loginWindow">登录/注册</a></li>
+                                    <li id="user_item" style="display: none" class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown">欢迎,
+                                        <label id="user_name"></label></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="/user/person">我的信息</a></li>
+                                            <li><a href="/user/order">我的订单</a></li>
+                                            <li><a id="user_logout">登出</a></li>
+                                        </ul>
+                                    </li>
+                                    <li id="venue_item" style="display: none" class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown">欢迎,
+                                            <label id="venue_name"></label></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="/venue/info">场馆信息</a></li>
+                                            <li><a href="/venue/project">场馆活动</a></li>
+                                            <li><a href="/venue/statistics">统计信息</a></li>
+                                            <li><a id="venue_logout">登出</a></li>
+                                        </ul>
+                                    </li>
+                                    <li id="manager_item" style="display: none" class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown">欢迎,
+                                            <label id="manager_name"></label></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="/manage/check">审核场馆</a></li>
+                                            <li><a href="/manage/allocate">收入分配</a></li>
+                                            <li><a href="/manage/statistics">统计信息</a></li>
+                                            <li><a id="manager_logout">登出</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-            </nav>
-        </div>
+            </div>
+        </nav>
+    </div>
 
     <div class="modal fade" id="loginWindow" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -179,7 +179,7 @@ function logout() {
         data: {},
         success: function (result) {
             alert(result.message);
-            location.reload();
+            location.href = "/";
         },
         error: function (xhr, status, error) {
             console.log(xhr.status);
@@ -197,9 +197,14 @@ $('#login').click(
                 password: $('#password').val()
             },
             success: function (result) {
-                // 登录成功则刷新页面
                 if (result.success) {
-                    location.reload();
+                    if (identityToLogin === 'user') {
+                        location.reload();
+                    } else if (identityToLogin === 'venue') {
+                        window.location.href = "/venue/project";
+                    } else {
+                        location.reload();
+                    }
                 } else {
                     alert(result.message);
                     showSignInDialog();
