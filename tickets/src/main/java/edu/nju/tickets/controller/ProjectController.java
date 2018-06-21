@@ -67,6 +67,18 @@ public class ProjectController {
     }
 
     /**
+     * 通过活动类型获取活动
+     *
+     * @param type          类型（中文）
+     * @return              活动列表
+     */
+    @GetMapping("/type")
+    public ResponseResult<List<ProjectInfoVO>> getProjectsByType(@RequestParam String type) {
+        List<ProjectInfoVO> projects = new ArrayList<>(projectService.getProjectsByType(type));
+        return new ResponseResult<>(true, "", projects);
+    }
+
+    /**
      * 获取场馆活动
      *
      * @param venueId       场馆id
@@ -171,7 +183,7 @@ public class ProjectController {
             projectService.uploadProjectPoster(identification, id, pathFile);
         } catch (RuntimeException e) {
             pathFile.delete();
-            return new ResponseResult<>(false, "上传失败");
+            return new ResponseResult<>(false, e.getMessage());
         }
         return new ResponseResult<>(true, "上传成功");
     }
