@@ -26,7 +26,16 @@
                         <div class="collapse navbar-collapse" id="menu">
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="/venue/info">场馆信息</a></li>
-                                <li><a href="/venue/project" class="active">场馆活动</a></li>
+                                <li class="dropdown">
+                                    <!--<a href="/venue/project" class="active">场馆活动</a>-->
+                                    <a class="active dropdown-toggle" data-toggle="dropdown">场馆活动</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a id="not_begin">未开始活动</a></li>
+                                        <li><a id="underway">进行中活动</a></li>
+                                        <li><a id="finished">已结束活动</a></li>
+                                        <li><a href="/venue/newProject">发布新活动</a></li>
+                                    </ul>
+                                </li>
                                 <li><a href="/venue/statistics">统计信息</a></li>
 
                                 <li id="venue_item" style="display: none" class="dropdown">
@@ -45,23 +54,18 @@
     </nav>
 </div>
 
-<header class="btnView col-lg-3">
-    <ul class="nav navbar-fixed" style="top: 20%;">
-        <span style="margin-left: 50px">场馆中心 > 场馆活动</span>
-        <li><a id="not_begin" class="btn-self active">未开始</a></li>
-        <li><a id="underway" class="btn-self">进行中</a></li>
-        <li><a id="finished" class="btn-self">已结束</a></li>
-        <li><a class="btn-self" href="/venue/newProject">发布新活动</a></li>
-        <li><a id="check" class="btn-self">活动检票</a></li>
-    </ul>
-</header>
+    <!--<ul class="nav navbar-fixed" style="top: 20%;">-->
+        <!--<li><a id="check" class="btn-self">活动检票</a></li>-->
+    <!--</ul>-->
 
-<div class="col-lg-9 main">
-    <div class="table row" id="check_tickets">
-        <input id="check_in_order_id" class="input" type="text" placeholder="订单号">
-        <button id="check_in_btn" class="btn btn-list" style="margin-left: 5%">确认检票</button>
-        <hr width="1100px">
+<div class="info">
+    <div class="title">
+        <span>场馆中心</span> > <span>场馆活动</span> > <span id="type"></span>
     </div>
+    <!--<div class="table row" id="check_tickets">-->
+        <!--<input id="check_in_order_id" class="input" type="text" placeholder="订单号">-->
+        <!--<button id="check_in_btn" class="btn btn-list" style="margin-left: 5%">确认检票</button>-->
+    <!--</div>-->
 
     <div id="list" class="table row"></div>
 </div>

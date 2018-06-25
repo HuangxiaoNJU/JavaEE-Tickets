@@ -124,3 +124,19 @@ function showStatisticsData() {
         }
     });
 }
+
+
+$('#not_begin').click(function () {
+    localStorage.setItem("projectType", "not_begin");
+    window.location.href = "/venue/project";
+});
+
+$('#underway').click(function () {
+    localStorage.setItem("projectType", "underway");
+    window.location.href = "/venue/project";
+});
+
+$('#finished').click(function () {
+    localStorage.setItem("projectType", "finished");
+    window.location.href = "/venue/project";
+});

@@ -54,3 +54,32 @@ ul, ol, li {
     font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Wenquanyi Micro Hei", "Microsoft Yahei", Arial, sans-serif;
     justify-content: center;
 }
+
+.main_project {
+    margin: 13% 10%;
+}
+
+.info {
+    margin: 10% 15%;
+    padding: 3%;
+    background-color: white;
+    min-height: 600px;
+}
+
+.title {
+    padding: 12px;
+    font-size: 15px;
+    box-shadow: 0 1px gainsboro;
+}
+
+span {
+    margin: 0 20px;
+}
+
+#list {
+    padding-top: 80px;
+}
+
+body {
+    background-color: whitesmoke;
+}

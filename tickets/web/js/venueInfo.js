@@ -56,3 +56,19 @@ $('#modify_btn').click(function () {
         }
     });
 });
+
+
+$('#not_begin').click(function () {
+    window.location.href = "/venue/project";
+    localStorage.setItem("projectType", "not_begin");
+});
+
+$('#underway').click(function () {
+    window.location.href = "/venue/project";
+    localStorage.setItem("projectType", "underway");
+});
+
+$('#finished').click(function () {
+    window.location.href = "/venue/project";
+    localStorage.setItem("projectType", "finished");
+});

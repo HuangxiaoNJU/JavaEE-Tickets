@@ -4,6 +4,9 @@
 
 .info {
     margin: 10% 15%;
+    padding: 3%;
+    background-color: white;
+    min-height: 600px;
 }
 
 .title {
@@ -18,4 +21,12 @@
 
 #modify_btn {
     margin-left: 40%;
+}
+
+span {
+    margin: 0 20px;
+}
+
+body {
+    background-color: whitesmoke;
 }

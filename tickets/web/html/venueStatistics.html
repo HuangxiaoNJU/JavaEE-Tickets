@@ -27,7 +27,16 @@
                         <div class="collapse navbar-collapse" id="menu">
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="/venue/info">场馆信息</a></li>
-                                <li><a href="/venue/project" class="active">场馆活动</a></li>
+                                <li class="dropdown">
+                                    <!--<a href="/venue/project" class="active">场馆活动</a>-->
+                                    <a class="active dropdown-toggle" data-toggle="dropdown">场馆活动</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a id="not_begin">未开始活动</a></li>
+                                        <li><a id="underway">进行中活动</a></li>
+                                        <li><a id="finished">已结束活动</a></li>
+                                        <li><a href="/venue/newProject">发布新活动</a></li>
+                                    </ul>
+                                </li>
                                 <li><a href="/venue/statistics">统计信息</a></li>
 
                                 <li id="venue_item" style="display: none" class="dropdown">
@@ -49,6 +58,9 @@
 <header class="btnView col-lg-3">
     <ul class="nav navbar-fixed" style="top: 20%;">
         <span style="margin-left: 50px">场馆中心 > 统计信息</span>
+        <li><a class="btn btn-link">总收益统计</a></li>
+        <li><a class="btn btn-link">演出统计</a></li>
+        <li><a class="btn btn-link">评价统计</a></li>
     </ul>
 </header>
 

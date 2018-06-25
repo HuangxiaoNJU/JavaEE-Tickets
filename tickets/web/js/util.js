@@ -377,7 +377,7 @@ $('#venue_register_btn').click(function () {
 
 function addEmptyPrompt(message) {
     let list = $('#list');
-    list.html('<label>' + message+ '</label>');
+    list.html('<label style="margin-left: 375px">' + message+ '</label>');
 }
 
 function addProjectInfo(projects) {

@@ -14,6 +14,7 @@
     top: 20%;
     left: 55px;
     padding: 55px;
+    background-color: white;
 }
 
 .projectDetail {
@@ -65,4 +66,8 @@ blockquote {
 .underline:hover {
     background-color: #3a78c3;
     border-color: transparent;
+}
+
+body{
+    background-color: whitesmoke;
 }
