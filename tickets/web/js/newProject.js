@@ -25,3 +25,9 @@ $(".ystep").loadStep({
         content: "上传海报"
     }]
 });
+
+
+function action() {
+    console.log(localStorage.getItem("newProjectID"));
+    document.Mform.action="/api/projects/" + localStorage.getItem("newProjectID") + "/poster";
+}

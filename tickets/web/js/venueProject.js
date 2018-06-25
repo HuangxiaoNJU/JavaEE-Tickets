@@ -86,6 +86,7 @@ $('#next_page_2').click(function () {
             if (result.success) {
                 // alert(result.message);
                 // $('#not_begin').click();
+                localStorage.setItem("newProjectID", result.data);
                 $('#page_2').hide();
                 $('#page_3').show();
                 $(".ystep").setStep(3);
