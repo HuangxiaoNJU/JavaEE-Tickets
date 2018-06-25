@@ -178,7 +178,7 @@ public class UserController {
      *
      * @param nickname      修改后昵称
      * @param email         cookie中用户邮箱
-     * @return
+     * @return              修改结果
      */
     @PostMapping("/modify")
     public ResponseResult<Void> changeUserInfo(@RequestParam String nickname,
@@ -262,11 +262,26 @@ public class UserController {
      * @return                  所有用户统计信息
      */
     @GetMapping("/statistics")
-    public ResponseResult<UserStatisticsVO> getUserStatistics(@CookieValue(value = MANAGER_COOKIE_NAME, required = false) String managerName) {
+    public ResponseResult<UsersStatisticsVO> getUsersStatistics(@CookieValue(value = MANAGER_COOKIE_NAME, required = false) String managerName) {
         if (managerName == null) {
             return new ResponseResult<>(false, "您尚未登录");
         }
-        UserStatisticsVO vo = userService.getUserStatistics();
+        UsersStatisticsVO vo = userService.getUsersStatistics();
+        return new ResponseResult<>(true, "", vo);
+    }
+
+    /**
+     * 获取某用户个人统计信息
+     *
+     * @param email             cookie中用户邮箱
+     * @return                  用户个人统计信息
+     */
+    @GetMapping("/individual/statistics")
+    public ResponseResult<IndividualStatisticsVO> getUserStatistics(@CookieValue(value = USER_COOKIE_NAME, required = false) String email) {
+        if (email == null) {
+            return new ResponseResult<>(false, "用户尚未登录");
+        }
+        IndividualStatisticsVO vo = userService.getIndividualStatistics(email);
         return new ResponseResult<>(true, "", vo);
     }
 

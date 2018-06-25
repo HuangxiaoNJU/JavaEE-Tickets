@@ -1,21 +1,16 @@
 package edu.nju.tickets.service.impl;
 
 import com.sun.mail.smtp.SMTPAddressFailedException;
-import edu.nju.tickets.dao.AccountDao;
-import edu.nju.tickets.dao.CouponDao;
-import edu.nju.tickets.dao.UserCouponDao;
-import edu.nju.tickets.dao.UserDao;
+import edu.nju.tickets.dao.*;
 import edu.nju.tickets.entity.Account;
 import edu.nju.tickets.entity.Coupon;
 import edu.nju.tickets.entity.User;
 import edu.nju.tickets.entity.UserCoupon;
 import edu.nju.tickets.service.MailService;
 import edu.nju.tickets.service.UserService;
+import edu.nju.tickets.util.Constants;
 import edu.nju.tickets.util.DateTimeUtil;
-import edu.nju.tickets.vo.UserCouponVO;
-import edu.nju.tickets.vo.UserInfoVO;
-import edu.nju.tickets.vo.UserRegisterVO;
-import edu.nju.tickets.vo.UserStatisticsVO;
+import edu.nju.tickets.vo.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -38,6 +33,8 @@ public class UserServiceImpl implements UserService {
     private UserCouponDao userCouponDao;
     @Resource
     private AccountDao accountDao;
+    @Resource
+    private OrderFormDao orderFormDao;
 
     @Resource
     private MailService mailService;
@@ -205,12 +202,38 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserStatisticsVO getUserStatistics() {
-        UserStatisticsVO vo = new UserStatisticsVO();
+    public UsersStatisticsVO getUsersStatistics() {
+        UsersStatisticsVO vo = new UsersStatisticsVO();
 
         List<Object[]> levelNumber = userDao.findLevelAndUserNumber();
         vo.setNumberList(levelNumber.stream().map(e -> (Long) e[0]).collect(Collectors.toList()));
         vo.setLevelList(levelNumber.stream().map(e -> (Integer) e[1]).collect(Collectors.toList()));
+
+        return vo;
+    }
+
+    private double countRefundRatio(Integer userId) {
+        long refundOrders       = orderFormDao.countByUserIdAndState(userId, Constants.OrderFormState.REFUND);
+        long notAllocatedOrders = orderFormDao.countByUserIdAndState(userId, Constants.OrderFormState.NOT_ALLOCATED);
+        long finishedOrders     = orderFormDao.countByUserIdAndState(userId, Constants.OrderFormState.FINISHED);
+
+        return refundOrders * 1.0d / (refundOrders + notAllocatedOrders + finishedOrders);
+    }
+
+    @Override
+    public IndividualStatisticsVO getIndividualStatistics(String email) {
+        User user = userDao.findByEmail(email);
+        if (user == null) {
+            throw new RuntimeException("用户不存在");
+        }
+        Integer id = user.getId();
+
+        IndividualStatisticsVO vo = new IndividualStatisticsVO();
+
+        double totalPoints = orderFormDao.sumTotalPriceByUserId(id) - orderFormDao.sumTotalPriceByUserIdAndState(id, Constants.OrderFormState.CANCELED);
+        vo.setTotalPoints(totalPoints);
+        vo.setCouponPoints((int)vo.getTotalPoints() - user.getPoints());
+        vo.setRefundRatio(countRefundRatio(id));
 
         return vo;
     }

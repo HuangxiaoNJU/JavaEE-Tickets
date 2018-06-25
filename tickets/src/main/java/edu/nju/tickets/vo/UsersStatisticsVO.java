@@ -2,11 +2,11 @@ package edu.nju.tickets.vo;
 
 import java.util.List;
 
-public class UserStatisticsVO {
+public class UsersStatisticsVO {
     private List<Integer> levelList;    // 会员等级
-    private List<Long> numberList;   // 对应人数
+    private List<Long> numberList;      // 对应人数
 
-    public UserStatisticsVO() {}
+    public UsersStatisticsVO() {}
 
     public List<Integer> getLevelList() {
         return levelList;

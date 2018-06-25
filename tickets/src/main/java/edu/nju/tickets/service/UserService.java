@@ -1,10 +1,7 @@
 package edu.nju.tickets.service;
 
 import com.sun.mail.smtp.SMTPAddressFailedException;
-import edu.nju.tickets.vo.UserCouponVO;
-import edu.nju.tickets.vo.UserInfoVO;
-import edu.nju.tickets.vo.UserRegisterVO;
-import edu.nju.tickets.vo.UserStatisticsVO;
+import edu.nju.tickets.vo.*;
 
 import java.util.List;
 
@@ -79,6 +76,14 @@ public interface UserService {
      *
      * @return              用户统计信息
      */
-    UserStatisticsVO getUserStatistics();
+    UsersStatisticsVO getUsersStatistics();
+
+    /**
+     * 获取用户个人统计信息
+     *
+     * @param email         用户邮箱
+     * @return              个人统计信息
+     */
+    IndividualStatisticsVO getIndividualStatistics(String email);
 
 }

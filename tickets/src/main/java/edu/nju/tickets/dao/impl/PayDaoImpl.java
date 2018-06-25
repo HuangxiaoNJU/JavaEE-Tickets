@@ -2,6 +2,7 @@ package edu.nju.tickets.dao.impl;
 
 import edu.nju.tickets.dao.PayDao;
 import edu.nju.tickets.entity.Pay;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

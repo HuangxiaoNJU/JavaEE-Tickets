@@ -39,4 +39,9 @@ public class OrderFormDaoTest {
 //
 //        orderFormDao.save(orderForm);
     }
+
+    @Test
+    public void testCountByUserIdAndState() {
+        System.out.println(orderFormDao.countByUserIdAndState(2, 1));
+    }
 }

@@ -96,6 +96,7 @@ $('#next_page_2').click(function () {
                 $('#page_3').hide();
 
                 $('#page_1').show();
+                $(".ystep").setStep(1);
             }
         },
         error: function (xhr, status, error) {
