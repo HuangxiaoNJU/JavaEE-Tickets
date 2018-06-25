@@ -81,4 +81,9 @@ public class ViewController {
         return "projectDetail";
     }
 
+    @GetMapping("/venue/newProject")
+    public String newProject() {
+        return "newProject";
+    }
+
 }

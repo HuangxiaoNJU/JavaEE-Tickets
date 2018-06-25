@@ -12,6 +12,7 @@ $().ready(function () {
         return;
     }
     $('#not_begin').click();
+
 });
 
 function getProjectsAndShow(state) {
@@ -35,44 +36,31 @@ function getProjectsAndShow(state) {
     });
 }
 
-function showReleaseProjectForm() {
-    $('#list').empty();
-    $('#release_project_info').show();
-}
 
 function showLeftNavItem(item) {
     $('#not_begin').removeClass("active");
     $('#underway').removeClass("active");
     $('#finished').removeClass("active");
-    $('#release_project').removeClass("active");
 
     $('#' + item).addClass("active");
 }
 
 $('#not_begin').click(function () {
-    $('#release_project_info').hide();
     showLeftNavItem('not_begin');
     getProjectsAndShow('not_begin');
 });
 
 $('#underway').click(function () {
-    $('#release_project_info').hide();
     showLeftNavItem('underway');
     getProjectsAndShow('underway');
 });
 
 $('#finished').click(function () {
-    $('#release_project_info').hide();
     showLeftNavItem('finished');
     getProjectsAndShow('finished');
 });
 
-$('#release_project').click(function () {
-    showLeftNavItem('release_project');
-    showReleaseProjectForm();
-});
-
-$('#confirm_release_btn').click(function () {
+$('#next_page_2').click(function () {
     let projectAddVO = {};
     projectAddVO.name = $('#new_project_name').val();
     projectAddVO.beginTime = $('#new_project_begin_time').val();
@@ -96,16 +84,24 @@ $('#confirm_release_btn').click(function () {
         data: JSON.stringify(projectAddVO),
         success: function (result) {
             if (result.success) {
-                alert(result.message);
-                $('#not_begin').click();
+                // alert(result.message);
+                // $('#not_begin').click();
+                $('#page_2').hide();
+                $('#page_3').show();
+                $(".ystep").setStep(3);
             } else {
                 alert(result.message);
+                $('#page_2').hide();
+                $('#page_3').hide();
+
+                $('#page_1').show();
             }
         },
         error: function (xhr, status, error) {
             alert('发布失败，请重试');
         }
     });
+
 });
 
 $('#begin_time_calendar').calendar({

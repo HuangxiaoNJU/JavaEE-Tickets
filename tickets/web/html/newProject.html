@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tickets</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/calendar.css" rel="stylesheet">
+    <link href="../css/ystep.css" rel="stylesheet">
+    <link href="../css/util.css" rel="stylesheet">
+    <link href="../css/venueProject.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="navigation">
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 mob-logo">
+                    <div class="row">
+                        <div class="site-logo">
+                            <img src="../image/logo.png"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="mob-menu">
+                    <div class="row">
+                        <div class="collapse navbar-collapse" id="menu">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="/venue/info">场馆信息</a></li>
+                                <li><a href="/venue/project" class="active">场馆活动</a></li>
+                                <li><a href="/venue/statistics">统计信息</a></li>
+
+                                <li id="venue_item" style="display: none" class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown">欢迎,
+                                        <label id="venue_name"></label></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a id="venue_logout">登出</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+<div class="container main">
+    <span>场馆中心 > 场馆活动 > 发布新活动</span>
+    <div class="ystep"></div>
+    <!--注册第一页-->
+    <div id="page_1" class="page">
+        <div class="col-lg-4">
+            <label for="new_project_name">活动名 : </label>
+        </div>
+        <div class="col-lg-8">
+            <input id="new_project_name" class="input">
+        </div>
+        <div class="col-lg-4">
+            <label for="new_project_begin_time">开始时间 : </label>
+        </div>
+        <div class="col-lg-8">
+            <input id="new_project_begin_time" class="input">
+            <div id="begin_time_calendar"></div>
+        </div>
+        <div class="col-lg-4">
+            <label for="new_project_end_time">结束时间 : </label>
+        </div>
+        <div class="col-lg-8">
+            <input id="new_project_end_time" class="input">
+            <div id="end_time_calendar"></div>
+        </div>
+        <div class="col-lg-4">
+            <label for="new_project_type">活动类型 : </label>
+        </div>
+        <div class="col-lg-8">
+            <input id="new_project_type" class="input">
+        </div>
+        <div class="col-lg-4">
+            <label for="new_project_description">活动描述 : </label>
+        </div>
+        <div class="col-lg-8">
+            <textarea id="new_project_description"></textarea>
+        </div>
+        <div class="confirmBtn">
+            <button id="next_page_1" class="btn btn-list">下一页</button>
+        </div>
+    </div>
+
+    <!--注册第二页-->
+    <div id="page_2" class="page">
+        <div class="col-lg-4">
+            <label for="num_of_seat_type">座位种类数 : </label>
+        </div>
+        <div class="col-lg-8">
+            <input id="num_of_seat_type" class="dropdown-toggle input" data-toggle="dropdown" value="1">
+            <ul class="dropdown-menu choose_seat_type">
+                <li><a>1</a></li>
+                <li><a>2</a></li>
+                <li><a>3</a></li>
+                <li><a>4</a></li>
+            </ul>
+        </div>
+        <div id="seat_type">
+            <div class="col-lg-4">
+                <label>座位类型1 : </label>
+            </div>
+            <div class="col-lg-8">
+                <input id="new_project_seat_type_1" class="input_seat input" placeholder="座位名称">
+                <!--<input id="new_project_seat_number_1" class="input_seat input" placeholder="座位数量">-->
+                <input id="new_project_seat_price_1" class="input_seat input" placeholder="座位单价">
+                <input id="new_project_seat_row_1" class="input_seat input" placeholder="行数">
+                <input id="new_project_seat_column_1" class="input_seat input" placeholder="列数">
+            </div>
+        </div>
+        <div class="confirmBtn">
+            <button id="next_page_2" class="btn btn-list">下一页</button>
+        </div>
+    </div>
+    <div id="page_3" class="page">
+        <div class="col-lg-4">
+            <label>上传海报 : </label>
+        </div>
+        <div class="col-lg-8">
+            <form action="/api/projects/11/poster" method="post"  enctype="multipart/form-data">
+                <p><input type="file" name="poster" class="choose"></p>
+                <!--<p>选择文件:<input type="file" name="files"></p>-->
+                <p><input type="submit" value="提交" class="btn btn-list"></p>
+            </form>
+        </div>
+        <div class="confirmBtn">
+            <button id="confirm_release_btn" class="btn btn-list">确认发布</button>
+        </div>
+    </div>
+</div>
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.scrollTo.js"></script>
+<script src="../js/calendar.js"></script>
+<script src="../js/ystep.js"></script>
+<script src="../js/util.js"></script>
+<script src="../js/venueProject.js"></script>
+<script src="../js/newProject.js"></script>
+</body>
+</html>

@@ -43,3 +43,14 @@ ul, ol, li {
 .input_seat {
     width: 100px;
 }
+
+.page {
+    margin-left: 300px;
+    margin-top: -220px;
+}
+
+.choose {
+    font-size: 16px;
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Wenquanyi Micro Hei", "Microsoft Yahei", Arial, sans-serif;
+    justify-content: center;
+}
