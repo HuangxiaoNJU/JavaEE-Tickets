@@ -124,14 +124,13 @@
             <label>上传海报 : </label>
         </div>
         <div class="col-lg-8">
-            <form action="" name="Mform" method="post"  enctype="multipart/form-data">
+            <form id="form" method="post"  enctype="multipart/form-data">
                 <p><input type="file" name="poster" class="choose"></p>
                 <!--<p>选择文件:<input type="file" name="files"></p>-->
-                <p><input type="submit" value="提交" class="btn btn-list"></p>
             </form>
         </div>
         <div class="confirmBtn">
-            <button id="confirm_release_btn" class="btn btn-list">确认发布</button>
+            <button id="confirm_release_btn" class="btn btn-list" onclick="submitPoster()">确认发布</button>
         </div>
     </div>
 </div>

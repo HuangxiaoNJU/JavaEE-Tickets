@@ -27,7 +27,8 @@ $(".ystep").loadStep({
 });
 
 
-function action() {
+function submitPoster() {
     console.log(localStorage.getItem("newProjectID"));
-    document.Mform.action="/api/projects/" + localStorage.getItem("newProjectID") + "/poster";
+    document.getElementById("form").action="/api/projects/" + localStorage.getItem("newProjectID") + "/poster";
+    document.getElementById("form").submit();
 }
