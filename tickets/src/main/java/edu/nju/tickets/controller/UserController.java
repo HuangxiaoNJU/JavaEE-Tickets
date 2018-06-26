@@ -281,8 +281,12 @@ public class UserController {
         if (email == null) {
             return new ResponseResult<>(false, "用户尚未登录");
         }
-        IndividualStatisticsVO vo = userService.getIndividualStatistics(email);
-        return new ResponseResult<>(true, "", vo);
+        try {
+            IndividualStatisticsVO vo = userService.getIndividualStatistics(email);
+            return new ResponseResult<>(true, "", vo);
+        } catch (RuntimeException e) {
+            return new ResponseResult<>(false, e.getMessage());
+        }
     }
 
 }

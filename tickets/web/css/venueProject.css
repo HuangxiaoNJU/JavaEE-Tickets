@@ -59,18 +59,6 @@ ul, ol, li {
     margin: 13% 10%;
 }
 
-.info {
-    margin: 10% 15%;
-    padding: 3%;
-    background-color: white;
-    min-height: 600px;
-}
-
-.title {
-    padding: 12px;
-    font-size: 15px;
-    box-shadow: 0 1px gainsboro;
-}
 
 span {
     margin: 0 20px;
@@ -78,8 +66,4 @@ span {
 
 #list {
     padding-top: 80px;
-}
-
-body {
-    background-color: whitesmoke;
 }

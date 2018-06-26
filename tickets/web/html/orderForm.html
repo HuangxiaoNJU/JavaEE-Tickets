@@ -12,9 +12,8 @@
 
 <div id="head"></div>
 
-<header class="btnView col-lg-3">
+<header class="btnView">
     <ul class="nav navbar-fixed" style="top: 20%;">
-        <span style="margin-left: 50px">个人中心 > 我的订单</span>
         <li><a id="all_order" class="btn-self active">所有订单</a></li>
         <li><a id="finished_order" class="btn-self">已完成</a></li>
         <li><a id="not_payed_order" class="btn-self">未支付</a></li>
@@ -24,8 +23,11 @@
     </ul>
 </header>
 
-<div class="col-lg-9 main">
-    <div id="list" class="table row">
+<div class="info">
+    <div class="title">
+        <span>个人中心</span> > <span>我的订单</span> > <span id="type"></span>
+    </div>
+    <div id="list" class="table row" style="margin: 20px">
 
     </div>
 </div>

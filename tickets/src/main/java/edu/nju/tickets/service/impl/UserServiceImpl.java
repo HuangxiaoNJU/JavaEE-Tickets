@@ -2,10 +2,7 @@ package edu.nju.tickets.service.impl;
 
 import com.sun.mail.smtp.SMTPAddressFailedException;
 import edu.nju.tickets.dao.*;
-import edu.nju.tickets.entity.Account;
-import edu.nju.tickets.entity.Coupon;
-import edu.nju.tickets.entity.User;
-import edu.nju.tickets.entity.UserCoupon;
+import edu.nju.tickets.entity.*;
 import edu.nju.tickets.service.MailService;
 import edu.nju.tickets.service.UserService;
 import edu.nju.tickets.util.Constants;
@@ -15,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static edu.nju.tickets.util.Constants.LEVEL_DISCOUNT;
@@ -218,6 +216,12 @@ public class UserServiceImpl implements UserService {
         long finishedOrders     = orderFormDao.countByUserIdAndState(userId, Constants.OrderFormState.FINISHED);
 
         return refundOrders * 1.0d / (refundOrders + notAllocatedOrders + finishedOrders);
+    }
+
+    private Map<String, Double> getConsumeMap(Integer userId) {
+        List<OrderForm> orders = orderFormDao.findByUserIdOrderByCreateTimeDesc(userId);
+        // TODO
+        return null;
     }
 
     @Override

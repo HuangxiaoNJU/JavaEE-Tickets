@@ -55,27 +55,29 @@
     </nav>
 </div>
 
-<header class="btnView col-lg-3">
-    <ul class="nav navbar-fixed" style="top: 20%;">
-        <span style="margin-left: 50px">场馆中心 > 统计信息</span>
-        <li><a class="btn btn-link">总收益统计</a></li>
+<header class="btnView">
+    <ul class="nav navbar-fixed" style="top: 20%">
+        <span style="margin-left: 80px;color: #2a6496;font-size: 20px">统计信息项</span>
+        <li style="margin-top: 20px;"><a class="btn btn-link">总收益统计</a></li>
         <li><a class="btn btn-link">演出统计</a></li>
         <li><a class="btn btn-link">评价统计</a></li>
     </ul>
 </header>
 
-<div class="col-lg-9">
-    <div class="table row">
+<div class="info">
+    <div class="title">
+        <span>场馆中心</span> > <span>统计信息</span> > <span id="type">总收益统计</span>
+    </div>
+    <div style="margin-top: 20px">
         <label>实时总收入： </label><span id="income">1000</span><br>
         <label>结算所得收入：</label><span id="profit">2000</span>
     </div>
 
-    <hr width="1100px">
     <div id="list" class="table row">
-        <div id="online_offline" style="width: 600px;height:400px;">
+        <div id="online_offline">
 
         </div>
-        <div id="project_income" style="width: 600px;height:400px;">
+        <div id="project_income">
 
         </div>
     </div>

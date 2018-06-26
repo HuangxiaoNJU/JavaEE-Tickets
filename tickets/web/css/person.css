@@ -17,8 +17,8 @@
     width: 100px;
     height: 100px;
     position: absolute;
-    right: 25%;
-    top: -50px;
+    left: 23%;
+    top: 40%;
 }
 
 .col-lg-4 > span {
@@ -50,3 +50,10 @@ hr {
     font-size: 20px;
 }
 
+#my_info {
+    padding: 8% 25% 0 25%;
+}
+
+.title > span {
+    margin: 0 10px;
+}

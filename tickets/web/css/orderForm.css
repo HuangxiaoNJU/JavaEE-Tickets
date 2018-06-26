@@ -13,3 +13,7 @@
 .purchaseType {
     font-size: 14px;
 }
+
+.title > span {
+    margin: 0 10px;
+}

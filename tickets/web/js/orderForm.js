@@ -45,7 +45,7 @@ function addOrderInfo(orders) {
                 <span class="status" style="color: ${stateColor}">${item.state}</span><br><br><br>
                 <span class="price">¥ ${item.totalPrice}</span>
             </div>
-            <hr width="1100px">
+            <hr width="850px" style="margin-left: -15px">
         `);
     }
 }
@@ -83,31 +83,37 @@ function showLeftNavItem(item) {
 }
 
 $('#all_order').click(function () {
+    $('#type').text("所有订单");
     showLeftNavItem('all_order');
     showOrders(-1);
 });
 
 $('#not_payed_order').click(function () {
+    $('#type').text("未支付订单");
     showLeftNavItem('not_payed_order');
     showOrders(0);
 });
 
 $('#canceled_order').click(function () {
+    $('#type').text("已取消订单");
     showLeftNavItem('canceled_order');
     showOrders(1);
 });
 
 $('#refund_order').click(function () {
+    $('#type').text("已退款订单");
     showLeftNavItem('refund_order');
     showOrders(2);
 });
 
 $('#not_allocated_order').click(function () {
+    $('#type').text("待分配订单");
     showLeftNavItem('not_allocated_order');
     showOrders(3);
 });
 
 $('#finished_order').click(function () {
+    $('#type').text("已完成订单");
     showLeftNavItem('finished_order');
     showOrders(4);
 });

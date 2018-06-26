@@ -11,22 +11,20 @@
 <body>
 <div id="head"></div>
 
-<header class="btnView col-lg-3">
-    <ul class="nav navbar-fixed" style="top: 20%;">
+<header class="btnView">
+    <ul class="nav navbar-fixed" style="top: 20%">
         <li>
-            <a id="information" class="btn-self active">
-            <img src="../image/user_info.png" class="nav_img">基本信息</a>
-            <div class="under" id="info"></div>
+            <a id="information" class="btn-self active">基本信息</a>
         </li>
-        <li><a id="coupon" class="btn-self">
-            <img src="../image/discount.png" class="nav_img">优惠券中心</a>
-            <div class="under" id="discount"></div>
+        <li><a id="coupon" class="btn-self">优惠券中心</a>
         </li>
     </ul>
 </header>
 
-<div class="col-lg-9 main">
-    <label>个人中心 > <label id="view"></label></label>
+<div class="info">
+    <div class="title">
+        <span>个人中心</span> > <span id="view"></span>
+    </div>
     <div id="my_info">
         <img src="../image/user_img.jpg" class="user-img">
         <div class="info_table row">
@@ -75,7 +73,7 @@
         </div>
         <div class="view">
             <!--<button id="modify_nickname" class="btn btn-list">修改信息</button>-->
-            <button id="cancel_btn" class="btn btn-list" style="margin-left: 20px">注销账户</button>
+            <button id="cancel_btn" class="btn btn-list" style="margin: 20px">注销账户</button>
         </div>
     </div>
     <div id="list" class="container row" style="display: none; width: 900px">
