@@ -13,9 +13,11 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import static edu.nju.tickets.util.Constants.LEVEL_DISCOUNT;
+import static edu.nju.tickets.util.Constants.NUMBER_FORMAT;
 import static edu.nju.tickets.util.Constants.OrderFormState.CANCELED;
 import static edu.nju.tickets.util.Constants.OrderFormState.NOT_PAYED;
 
@@ -212,29 +214,38 @@ public class UserServiceImpl implements UserService {
         return vo;
     }
 
-    private double countRefundRatio(Integer userId) {
+    private void countUserOrdersByState(Integer userId, IndividualStatisticsVO vo) {
         long refundOrders       = orderFormDao.countByUserIdAndState(userId, Constants.OrderFormState.REFUND);
         long notAllocatedOrders = orderFormDao.countByUserIdAndState(userId, Constants.OrderFormState.NOT_ALLOCATED);
         long finishedOrders     = orderFormDao.countByUserIdAndState(userId, Constants.OrderFormState.FINISHED);
 
-        return refundOrders * 1.0d / (refundOrders + notAllocatedOrders + finishedOrders);
+        vo.setRefundOrderNum(refundOrders);
+
+        long payOrderNum = refundOrders + notAllocatedOrders + finishedOrders;
+        vo.setPayOrderNum(finishedOrders + refundOrders + notAllocatedOrders);
+
+        double ratio = 0;
+        if (payOrderNum != 0) {
+            ratio = refundOrders * 1.0d / (refundOrders + notAllocatedOrders + finishedOrders);
+        }
+        vo.setRefundRatio(NUMBER_FORMAT.format(ratio));
     }
 
     /**
      * 获取用户消费按年、月、日分别统计的信息
      *
-     * @param userId        用户id
-     * @param endIndex      "yyyy-MM-dd"中结束字符后一个位置下标，按年统计即为4，按月统计为7，按日统计为10
+     * @param orders        用户所有订单（已按时间排好序）
+     * @param endIndex      "yyyy-MM-dd"中结束字符后一个位置下标，按年统计为4，按月统计为7，按日统计为10
      * @return              map
      */
-    private Map<String, Double> getConsumeMap(Integer userId, int endIndex) {
-        List<OrderForm> orders = orderFormDao.findByUserIdOrderByCreateTimeDesc(userId);
+    private Map<String, Double> getConsumeMap(List<OrderForm> orders, int endIndex) {
         return orders.stream()
                 // 剔除未支付订单及已取消订单
                 .filter(o -> o.getState() != NOT_PAYED && o.getState() != CANCELED)
                 .collect(
                         Collectors.groupingBy(
                                 o -> DateTimeUtil.convertTimestampToString(o.getCreateTime()).substring(0, endIndex),
+                                TreeMap::new,
                                 Collectors.summingDouble(OrderForm::getTotalPrice)
                         )
                 );
@@ -251,11 +262,13 @@ public class UserServiceImpl implements UserService {
         IndividualStatisticsVO vo = new IndividualStatisticsVO();
 
         double totalPoints = orderFormDao.sumTotalPriceByUserId(id) - orderFormDao.sumTotalPriceByUserIdAndState(id, Constants.OrderFormState.CANCELED);
-        vo.setTotalPoints(totalPoints);
-        vo.setCouponPoints((int)vo.getTotalPoints() - user.getPoints());
-        vo.setRefundRatio(countRefundRatio(id));
-        vo.setConsumePerDay(getConsumeMap(id, 10));
-        vo.setConsumePerMonth(getConsumeMap(id, 7));
+        vo.setTotalPoints((int) totalPoints);
+
+        countUserOrdersByState(id, vo);
+
+        List<OrderForm> orders = orderFormDao.findByUserIdOrderByCreateTimeDesc(id);
+        vo.setConsumePerDay(getConsumeMap(orders, 10));
+        vo.setConsumePerMonth(getConsumeMap(orders, 7));
 
         return vo;
     }

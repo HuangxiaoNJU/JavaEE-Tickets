@@ -4,10 +4,13 @@ import java.util.Map;
 
 public class IndividualStatisticsVO {
 
-    private double totalPoints;         // 积分总值
+    private int totalPoints;            // 积分总值
     private int couponPoints;           // 积分兑换优惠券总额
     private double averageEvaluation;   // 所有订单平均评价星级
-    private double refundRatio;         // 退票率
+    private String refundRatio;         // 退票率
+
+    private long payOrderNum;            // 付款订单总数
+    private long refundOrderNum;         // 退款订单总数
 
     private Map<String, Double> consumePerDay;      // 日购票总金额统计
     private Map<String, Double> consumePerMonth;    // 月购票总金额统计
@@ -15,11 +18,11 @@ public class IndividualStatisticsVO {
 
     public IndividualStatisticsVO() {}
 
-    public double getTotalPoints() {
+    public int getTotalPoints() {
         return totalPoints;
     }
 
-    public void setTotalPoints(double totalPoints) {
+    public void setTotalPoints(int totalPoints) {
         this.totalPoints = totalPoints;
     }
 
@@ -39,12 +42,28 @@ public class IndividualStatisticsVO {
         this.averageEvaluation = averageEvaluation;
     }
 
-    public double getRefundRatio() {
+    public String getRefundRatio() {
         return refundRatio;
     }
 
-    public void setRefundRatio(double refundRatio) {
+    public void setRefundRatio(String refundRatio) {
         this.refundRatio = refundRatio;
+    }
+
+    public long getPayOrderNum() {
+        return payOrderNum;
+    }
+
+    public void setPayOrderNum(long payOrderNum) {
+        this.payOrderNum = payOrderNum;
+    }
+
+    public long getRefundOrderNum() {
+        return refundOrderNum;
+    }
+
+    public void setRefundOrderNum(long refundOrderNum) {
+        this.refundOrderNum = refundOrderNum;
     }
 
     public Map<String, Double> getConsumePerDay() {

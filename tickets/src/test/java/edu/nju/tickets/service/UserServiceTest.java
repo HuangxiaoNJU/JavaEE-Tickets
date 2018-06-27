@@ -17,7 +17,7 @@ public class UserServiceTest {
     @Test
     public void testGetIndividualStatistics() {
         IndividualStatisticsVO vo = userService.getIndividualStatistics("151250051@smail.nju.edu.cn");
-        vo.getConsumePerDay().forEach((k, v) -> System.out.println(k + ": " + v));
+        vo.getConsumePerMonth().forEach((k, v) -> System.out.println(k + ": " + v));
     }
 
 }

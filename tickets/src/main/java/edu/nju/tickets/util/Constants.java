@@ -1,11 +1,14 @@
 package edu.nju.tickets.util;
 
+import java.text.NumberFormat;
 import java.util.HashMap;
 
 /**
  * 常量
  */
 public class Constants {
+
+    public static final NumberFormat NUMBER_FORMAT = NumberFormat.getPercentInstance();
 
     // 海报相对路径
     public static final String POSTER_DIR = "poster";
