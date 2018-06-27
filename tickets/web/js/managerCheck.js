@@ -113,7 +113,7 @@ function addModifyVenues(venueModifies) {
     for (let i = 0; i < venueModifies.length; i++) {
         let item = venueModifies[i];
         let newName = item.newName === null ? item.venueInfoVO.name : item.newName;
-        let newSeatNumber = item.newSeatNumber === null ? item.venueInfoVO.seatNumber : item.seatNumber;
+        let newSeatNumber = item.newSeatNumber === null ? item.venueInfoVO.seatNumber : item.newSeatNumber;
         let newLocation = item.newLocation === null ? item.venueInfoVO.location : item.newLocation;
         list.append(`
             <div class="col-lg-8">
