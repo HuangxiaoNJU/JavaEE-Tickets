@@ -13,6 +13,7 @@ $().ready(function () {
 });
 
 function addOrderInfo(orders) {
+    console.log(orders[0]);
     let list = $('#list');
     list.empty();
     if (orders.length === 0) {
@@ -24,17 +25,16 @@ function addOrderInfo(orders) {
         let discount = item.discount === 100 ? '不打折' : item.discount + '折';
         let couponInfo = item.couponVO === null ? '未使用' : item.couponVO.name;
         let stateColor = (item.state === '已取消' || item.state === '已退款') ? 'darkred' : '#4cae4c';
+        let typeColor = (item.purchaseType === '选座购买' || item.state === '立即购买') ? 'lightblue' : '#4cae4c';
 
         list.append(`
             <div class="col-lg-8">
-                <h6>${item.createTime}</h6>
+                <label>${item.createTime}</label>
                 <h5>
                     ${item.projectInfoVO.name}&nbsp;
-                    <span style="margin-left: 5%; font-size: 16px" >
-                        &nbsp;${item.purchaseType}
-                    </span>
                 </h5>
-                <span>${item.projectInfoVO.venueInfoVO.location} ${item.projectInfoVO.venueInfoVO.name}</span><br>
+                <span>${item.projectInfoVO.venueInfoVO.name} - ${item.projectInfoVO.venueInfoVO.location}</span><br>
+                <span style="color: ${typeColor}">${item.purchaseType}</span>
                 <span>&nbsp;${item.priceInfoVO.seatName} ${item.seatNumber}张</span><br><br>
                 <!--<label>订单编号 : </label><span>&nbsp;${item.id}</span><br>-->
                 <!--<label>会员折扣 : </label><span>&nbsp;${discount}</span><br>-->

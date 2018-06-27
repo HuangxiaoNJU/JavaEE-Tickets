@@ -1,7 +1,11 @@
-#project_income, #online_offline {
+#project_income, #online_offline,#consume, #monthConsume {
     margin-top: 20px;
-    margin-left: 200px;
+    margin-left: 80px;
     width: 600px;
     height:400px;
 }
 
+.title_statistics {
+    color: rgb(45,101,155);
+    font-style: oblique;
+}

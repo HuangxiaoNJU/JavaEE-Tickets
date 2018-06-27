@@ -7,6 +7,7 @@
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/calendar.css" rel="stylesheet">
     <link href="../css/util.css" rel="stylesheet">
+    <link href="../css/venueStatistics.css" rel="stylesheet">
 </head>
 <body>
 
@@ -29,27 +30,45 @@
     <div id="list">
         <!--积分优惠券-->
         <div id="coupon">
-            <div class="title">
-                <span>积分 / 优惠券</span>
+            <div class="title title_statistics">
+                <label>积分与优惠券</label>
             </div>
-            <div>
-                <span>积分兑换优惠券总额</span><br>
-                <h3></h3>已花费<span id="couponPoints">200</span>积分
+            <div style="margin: 20px">
+                <span>从注册系统至今，累计获得 <label id="totalPoints" style="color: dodgerblue"></label> 积分。</span><br>
+                <span>其中，共使用 <label id="couponPoints" style="color: chocolate"></label> 积分，兑换成了优惠券。</span><br>
             </div>
         </div>
         <!--售后-->
         <div id="after_sale">
-            <div class="title">
-                <span>退票率 / 评价</span>
+            <div class="title title_statistics">
+                <label>退票率与评价</label>
+            </div>
+            <div style="margin: 20px">
+                <p>
+                    <span>从注册系统至今，共成功支付 <label id="payOrderNum"></label> 次。</span><br>
+                    <span>其中，退票 <label style="color: red" id="refundOrderNum"></label> 次，
+                        退票率 <label id="refundRatio">100%</label> 。</span>
+                </p>
+                <p>
+                    <span>平均评价分数 : </span>
+                    <label id="averageEvaluation"></label><br>
+                    <span style="font-size: 10px">（ 您的评分对我们的系统改进有很大的帮助，谢谢！）</span>
+                </p>
+
             </div>
         </div>
         <!--消费-->
         <div style="margin-top: 20px" id="sale">
-            <div class="title">
-                <span>消费统计</span>
+            <div class="title title_statistics">
+                <label>消费统计</label>
             </div>
-            <label>实时消费总金额： </label><span id="income">1000</span><br>
-            <label>结算所得收入：</label><span id="profit">2000</span>
+            <div style="margin: 20px">
+                <label>实时消费总金额： </label><span id="totalConsume"></span><br>
+                <h6>每日消费总额</h6>
+                <div id="consume"></div>
+                <h6>每月消费总额</h6>
+                <div id="monthConsume"></div>
+            </div>
         </div>
     </div>
 </div>
