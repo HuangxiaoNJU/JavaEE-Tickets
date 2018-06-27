@@ -9,8 +9,9 @@ public class IndividualStatisticsVO {
     private double averageEvaluation;   // 所有订单平均评价星级
     private double refundRatio;         // 退票率
 
-    private Map<String, Double> consumePerDay;      // 日购票总金额
-    private Map<String, Double> consumePerMonth;    // 月购票总金额
+    private Map<String, Double> consumePerDay;      // 日购票总金额统计
+    private Map<String, Double> consumePerMonth;    // 月购票总金额统计
+//    private Map<String, Double> consumePerYear;     // 月购票总金额统计
 
     public IndividualStatisticsVO() {}
 

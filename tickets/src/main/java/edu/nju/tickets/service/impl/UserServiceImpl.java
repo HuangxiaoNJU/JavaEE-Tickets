@@ -16,6 +16,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static edu.nju.tickets.util.Constants.LEVEL_DISCOUNT;
+import static edu.nju.tickets.util.Constants.OrderFormState.CANCELED;
+import static edu.nju.tickets.util.Constants.OrderFormState.NOT_PAYED;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -218,10 +220,24 @@ public class UserServiceImpl implements UserService {
         return refundOrders * 1.0d / (refundOrders + notAllocatedOrders + finishedOrders);
     }
 
-    private Map<String, Double> getConsumeMap(Integer userId) {
+    /**
+     * 获取用户消费按年、月、日分别统计的信息
+     *
+     * @param userId        用户id
+     * @param endIndex      "yyyy-MM-dd"中结束字符后一个位置下标，按年统计即为4，按月统计为7，按日统计为10
+     * @return              map
+     */
+    private Map<String, Double> getConsumeMap(Integer userId, int endIndex) {
         List<OrderForm> orders = orderFormDao.findByUserIdOrderByCreateTimeDesc(userId);
-        // TODO
-        return null;
+        return orders.stream()
+                // 剔除未支付订单及已取消订单
+                .filter(o -> o.getState() != NOT_PAYED && o.getState() != CANCELED)
+                .collect(
+                        Collectors.groupingBy(
+                                o -> DateTimeUtil.convertTimestampToString(o.getCreateTime()).substring(0, endIndex),
+                                Collectors.summingDouble(OrderForm::getTotalPrice)
+                        )
+                );
     }
 
     @Override
@@ -238,6 +254,8 @@ public class UserServiceImpl implements UserService {
         vo.setTotalPoints(totalPoints);
         vo.setCouponPoints((int)vo.getTotalPoints() - user.getPoints());
         vo.setRefundRatio(countRefundRatio(id));
+        vo.setConsumePerDay(getConsumeMap(id, 10));
+        vo.setConsumePerMonth(getConsumeMap(id, 7));
 
         return vo;
     }

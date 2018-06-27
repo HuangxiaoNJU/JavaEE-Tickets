@@ -34,6 +34,18 @@ public class DateTimeUtil {
         return Timestamp.valueOf(localDateTime);
     }
 
+//    public static int getYear(Timestamp timestamp) {
+//        return Integer.valueOf(convertTimestampToString(timestamp).substring(0, 4));
+//    }
+//
+//    public static int getMonth(Timestamp timestamp) {
+//        return Integer.valueOf(convertTimestampToString(timestamp).substring(5, 2));
+//    }
+//
+//    public static int getDay(Timestamp timestamp) {
+//        return Integer.valueOf(convertTimestampToString(timestamp).substring(8, 2));
+//    }
+
     public static void main(String[] args) {
         System.out.println(DATE_FORMAT.format(convertStringToTimestamp("2018-1-1")));
     }
