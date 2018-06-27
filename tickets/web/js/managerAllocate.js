@@ -107,9 +107,11 @@ function showLeftNavItem(item) {
 $('#not_allocated').click(function () {
     showLeftNavItem('not_allocated');
     showAllocated(false);
+    $('#type').text("待分配");
 });
 
 $('#already_allocated').click(function () {
     showLeftNavItem('already_allocated');
     showAllocated(true);
+    $('#type').text("已分配");
 });

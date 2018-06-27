@@ -41,7 +41,7 @@ function addRegisterVenues(venues) {
         let item = venues[i];
         list.append(`
             <div class="col-lg-9">
-                <h5>${item.name}</h5>
+                <h6>${item.name}</h6>
                 <label>地址 : </label><span>&nbsp;${item.location}</span><br>
                 <label>座位数 : </label><span>&nbsp;${item.seatNumber}</span><br>
                 <label>联系方式 : </label><span>&nbsp;${item.email}</span><br>
@@ -114,11 +114,14 @@ function addModifyVenues(venueModifies) {
         let newLocation = item.newLocation === null ? item.venueInfoVO.location : item.newLocation;
         list.append(`
             <div class="col-lg-9">
-                <h5>${item.venueInfoVO.name}</h5>
-                <span>申请时间 : ${item.applyTime}</span><br><br>
-                <label>场馆名 : </label><span>&nbsp;${item.venueInfoVO.name}&nbsp; 修改为 &nbsp;${newName}</span><br>
-                <label>座位数 : </label><span>&nbsp;${item.venueInfoVO.seatNumber}&nbsp; 修改为 &nbsp;${newSeatNumber}</span><br>
-                <label>地址 : </label><span>&nbsp;${item.venueInfoVO.location}&nbsp; 修改为 &nbsp;${newLocation}</span>
+                <p style="color: #2a6496">于 ${item.applyTime} 提交申请</p>
+                <h6>${item.venueInfoVO.name}</h6>
+                <span>场馆名 : </span><label>&nbsp;${item.venueInfoVO.name}
+                <span style="margin: 0 5px; color: chocolate"> -> </span>${newName}</label><br>
+                <span>座位数 : </span><label>&nbsp;${item.venueInfoVO.seatNumber}
+                <span style="margin: 0 5px; color: chocolate"> -> </span>${newSeatNumber}</label><br>
+                <span>地址 : </span><label>&nbsp;${item.venueInfoVO.location}
+                <span style="margin: 0 5px; color: chocolate"> -> </span>${newLocation}</label>
             </div>
             <div class="col-lg-3">
                 <a id="pass_modify_${item.id}" class="btn btn-pass">通过</a><br>

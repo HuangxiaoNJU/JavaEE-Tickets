@@ -143,6 +143,7 @@ $('#user_statistics').click(function () {
     $('#venues_list').hide();
 
     showUserStatistics();
+    $('#type').text("会员信息统计");
 });
 
 $('#venue_statistics').click(function () {
@@ -153,4 +154,5 @@ $('#venue_statistics').click(function () {
     $('#venues_list').show();
 
     showVenueStatistics();
+    $('#type').text("场馆信息统计");
 });
