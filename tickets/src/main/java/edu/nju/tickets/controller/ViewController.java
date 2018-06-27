@@ -86,4 +86,9 @@ public class ViewController {
         return "newProject";
     }
 
+    @GetMapping("/user/statistics")
+    public String userStatistics() {
+        return "userStatistics";
+    }
+
 }

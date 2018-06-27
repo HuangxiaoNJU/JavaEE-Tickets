@@ -39,6 +39,7 @@ $('#head').append(`
                                         <ul class="dropdown-menu">
                                             <li><a href="/user/person">我的信息</a></li>
                                             <li><a href="/user/order">我的订单</a></li>
+                                            <li><a href="/user/statistics">我的统计</a></li>
                                             <li><a id="user_logout">登出</a></li>
                                         </ul>
                                     </li>
@@ -419,8 +420,8 @@ function addVenueInfo(venues) {
     for (let i = 0; i < venues.length; i++) {
         let item = venues[i];
         list.append(`
-            <div class="col-lg-8">
-                <h5>${item.name}</h5>
+            <div style="box-shadow: 0 1px gainsboro;padding: 8px 15px">
+                <h6>${item.name}</h6>
                 <label>地址 : </label><span>&nbsp;${item.location}</span><br>
                 <label>座位数 : </label><span>&nbsp;${item.seatNumber}</span><br>
                 <label>联系方式 : </label><span>&nbsp;${item.email}</span>
@@ -428,7 +429,6 @@ function addVenueInfo(venues) {
             <!--<div class="col-lg-4">-->
                 <!--<a class="btn btn-primary">查看场馆活动</a>-->
             <!--</div>-->
-            <hr width="1100px">
             <br>
         `);
     }
