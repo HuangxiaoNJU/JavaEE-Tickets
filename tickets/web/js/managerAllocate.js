@@ -23,23 +23,22 @@ function addProjectIncomeInfo(projectIncomes, isAllocated) {
     for (let i = 0; i < projectIncomes.length; i++) {
         let item = projectIncomes[i];
         list.append(`
-            <div class="col-lg-8">
-                <h5 id="id">${item.projectInfoVO.name}</h5>
-                <span>${item.projectInfoVO.beginTime}&nbsp;至&nbsp;${item.projectInfoVO.endTime}</span><br><br>
+            <div class="col-lg-9">
+                <h6 id="id">${item.projectInfoVO.name}</h6>
+                <span>${item.projectInfoVO.beginTime}&nbsp;至&nbsp;${item.projectInfoVO.endTime}</span><br>
                 <label>场馆 : </label><span>&nbsp;${item.projectInfoVO.venueInfoVO.name}</span><br>
                 <label>地点 : </label><span>&nbsp;${item.projectInfoVO.venueInfoVO.location}</span><br>
             </div>
         `);
         if (!isAllocated) {
             list.append(`
-                <div class="col-lg-4">
-                    <a href="/project/detail?project_id=${item.projectInfoVO.id}" class="btn btn-link">查看详情 >></a><br>
-                    <label>线上总收入：</label><span>${item.onlineIncome}</span><br>
-                    <label>线下总收入：</label><span>${item.offlineIncome}</span><br><br>
+                <div class="col-lg-3">
+                    <span>线上总收入：</span><label style="color: lightsalmon">${item.onlineIncome}</label><br>
+                    <span>线下总收入：</span><label style="color: lightblue">${item.offlineIncome}</label><br><br>
                     <!--<input class="input" type="text" placeholder="Tickets分配比例"><br>-->
                     <a id="allocate_project_${item.projectInfoVO.id}" class="btn btn-info">立即结算</a>
                 </div>
-                <hr width="1100px">
+                <hr width="710px">
                 <script>
                     $('#allocate_project_${item.projectInfoVO.id}').click(function() {
                         $.ajax({
@@ -66,14 +65,13 @@ function addProjectIncomeInfo(projectIncomes, isAllocated) {
             `);
         } else {
             list.append(`
-                <div class="col-lg-4">
-                    <a href="/project/detail?project_id=${item.projectInfoVO.id}" class="btn btn-link">查看详情 >></a><br>
-                    <label>线上总收入：</label><span>${item.onlineIncome}</span><br>
-                    <label>线下总收入：</label><span>${item.offlineIncome}</span><br><br>
-                    <label>平台所得收入：</label><span>${item.platformIncome}</span><br>
-                    <label>场馆所得收入：</label><span>${item.venueIncome}</span><br>
+                <div class="col-lg-3">
+                    <span>场馆线上总收入：</span><label style="color: lightsalmon">${item.onlineIncome}</label><br>
+                    <span>场馆线下总收入：</span><label style="color: lightblue">${item.offlineIncome}</label><br><br>
+                    <span>平台所得收入：</span><label style="color: lightsalmon">${item.platformIncome}</label><br>
+                    <span>场馆所得收入：</span><label style="color: lightblue">${item.venueIncome}</label><br>
                 </div>
-                <hr width="1100px">
+                <hr width="710px">
             `);
         }
     }

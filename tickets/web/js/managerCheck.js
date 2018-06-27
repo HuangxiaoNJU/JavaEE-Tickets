@@ -40,20 +40,18 @@ function addRegisterVenues(venues) {
     for (let i = 0; i < venues.length; i++) {
         let item = venues[i];
         list.append(`
-            <div class="col-lg-8">
+            <div class="col-lg-9">
                 <h5>${item.name}</h5>
                 <label>地址 : </label><span>&nbsp;${item.location}</span><br>
                 <label>座位数 : </label><span>&nbsp;${item.seatNumber}</span><br>
                 <label>联系方式 : </label><span>&nbsp;${item.email}</span><br>
                 <label>注册时间 : </label><span>&nbsp;${item.registerTime}</span>
             </div>
-            <div class="col-lg-4">
-                <a id="pass_${item.id}" class="btn btn-primary">通过</a>
+            <div class="col-lg-3">
+                <a id="pass_${item.id}" class="btn btn-pass">通过</a><br>
+                <a id="not_pass_${item.id}" class="btn btn-unPass">不通过</a>
             </div>
-            <div class="col-lg-4">
-                <a id="not_pass_${item.id}" class="btn btn-primary">不通过</a>
-            </div>
-            <hr width="1100px">
+            <hr width="710px">
             <script>
                 $("#pass_${item.id}").click(function () {
                     checkVenueRegister(${item.id}, true);
@@ -109,27 +107,24 @@ function addModifyVenues(venueModifies) {
         addEmptyPrompt('修改场馆均已审核');
         return;
     }
-    console.log('this');
     for (let i = 0; i < venueModifies.length; i++) {
         let item = venueModifies[i];
         let newName = item.newName === null ? item.venueInfoVO.name : item.newName;
         let newSeatNumber = item.newSeatNumber === null ? item.venueInfoVO.seatNumber : item.newSeatNumber;
         let newLocation = item.newLocation === null ? item.venueInfoVO.location : item.newLocation;
         list.append(`
-            <div class="col-lg-8">
+            <div class="col-lg-9">
                 <h5>${item.venueInfoVO.name}</h5>
                 <span>申请时间 : ${item.applyTime}</span><br><br>
                 <label>场馆名 : </label><span>&nbsp;${item.venueInfoVO.name}&nbsp; 修改为 &nbsp;${newName}</span><br>
                 <label>座位数 : </label><span>&nbsp;${item.venueInfoVO.seatNumber}&nbsp; 修改为 &nbsp;${newSeatNumber}</span><br>
                 <label>地址 : </label><span>&nbsp;${item.venueInfoVO.location}&nbsp; 修改为 &nbsp;${newLocation}</span>
             </div>
-            <div class="col-lg-4">
-                <a id="pass_modify_${item.id}" class="btn btn-primary">通过</a>
+            <div class="col-lg-3">
+                <a id="pass_modify_${item.id}" class="btn btn-pass">通过</a><br>
+                <a id="not_pass_modify_${item.id}" class="btn btn-unPass">不通过</a>
             </div>
-            <div class="col-lg-4">
-                <a id="not_pass_modify_${item.id}" class="btn btn-primary">不通过</a>
-            </div>
-            <hr width="1100px">
+            <hr width="710px">
             <script>
                 $("#pass_modify_${item.id}").click(function () {
                     checkVenueModify(${item.id}, true);
@@ -171,9 +166,11 @@ function showLeftNavItem(item) {
 $('#check_modify').click(function () {
     showLeftNavItem('check_modify');
     showModifyVenues();
+    $('#type').text("修改申请");
 });
 
 $('#check_register').click(function () {
     showLeftNavItem('check_register');
     showRegisterVenues();
+    $('#type').text("注册申请");
 });
