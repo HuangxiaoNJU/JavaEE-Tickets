@@ -31,11 +31,6 @@ public class BaseDaoImpl<T, PK extends Serializable> implements BaseDao<T, PK> {
     }
 
     @Override
-    public List<T> findAll() {
-        return hibernateTemplate.loadAll(entityClass);
-    }
-
-    @Override
     public T get(PK id) {
         return hibernateTemplate.get(entityClass, id);
     }

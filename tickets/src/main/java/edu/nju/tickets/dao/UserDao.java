@@ -12,6 +12,4 @@ public interface UserDao extends BaseDao<User, Integer> {
 
     List<Object[]> findLevelAndUserNumber();
 
-    Long sumPoints();
-
 }

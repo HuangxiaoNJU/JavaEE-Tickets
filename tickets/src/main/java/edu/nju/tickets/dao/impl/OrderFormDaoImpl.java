@@ -32,15 +32,6 @@ public class OrderFormDaoImpl extends BaseDaoImpl<OrderForm, Integer> implements
     }
 
     @Override
-    public Double sumTotalPrice() {
-        Query query = hibernateTemplate.getSessionFactory()
-                .getCurrentSession()
-                .createQuery("select sum(o.totalPrice) from OrderForm o");
-
-        return query.uniqueResult() == null ? 0d : (Double) query.uniqueResult();
-    }
-
-    @Override
     public Double sumTotalPriceByUserId(Integer userId) {
         Query query = hibernateTemplate.getSessionFactory()
                 .getCurrentSession()

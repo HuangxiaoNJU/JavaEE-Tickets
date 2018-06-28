@@ -2,7 +2,6 @@ package edu.nju.tickets.controller;
 
 import edu.nju.tickets.service.ManagerService;
 import edu.nju.tickets.util.CookieUtil;
-import edu.nju.tickets.vo.PlatformStatisticsVO;
 import edu.nju.tickets.vo.ResponseResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,19 +42,5 @@ public class ManagerController {
 //                                                    @RequestParam boolean isPass) {
 //        return null;
 //    }
-
-    @GetMapping("/statistics")
-    public ResponseResult<PlatformStatisticsVO> getPlatformStatistics(@CookieValue(value = MANAGER_COOKIE_NAME, required = false) String managerName) {
-        if (managerName == null) {
-            return new ResponseResult<>(false, "请以管理员身份登录");
-        }
-        try {
-            PlatformStatisticsVO vo = managerService.getPlatformStatistics(managerName);
-            return new ResponseResult<>(true, "", vo);
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-            return new ResponseResult<>(false, e.getMessage());
-        }
-    }
 
 }

@@ -249,7 +249,7 @@ public class VenueController {
     @GetMapping("/statistics")
     public ResponseResult<VenuesStatisticsVO> getVenuesStatistics(@CookieValue(value = MANAGER_COOKIE_NAME, required = false) String managerName) {
         if (managerName == null) {
-            return new ResponseResult<>(false, "请以管理员身份登录");
+            return new ResponseResult<>(false, "您尚未登录");
         }
         return new ResponseResult<>(true, "", venueService.getVenuesStatistics());
     }

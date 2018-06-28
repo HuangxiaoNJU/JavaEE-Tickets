@@ -9,7 +9,7 @@ $().ready(function () {
         alert('非经理登录');
         window.history.back();
     }
-    $('#platform_statistics').click();
+    $('#user_statistics').click();
 });
 
 function drawLevelNumberPie(statistics) {
@@ -21,6 +21,11 @@ function drawLevelNumberPie(statistics) {
     }
 
     let option = {
+        title : {
+            text: '会员等级分布',
+            // subtext: '纯属虚构',
+            x:'center'
+        },
         tooltip : {
             trigger: 'item',
             formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -70,6 +75,10 @@ function showUserStatistics() {
 function drawVenueIncomeBar(statistics) {
     let myChart = echarts.init(document.getElementById('venues_income'));
     let option = {
+        title: {
+            text: '各场馆收入柱状图',
+            x: 'center'
+        },
         color: ['#3398DB'],
         tooltip : {
             trigger: 'axis',
@@ -127,51 +136,23 @@ function showVenueStatistics() {
 }
 
 $('#user_statistics').click(function () {
-    activeLi("user");
-    showLi("user");
+    $('#user_statistics').addClass('active');
+    $('#venue_statistics').removeClass('active');
+
+    $('#user_list').show();
+    $('#venues_list').hide();
 
     showUserStatistics();
     $('#type').text("会员信息统计");
 });
 
 $('#venue_statistics').click(function () {
-    activeLi("venue");
-    showLi("venue");
+    $('#user_statistics').removeClass('active');
+    $('#venue_statistics').addClass('active');
+
+    $('#user_list').hide();
+    $('#venues_list').show();
 
     showVenueStatistics();
     $('#type').text("场馆信息统计");
 });
-
-$('#platform_statistics').click(function () {
-    activeLi("platform");
-    showLi("platform");
-
-    showUserStatistics();
-    $('#type').text("平台收益统计");
-});
-
-$('#perform_statistics').click(function () {
-    activeLi("perform");
-    showLi("perform");
-
-    showVenueStatistics();
-    $('#type').text("演出信息统计");
-});
-
-function showLi(showName) {
-    $('#platform_list').hide();
-    $('#perform_list').hide();
-    $('#venues_list').hide();
-    $('#user_list').hide();
-
-    $('#' + showName + '_list').show();
-}
-
-function activeLi(activeName) {
-    $('#user_statistics').removeClass('active');
-    $('#venue_statistics').removeClass('active');
-    $('#platform_statistics').removeClass('active');
-    $('#perform_statistics').removeClass('active');
-
-    $('#' + activeName + '_statistics').addClass('active');
-}

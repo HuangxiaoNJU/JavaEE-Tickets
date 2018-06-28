@@ -15,10 +15,4 @@ public class ManagerDaoImpl extends BaseDaoImpl<Manager, Integer> implements Man
         return managers.isEmpty() ? null : managers.get(0);
     }
 
-    @Override
-    public Manager findByManagerName(String managerName) {
-        List<Manager> managers = find("from Manager m where m.managerName=?", managerName);
-        return managers.isEmpty() ? null : managers.get(0);
-    }
-
 }

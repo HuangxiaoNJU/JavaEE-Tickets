@@ -1,15 +1,8 @@
 package edu.nju.tickets.dao;
 
 import java.io.Serializable;
-import java.util.List;
 
 public interface BaseDao<T, PK extends Serializable> {
-
-    /**
-     * 获取所有实体
-     * @return  实体列表
-     */
-    List<T> findAll();
 
     /**
      * 根据主键获取实体
