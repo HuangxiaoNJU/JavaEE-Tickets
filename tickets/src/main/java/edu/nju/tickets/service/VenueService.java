@@ -117,5 +117,12 @@ public interface VenueService {
      */
     Double getAverageScore(Integer id);
 
+    /**
+     * 获取场馆统计信息，与getVenueStatistics不同
+     *
+     * @param identification    识别码
+     * @return                  统计信息
+     */
+    VenueIndividualStatistics getVenueIndividualStatistics(final String identification);
 
 }

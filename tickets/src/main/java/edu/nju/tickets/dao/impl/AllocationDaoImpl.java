@@ -18,6 +18,11 @@ public class AllocationDaoImpl extends BaseDaoImpl<Allocation, Integer> implemen
     }
 
     @Override
+    public List<Allocation> findByVenueId(Integer venueId) {
+        return find("from Allocation a where a.venueId=?", venueId);
+    }
+
+    @Override
     public double sumVenueIncomeByVenueId(Integer venueId) {
         Double res = (Double) hibernateTemplate
                 .find("select sum(a.venueIncome) from Allocation a where a.venueId=?", venueId)

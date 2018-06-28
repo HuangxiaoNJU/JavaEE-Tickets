@@ -8,6 +8,8 @@ public interface AllocationDao extends BaseDao<Allocation, Integer> {
 
     Allocation findByProjectId(Integer projectId);
 
+    List<Allocation> findByVenueId(Integer venueId);
+
     double sumVenueIncomeByVenueId(Integer venueId);
 
     List<Object[]> sumPlatformIncomeGroupByProjectTypeAndDay();

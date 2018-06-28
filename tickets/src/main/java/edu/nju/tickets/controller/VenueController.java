@@ -254,4 +254,23 @@ public class VenueController {
         return new ResponseResult<>(true, "", venueService.getVenuesStatistics());
     }
 
+    /**
+     * 获取单个场馆统计信息
+     *
+     * @param identification        识别码
+     * @return                      单个统计信息
+     */
+    @GetMapping("/individual/statistics")
+    public ResponseResult<VenueIndividualStatistics> getIndividualVenueStatistics(@CookieValue(value = VENUE_COOKIE_NAME, required = false) String identification) {
+        if (identification == null) {
+            return new ResponseResult<>(false, "请以场馆身份登录");
+        }
+        try {
+            VenueIndividualStatistics vo = venueService.getVenueIndividualStatistics(identification);
+            return new ResponseResult<>(true, "", vo);
+        } catch (RuntimeException e) {
+            return new ResponseResult<>(false, e.getMessage());
+        }
+    }
+
 }

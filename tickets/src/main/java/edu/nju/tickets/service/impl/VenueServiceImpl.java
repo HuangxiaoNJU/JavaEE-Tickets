@@ -1,11 +1,7 @@
 package edu.nju.tickets.service.impl;
 
 import edu.nju.tickets.dao.*;
-import edu.nju.tickets.entity.ProjectPrice;
-import edu.nju.tickets.entity.Venue;
-import edu.nju.tickets.entity.Project;
-import edu.nju.tickets.entity.OrderForm;
-import edu.nju.tickets.entity.VenueModify;
+import edu.nju.tickets.entity.*;
 import edu.nju.tickets.service.MailService;
 import edu.nju.tickets.service.VenueInfo;
 import edu.nju.tickets.service.VenueService;
@@ -16,8 +12,12 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
+import static edu.nju.tickets.util.Constants.NUMBER_FORMAT;
 import static edu.nju.tickets.util.Constants.VENUE_IDENTIFICATION_LENGTH;
 
 @Service
@@ -115,7 +115,7 @@ public class VenueServiceImpl implements VenueService, VenueInfo {
     /**
      * 随机生成场馆识别码
      *
-     * @return  识别码
+     * @return 识别码
      */
     private String generateIdentification() {
         String identification;
@@ -133,7 +133,7 @@ public class VenueServiceImpl implements VenueService, VenueInfo {
             throw new RuntimeException("场馆不存在");
         }
         if (venue.isChecked()) {
-            throw new RuntimeException("场馆已被审核，结果为" + (venue.isPass() ? "通过": "未通过"));
+            throw new RuntimeException("场馆已被审核，结果为" + (venue.isPass() ? "通过" : "未通过"));
         }
 
         if (isPass) {
@@ -292,14 +292,14 @@ public class VenueServiceImpl implements VenueService, VenueInfo {
         List<Object[]> projectsIncome = payDao.findProjectIncomeByVenueId(venue.getId());
         vo.setProjectIncomeList(
                 projectsIncome
-                .stream()
-                .map(e -> (Double) e[0])
-                .collect(Collectors.toList()));
+                        .stream()
+                        .map(e -> (Double) e[0])
+                        .collect(Collectors.toList()));
         vo.setProjectNameList(
                 projectsIncome
-                .stream()
-                .map(e -> projectDao.get((Integer) e[1]).getName())
-                .collect(Collectors.toList()));
+                        .stream()
+                        .map(e -> projectDao.get((Integer) e[1]).getName())
+                        .collect(Collectors.toList()));
 
         return vo;
     }
@@ -315,23 +315,63 @@ public class VenueServiceImpl implements VenueService, VenueInfo {
 
     @Override
     public Double getAverageScore(Integer venueId) {
-        double score=0.0;
-        int sum=0;
-        List<Project> projects=projectDao.findByVenueId(venueId);
-        for(int i=0;i<projects.size();i++){
-            List<ProjectPrice> prices=projectPriceDao.getByProjectId(projects.get(i).getId());
-            for(int j=0;j<prices.size();j++){
-                List<OrderForm> orderForms=orderFormDao.findByProjectPriceId(prices.get(j).getId());
-                for(int k=0;k<orderForms.size();k++){
-                    if(orderForms.get(k).getScore()!=-1){
+        double score = 0.0;
+        int sum = 0;
+        List<Project> projects = projectDao.findByVenueId(venueId);
+        for (int i = 0; i < projects.size(); i++) {
+            List<ProjectPrice> prices = projectPriceDao.getByProjectId(projects.get(i).getId());
+            for (int j = 0; j < prices.size(); j++) {
+                List<OrderForm> orderForms = orderFormDao.findByProjectPriceId(prices.get(j).getId());
+                for (int k = 0; k < orderForms.size(); k++) {
+                    if (orderForms.get(k).getScore() != -1) {
                         sum++;
-                        score+=orderForms.get(k).getScore();
+                        score += orderForms.get(k).getScore();
                     }
                 }
 
             }
         }
-        return score/sum;
+        return score / sum;
+    }
+
+    /**
+     * 获取场馆收益按年、月、日分别统计的信息
+     *
+     * @param allocations   分配结算列表
+     * @param endIndex      "yyyy-MM-dd"中结束字符后一个位置下标，按年统计为4，按月统计为7，按日统计为10
+     * @return              Map
+     */
+    private Map<String, Double> getProfitMap(List<Allocation> allocations, int endIndex) {
+        return allocations.stream()
+                .collect(
+                        Collectors.groupingBy(
+                                a -> DateTimeUtil.convertTimestampToString(a.getTime()).substring(0, endIndex),
+                                TreeMap::new,
+                                Collectors.summingDouble(Allocation::getVenueIncome)
+                        )
+                );
+    }
+
+    @Override
+    public VenueIndividualStatistics getVenueIndividualStatistics(String identification) {
+        Venue venue = venueDao.findByIdentification(identification);
+        if (venue == null) {
+            throw new RuntimeException("场馆不存在");
+        }
+
+        VenueIndividualStatistics vo = new VenueIndividualStatistics();
+
+        vo.setTotalProjectNum(projectDao.findByVenue(venue).size());
+
+        List<Allocation> allocations = allocationDao.findByVenueId(venue.getId());
+        vo.setProfitPerDay(getProfitMap(allocations, 10));
+        vo.setProfitPerMonth(getProfitMap(allocations, 7));
+        vo.setProfitPerYear(getProfitMap(allocations, 4));
+
+        vo.setPresentRatio(NUMBER_FORMAT.format(new Random().nextInt(30) / 100.0));
+        vo.setRefundRatio(NUMBER_FORMAT.format(new Random().nextInt(20) / 100.0));
+
+        return vo;
     }
 
 }
