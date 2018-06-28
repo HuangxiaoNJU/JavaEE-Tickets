@@ -15,7 +15,7 @@ function getUserStatistics() {
             $('#couponPoints').text(result.data.couponPoints);
             $('#totalConsume').text(result.data.totalPoints);
             $('#refundRatio').text(result.data.refundRatio);
-            $('#averageEvaluation').text(result.data.averageEvaluation);
+            // $('#averageEvaluation').text(result.data.averageEvaluation);
             $('#payOrderNum').text(result.data.payOrderNum);
             $('#refundOrderNum').text(result.data.refundOrderNum);
 

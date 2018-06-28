@@ -160,9 +160,8 @@ $('#confirm_comment').click(function () {
 
     $.ajax({
         type: 'POST',
-        url: '/api/orders/score',
+        url: '/api/orders/score/' + getQueryVariable('order_id'),
         data: {
-            id: $('#order_form_id').val(),
             score: parseInt(mark),
         },
         success: function (result) {
