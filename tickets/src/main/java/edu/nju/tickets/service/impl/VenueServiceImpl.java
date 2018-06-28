@@ -331,6 +331,8 @@ public class VenueServiceImpl implements VenueService, VenueInfo {
 
             }
         }
+        if(sum==0)
+            return 0.0;
         return score/sum;
     }
 
