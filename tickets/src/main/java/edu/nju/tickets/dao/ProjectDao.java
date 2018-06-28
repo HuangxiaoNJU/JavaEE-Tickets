@@ -24,4 +24,6 @@ public interface ProjectDao extends BaseDao<Project, Integer> {
 
     List<Project> findByEndTimeLessThanOrderByEndTime(Timestamp timestamp);
 
+    List<Project> findByVenueId(Integer venueId);
+
 }

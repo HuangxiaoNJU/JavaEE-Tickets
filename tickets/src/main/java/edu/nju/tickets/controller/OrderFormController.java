@@ -162,4 +162,17 @@ public class OrderFormController {
         return new ResponseResult<>(true, "检票成功");
     }
 
+    /**
+     * 场馆检票
+     *
+     * @param score             活动评分
+     * @param id                订单id
+     * @return                  评分结果
+     */
+    @PostMapping("/score/{id}")
+    public ResponseResult<Void> scorePorject(@PathVariable Integer id,
+                                        @RequestParam int score) {
+        return new ResponseResult<>(orderFormService.updateOrderFormScore(id,score), "评分成功");
+    }
+
 }

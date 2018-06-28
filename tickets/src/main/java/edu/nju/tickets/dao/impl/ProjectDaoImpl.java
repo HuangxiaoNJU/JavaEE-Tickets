@@ -51,4 +51,8 @@ public class ProjectDaoImpl extends BaseDaoImpl<Project, Integer> implements Pro
         return find("from Project p where p.endTime < ? order by p.endTime", timestamp);
     }
 
+    @Override
+    public List<Project> findByVenueId(Integer venueId) {
+        return find("from Project p where p.venue_id=? order by p.venue_id desc", venueId);
+    }
 }

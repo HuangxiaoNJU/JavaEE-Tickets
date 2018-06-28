@@ -19,6 +19,7 @@ public class OrderForm {
     private Integer couponId;
     private boolean checkIn;
     private String seatList;
+    private int score;
 
     public OrderForm() {}
 
@@ -138,5 +139,14 @@ public class OrderForm {
 
     public void setSeatList(String seatList) {
         this.seatList = seatList;
+    }
+
+    @Column(name = "score")
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }

@@ -15,6 +15,7 @@ public class OrderFormInfoVO {
     private String createTime;
     private CouponVO couponVO;
     private List<String> seatList;
+    private int score;
 
     public OrderFormInfoVO() {}
 
@@ -105,4 +106,8 @@ public class OrderFormInfoVO {
     public void setSeatList(List<String> seatList) {
         this.seatList = seatList;
     }
+
+    public int getScore() { return score; }
+
+    public void setScore(int score) { this.score = score; }
 }

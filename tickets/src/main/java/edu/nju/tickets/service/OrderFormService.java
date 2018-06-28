@@ -23,4 +23,6 @@ public interface OrderFormService {
 
     void checkIn(final String identification, final Integer orderId);
 
+    Boolean updateOrderFormScore(Integer orderId,int score);
+
 }

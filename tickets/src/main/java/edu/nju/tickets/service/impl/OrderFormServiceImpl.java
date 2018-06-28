@@ -236,7 +236,7 @@ public class OrderFormServiceImpl implements OrderFormService, OrderFormStateCha
         if (vo.getPurchaseType() == CHOOSE_SEAT_PURCHASE) {
             orderForm.setSeatList(vo.getSeatList().stream().reduce((s1, s2) -> s1 + "," + s2).get());
         }
-
+        orderForm.setScore(-1);
         orderFormDao.save(orderForm);
 
         return convertOrderFormToVO(orderForm);
@@ -470,6 +470,21 @@ public class OrderFormServiceImpl implements OrderFormService, OrderFormStateCha
                 orderFormDao.update(orderForm);
                 System.out.println("订单" + orderForm.getId() + "已分配完成，座位号：" + orderForm.getSeatList());
             }
+        }
+    }
+
+    @Override
+    public Boolean updateOrderFormScore(Integer orderId,int score) {
+        OrderForm orderForm = orderFormDao.get(orderId);
+        orderForm.setScore(score);
+        try {
+            if(0<=orderForm.getScore()&&orderForm.getScore()<=5) {
+                orderFormDao.update(orderForm);
+                return true;
+            }
+            return false;
+        }catch (Exception e){
+            return false;
         }
     }
 }

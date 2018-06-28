@@ -64,4 +64,9 @@ public class OrderFormDaoImpl extends BaseDaoImpl<OrderForm, Integer> implements
         return (Long) query.uniqueResult();
     }
 
+    @Override
+    public  List<OrderForm> findByProjectPriceId(Integer projectPriceId) {
+        return find("from OrderForm o where o.project_price_id=?", projectPriceId);
+    }
+
 }

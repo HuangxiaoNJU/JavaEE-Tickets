@@ -1,7 +1,10 @@
 package edu.nju.tickets.service.impl;
 
 import edu.nju.tickets.dao.*;
+import edu.nju.tickets.entity.ProjectPrice;
 import edu.nju.tickets.entity.Venue;
+import edu.nju.tickets.entity.Project;
+import edu.nju.tickets.entity.OrderForm;
 import edu.nju.tickets.entity.VenueModify;
 import edu.nju.tickets.service.MailService;
 import edu.nju.tickets.service.VenueInfo;
@@ -29,7 +32,11 @@ public class VenueServiceImpl implements VenueService, VenueInfo {
     @Resource
     private ProjectDao projectDao;
     @Resource
+    private ProjectPriceDao projectPriceDao;
+    @Resource
     private AllocationDao allocationDao;
+    @Resource
+    private OrderFormDao orderFormDao;
     @Resource
     private MailService mailService;
 
@@ -304,6 +311,27 @@ public class VenueServiceImpl implements VenueService, VenueInfo {
         vo.setVenueList(venues.stream().map(Venue::getName).collect(Collectors.toList()));
         vo.setIncomeList(venues.stream().map(v -> payDao.sumMoneyByVenueId(v.getId())).collect(Collectors.toList()));
         return vo;
+    }
+
+    @Override
+    public Double getAverageScore(Integer venueId) {
+        double score=0.0;
+        int sum=0;
+        List<Project> projects=projectDao.findByVenueId(venueId);
+        for(int i=0;i<projects.size();i++){
+            List<ProjectPrice> prices=projectPriceDao.getByProjectId(projects.get(i).getId());
+            for(int j=0;j<prices.size();j++){
+                List<OrderForm> orderForms=orderFormDao.findByProjectPriceId(prices.get(j).getId());
+                for(int k=0;k<orderForms.size();k++){
+                    if(orderForms.get(k).getScore()!=-1){
+                        sum++;
+                        score+=orderForms.get(k).getScore();
+                    }
+                }
+
+            }
+        }
+        return score/sum;
     }
 
 }

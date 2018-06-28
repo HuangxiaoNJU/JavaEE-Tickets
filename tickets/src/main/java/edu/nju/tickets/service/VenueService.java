@@ -109,4 +109,13 @@ public interface VenueService {
      */
     VenuesStatisticsVO getVenuesStatistics();
 
+    /**
+     * 获取场馆的平均评分
+     *
+     * @param id                id
+     * @return                  场馆平均评分
+     */
+    Double getAverageScore(Integer id);
+
+
 }

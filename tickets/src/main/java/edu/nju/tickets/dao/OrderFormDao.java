@@ -20,4 +20,7 @@ public interface OrderFormDao extends BaseDao<OrderForm, Integer> {
     Double sumTotalPriceByUserIdAndState(Integer userId, int state);
 
     Long countByUserIdAndState(Integer userId, int state);
+
+    List<OrderForm> findByProjectPriceId(Integer projectPriceId);
+
 }
