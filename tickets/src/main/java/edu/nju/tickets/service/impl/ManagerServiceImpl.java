@@ -1,17 +1,16 @@
 package edu.nju.tickets.service.impl;
 
-import edu.nju.tickets.dao.AllocationDao;
-import edu.nju.tickets.dao.ManagerDao;
-import edu.nju.tickets.dao.OrderFormDao;
-import edu.nju.tickets.dao.UserDao;
+import edu.nju.tickets.dao.*;
 import edu.nju.tickets.entity.Allocation;
 import edu.nju.tickets.entity.Manager;
+import edu.nju.tickets.entity.Venue;
 import edu.nju.tickets.service.ManagerService;
 import edu.nju.tickets.util.DateTimeUtil;
 import edu.nju.tickets.vo.PlatformStatisticsVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -30,6 +29,8 @@ public class ManagerServiceImpl implements ManagerService {
     private OrderFormDao orderFormDao;
     @Resource
     private UserDao userDao;
+    @Resource
+    private ProjectPriceDao projectPriceDao;
 
     @Override
     public boolean login(String managerName, String password) {
@@ -72,6 +73,24 @@ public class ManagerServiceImpl implements ManagerService {
                 );
     }
 
+    private Map<String, String> computeSoldRatio(List<Object[]> soldSeats, List<Object[]> totalSeats) {
+        Map<Integer, Long> soldMap = new HashMap<>();
+        for (Object[] soldSeat : soldSeats) {
+            soldMap.put(((Venue)soldSeat[0]).getId(), (Long) soldSeat[1]);
+        }
+        Map<String, String> res = new HashMap<>();
+        for (Object[] totalSeat : totalSeats) {
+            Venue venue = (Venue) totalSeat[0];
+            if (soldMap.containsKey(venue.getId())) {
+                double ratio = soldMap.get(venue.getId()) * 1.0d / (Long)totalSeat[1];
+                res.put(venue.getName(), NUMBER_FORMAT.format(ratio));
+            } else {
+                res.put(venue.getName(), "0");
+            }
+        }
+        return res;
+    }
+
     @Override
     public PlatformStatisticsVO getPlatformStatistics(String managerName) {
         Manager manager = managerDao.findByManagerName(managerName);
@@ -92,6 +111,8 @@ public class ManagerServiceImpl implements ManagerService {
         vo.setTypeProfitPerDay(listToNestMap(allocationDao.sumPlatformIncomeGroupByProjectTypeAndDay(), 3));
         vo.setTypeProfitPerMonth(listToNestMap(allocationDao.sumPlatformIncomeGroupByProjectTypeAndMonth(), 2));
         vo.setTypeProfitPerYear(listToNestMap(allocationDao.sumPlatformIncomeGroupByProjectTypeAndYear(), 1));
+
+        vo.setSoldRatio(computeSoldRatio(orderFormDao.sumSeatNumberGroupByVenue(), projectPriceDao.sumSeatNumberGroupByVenue()));
 
         return vo;
     }

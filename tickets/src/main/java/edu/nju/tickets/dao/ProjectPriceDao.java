@@ -6,4 +6,7 @@ import java.util.List;
 public interface ProjectPriceDao extends BaseDao<ProjectPrice, Integer> {
 
     List<ProjectPrice> getByProjectId(Integer projectId);
+
+    List<Object[]> sumSeatNumberGroupByVenue();
+
 }

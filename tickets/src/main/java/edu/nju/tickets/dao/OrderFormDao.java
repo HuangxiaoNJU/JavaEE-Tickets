@@ -25,4 +25,6 @@ public interface OrderFormDao extends BaseDao<OrderForm, Integer> {
 
     List<OrderForm> findByProjectPriceId(Integer projectPriceId);
 
+    List<Object[]> sumSeatNumberGroupByVenue();
+
 }
