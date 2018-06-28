@@ -7,3 +7,10 @@
 #user_level {
     margin: 20px;
 }
+
+#profitPerDay, #profitPerMonth, #profitPerYear, #user_level, #typeProfitPerDay, #typeProfitPerMonth,
+#typeProfitPerYear, #soldRatio, #venues_income, #venueNum{
+    width: 600px;
+    height: 400px;
+    margin-left: 15%
+}

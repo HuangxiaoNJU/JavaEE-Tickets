@@ -204,7 +204,7 @@ $('#login').click(
                     } else if (identityToLogin === 'venue') {
                         window.location.href = "/venue/project";
                     } else {
-                        location.reload();
+                        window.location.href = "/manage/allocate";
                     }
                 } else {
                     alert(result.message);

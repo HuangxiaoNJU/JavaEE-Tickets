@@ -151,3 +151,9 @@ $('#finished').click(function () {
     window.location.href = "/venue/project";
     localStorage.setItem("projectType", "finished");
 });
+
+function submitPoster() {
+    console.log(localStorage.getItem("newProjectID"));
+    document.getElementById("form").action="/api/projects/" + localStorage.getItem("newProjectID") + "/poster";
+    document.getElementById("form").submit();
+}

@@ -10,6 +10,7 @@ $().ready(function () {
         window.history.back();
     }
     $('#platform_statistics').click();
+    managerStatistics();
 });
 
 function drawLevelNumberPie(statistics) {
@@ -161,7 +162,7 @@ $('#perform_statistics').click(function () {
 function showLi(showName) {
     $('#platform_list').hide();
     $('#perform_list').hide();
-    $('#venues_list').hide();
+    $('#venue_list').hide();
     $('#user_list').hide();
 
     $('#' + showName + '_list').show();
@@ -175,3 +176,83 @@ function activeLi(activeName) {
 
     $('#' + activeName + '_statistics').addClass('active');
 }
+
+
+function managerStatistics() {
+    $.ajax({
+        type: 'GET',
+        url: '/api/managers/statistics',
+        success: function (result) {
+            console.log(result.data);
+            $('#exchangeRatio').text(result.data.exchangeRatio);
+
+            drawChart("profitPerDay", result.data.profitPerDay);
+            drawChart("profitPerMonth", result.data.profitPerMonth);
+            drawChart("profitPerYear", result.data.profitPerYear);
+            drawChart("soldRatio", result.data.soldRatio);
+            drawTypeTable("typeProfitPerDay", result.data.typeProfitPerDay);
+            drawTypeTable("typeProfitPerMonth", result.data.typeProfitPerMonth);
+            drawTypeTable("typeProfitPerYear", result.data.typeProfitPerYear);
+
+            drawChart("venueNum", result.data.venueNum);
+        },
+        error: function (xhr) {
+            alert('获取信息失败');
+        }
+    })
+}
+
+function drawChart(chartName, consumePerDay) {
+
+    let dayTime = [];
+    let dayConsume = [];
+    for (let i in consumePerDay) {
+        dayTime.push(i);
+        dayConsume.push(parseInt(consumePerDay[i]));
+    }
+
+    let myChart = echarts.init(document.getElementById(chartName));
+    let option = {
+        color: ['#3398DB'],
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {
+                type : 'shadow'
+            }
+        },
+        xAxis: {
+            type: 'category',
+            data: dayTime
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            data: dayConsume,
+            type: 'bar',
+            smooth: true
+        }]
+    };
+
+    myChart.setOption(option);
+
+}
+
+function drawTypeTable(chartName, consumePerDay) {
+    for (let i in consumePerDay) {
+        let dayConsume = consumePerDay[i];
+            $('#' + chartName).append(`
+                <tr>
+                    <td>${i}</td>
+                    <td>${dayConsume["讲座"]}</td>
+                    <td>${dayConsume["电子竞技"] === undefined ? 0 : dayConsume["电子竞技"]}</td>
+                    <td>${dayConsume["戏剧"] === undefined ? 0 : dayConsume["戏剧"]}</td>
+                    <td>${dayConsume["篮球比赛"] === undefined ? 0 : dayConsume["篮球比赛"]}</td>
+                    <td>${dayConsume["典礼"] === undefined ? 0 : dayConsume["典礼"]}</td>
+                    <td>${dayConsume["演唱会"] === undefined ? 0 : dayConsume["演唱会"]}</td>
+                </tr>
+            `)
+    }
+
+}
+

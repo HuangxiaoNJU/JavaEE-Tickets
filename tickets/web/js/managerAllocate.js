@@ -23,7 +23,7 @@ function addProjectIncomeInfo(projectIncomes, isAllocated) {
     for (let i = 0; i < projectIncomes.length; i++) {
         let item = projectIncomes[i];
         list.append(`
-            <div class="col-lg-9">
+            <div class="col-lg-8">
                 <h6 id="id">${item.projectInfoVO.name}</h6>
                 <span>${item.projectInfoVO.beginTime}&nbsp;至&nbsp;${item.projectInfoVO.endTime}</span><br>
                 <label>场馆 : </label><span>&nbsp;${item.projectInfoVO.venueInfoVO.name}</span><br>
@@ -32,11 +32,11 @@ function addProjectIncomeInfo(projectIncomes, isAllocated) {
         `);
         if (!isAllocated) {
             list.append(`
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <span>线上总收入：</span><label style="color: lightsalmon">${item.onlineIncome}</label><br>
                     <span>线下总收入：</span><label style="color: lightblue">${item.offlineIncome}</label><br><br>
                     <!--<input class="input" type="text" placeholder="Tickets分配比例"><br>-->
-                    <a id="allocate_project_${item.projectInfoVO.id}" class="btn btn-info">立即结算</a>
+                    <a id="allocate_project_${item.projectInfoVO.id}" class="btn btn-pass">立即结算</a>
                 </div>
                 <hr width="710px">
                 <script>
@@ -65,7 +65,7 @@ function addProjectIncomeInfo(projectIncomes, isAllocated) {
             `);
         } else {
             list.append(`
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <span>场馆线上总收入：</span><label style="color: lightsalmon">${item.onlineIncome}</label><br>
                     <span>场馆线下总收入：</span><label style="color: lightblue">${item.offlineIncome}</label><br><br>
                     <span>平台所得收入：</span><label style="color: lightsalmon">${item.platformIncome}</label><br>

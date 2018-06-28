@@ -5,3 +5,18 @@
 #list {
     padding: 5px 20px;
 }
+
+.btn-pass {
+    width: 150px;
+    height: auto;
+    font-size: 15px;
+    border-color: rgba(14,71,165,0.7);
+    color: white;
+    background-color: rgba(14,71,165,0.7);
+}
+
+.btn-pass:hover {
+    color: rgba(14,71,165,0.7);
+    background-color: white;
+    border-color: rgba(14,71,165,0.7);
+}

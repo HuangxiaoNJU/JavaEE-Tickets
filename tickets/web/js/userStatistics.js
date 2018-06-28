@@ -40,6 +40,7 @@ function drawChart(chartName, consumePerDay) {
 
     let myChart = echarts.init(document.getElementById(chartName));
     let option = {
+        color: ['#3398DB'],
         tooltip : {
             trigger: 'axis',
             axisPointer : {

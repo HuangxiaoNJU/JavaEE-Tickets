@@ -69,18 +69,73 @@
         <div class="title title_statistics">
             <label>平台总收益</label>
         </div>
-        <div class="title title_statistics">
-            <label>各类别演出总收益</label>
-        </div>
+        <span>日收益</span>
+        <div id="profitPerDay"></div>
+        <span>月收益</span>
+        <div id="profitPerMonth"></div>
+        <span>年收益</span>
+        <div id="profitPerYear"></div>
 
     </div>
 
     <!--演出统计-->
     <div id="perform_list" style="display: none;margin-top: 20px">
-        <div class="title title_statistics">
-            <label>各类别演出收益比</label>
-        </div>
 
+        <div class="title title_statistics">
+            <label>各类别演出总收益</label>
+        </div>
+        <span>日收益</span>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>月份</th>
+                <th>讲座</th>
+                <th>电子竞技</th>
+                <th>戏剧</th>
+                <th>篮球比赛</th>
+                <th>典礼</th>
+                <th>演唱会</th>
+            </tr>
+            </thead>
+            <tbody id="typeProfitPerDay">
+
+            </tbody>
+        </table>
+        <span>月收益</span>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>月份</th>
+                <th>讲座</th>
+                <th>电子竞技</th>
+                <th>戏剧</th>
+                <th>篮球比赛</th>
+                <th>典礼</th>
+                <th>演唱会</th>
+            </tr>
+            </thead>
+            <tbody id="typeProfitPerMonth">
+
+            </tbody>
+        </table>
+
+        <span>本年收益</span>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>月份</th>
+                <th>讲座</th>
+                <th>电子竞技</th>
+                <th>戏剧</th>
+                <th>篮球比赛</th>
+                <th>典礼</th>
+                <th>演唱会</th>
+            </tr>
+            </thead>
+            <tbody id="typeProfitPerYear">
+
+            </tbody>
+        </table>
     </div>
 
     <!--会员统计-->
@@ -90,23 +145,31 @@
         </div>
         <p>
             平台至今已注册<span>5</span>名用户，为了给用户更好的体验，推出了积分兑换优惠券活动。活动推行至今，积分兑换率为
-            <span>50%</span>，收货颇丰。
+            <label id="exchangeRatio" style="color: royalblue">50%</label>，收货颇丰。
         </p>
 
         <div class="title title_statistics">
             <label>会员等级分布</label>
         </div>
-        <div id="user_level" style="width: 600px;height:400px;"></div>
+        <div id="user_level"></div>
     </div>
 
     <!--场馆统计-->
-    <div id="venue_list" style="display: none;margin-top: 20px">
+    <div id="venue_list" style="margin-top: 20px">
         <div class="title title_statistics">
             <label>收入前五名的场馆</label>
         </div>
-        <div id="venues_income" style="width: 600px;height:400px;">
+        <div id="venues_income" style="width: 600px;height:400px;"></div>
 
+        <div class="title title_statistics">
+            <label>上座率前五的场馆（百分比）</label>
         </div>
+        <div id="soldRatio"></div>
+
+        <div class="title title_statistics">
+            <label>注册场馆数前五的地区</label>
+        </div>
+        <div id="venueNum"></div>
     </div>
 </div>
 

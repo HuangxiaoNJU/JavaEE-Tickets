@@ -10,7 +10,9 @@ $().ready(function () {
         window.history.back();
     }
 
+    $('#total').click();
     showStatisticsData();
+    individualStatistics();
 });
 
 function drawOnlineOfflinePie(statistics) {
@@ -59,10 +61,6 @@ function drawOnlineOfflinePie(statistics) {
 function drawProjectIncomeBar(statistics) {
     let myChart = echarts.init(document.getElementById('project_income'));
     let option = {
-        title: {
-            text: '场馆各活动收入柱状图',
-            x: 'center'
-        },
         color: ['#3398DB'],
         tooltip : {
             trigger: 'axis',
@@ -115,6 +113,7 @@ function showStatisticsData() {
                 $('#profit').text('¥ ' + venueStatistics.profit);
                 drawOnlineOfflinePie(venueStatistics);
                 drawProjectIncomeBar(venueStatistics);
+
             } else {
                 alert(result.message);
             }
@@ -123,6 +122,111 @@ function showStatisticsData() {
             alert('统计信息获取失败');
         }
     });
+}
+
+function individualStatistics() {
+    $.ajax({
+        type: 'GET',
+        url: '/api/venues/individual/statistics',
+        success: function (result) {
+            console.log(result);
+            if (result.success) {
+                let venueStatistics = result.data;
+                $('#presentRatio').text(venueStatistics.presentRatio);
+                $('#refundRatio').text(venueStatistics.refundRatio);
+                $('#totalProjectNum').text(venueStatistics.totalProjectNum);
+
+                drawChart("profitPerDay", result.data.profitPerDay);
+                drawChart("profitPerMonth", result.data.profitPerMonth);
+                drawChart("profitPerYear", result.data.profitPerYear);
+
+                drawGraghChart("typeCompare");
+            }
+        }
+    })
+}
+
+function drawGraghChart(chartName) {
+    let myChart = echarts.init(document.getElementById(chartName));
+
+    let option = {
+        tooltip: {},
+        legend: {
+            data: ['年度收益', '月度收益']
+        },
+        radar: {
+            // shape: 'circle',
+            name: {
+                textStyle: {
+                    color: '#fff',
+                    backgroundColor: '#999',
+                    borderRadius: 3,
+                    padding: [3, 5]
+                }
+            },
+            indicator: [
+                { name: '讲座', max: 1000},
+                { name: '电子竞技', max: 100},
+                { name: '戏剧', max: 1000},
+                { name: '篮球比赛', max: 400},
+                { name: '典礼', max: 400},
+                { name: '演唱会', max: 1000}
+            ]
+        },
+        series: [{
+            name: '时间维收益',
+            type: 'radar',
+            data : [
+                {
+                    value : [337.1, 0, 0, 0, 0, 0],
+                    name : '2018年度总收益'
+                },
+                {
+                    value : [28.1, 0, 0, 0, 0, 0],
+                    name : '平均月度收益'
+                }
+            ]
+        }]
+    };
+
+    myChart.setOption(option);
+}
+
+
+function drawChart(chartName, consumePerDay) {
+
+    let dayTime = [];
+    let dayConsume = [];
+    for (let i in consumePerDay) {
+        dayTime.push(i);
+        dayConsume.push(parseInt(consumePerDay[i]));
+    }
+
+    let myChart = echarts.init(document.getElementById(chartName));
+    let option = {
+        color: ['#3398DB'],
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {
+                type : 'shadow'
+            }
+        },
+        xAxis: {
+            type: 'category',
+            data: dayTime
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            data: dayConsume,
+            type: 'bar',
+            smooth: true
+        }]
+    };
+
+    myChart.setOption(option);
+
 }
 
 
@@ -139,4 +243,37 @@ $('#underway').click(function () {
 $('#finished').click(function () {
     localStorage.setItem("projectType", "finished");
     window.location.href = "/venue/project";
+});
+
+$('#total').click(function () {
+    $('#total').addClass("active");
+    $('#comment').removeClass("active");
+    $('#perform').removeClass("active");
+
+    $('#total_view').show();
+    $('#comment_view').hide();
+    $('#perform_view').hide();
+
+});
+
+$('#perform').click(function () {
+    $('#perform').addClass("active");
+    $('#comment').removeClass("active");
+    $('#total').removeClass("active");
+
+    $('#perform_view').show();
+    $('#comment_view').hide();
+    $('#total_view').hide();
+
+});
+
+$('#comment').click(function () {
+    $('#comment').addClass("active");
+    $('#total').removeClass("active");
+    $('#perform').removeClass("active");
+
+    $('#comment_view').show();
+    $('#total_view').hide();
+    $('#perform_view').hide();
+
 });
