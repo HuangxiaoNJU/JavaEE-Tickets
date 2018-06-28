@@ -15,6 +15,7 @@ public class PlatformStatisticsVO {
     private Map<String, Map<String, Double>> typeProfitPerYear;     // 不同类型活动年分成总额
 
     private Map<String, String> soldRatio;                          // 各场馆上座率
+    private Map<String, Long> venueNum;                             // 各地区场馆数目
 
     public PlatformStatisticsVO() {}
 
@@ -80,5 +81,13 @@ public class PlatformStatisticsVO {
 
     public void setSoldRatio(Map<String, String> soldRatio) {
         this.soldRatio = soldRatio;
+    }
+
+    public Map<String, Long> getVenueNum() {
+        return venueNum;
+    }
+
+    public void setVenueNum(Map<String, Long> venueNum) {
+        this.venueNum = venueNum;
     }
 }

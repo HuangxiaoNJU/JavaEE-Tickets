@@ -31,6 +31,8 @@ public class ManagerServiceImpl implements ManagerService {
     private UserDao userDao;
     @Resource
     private ProjectPriceDao projectPriceDao;
+    @Resource
+    private VenueDao venueDao;
 
     @Override
     public boolean login(String managerName, String password) {
@@ -91,6 +93,17 @@ public class ManagerServiceImpl implements ManagerService {
         return res;
     }
 
+    private Map<String, Long> computeVenueNumberByLocation() {
+        List<Venue> venues = venueDao.findAll();
+        return venues.stream()
+                .collect(
+                        Collectors.groupingBy(
+                            v -> v.getLocation().split("\\s+")[0],
+                            Collectors.counting()
+                        )
+                );
+    }
+
     @Override
     public PlatformStatisticsVO getPlatformStatistics(String managerName) {
         Manager manager = managerDao.findByManagerName(managerName);
@@ -114,6 +127,7 @@ public class ManagerServiceImpl implements ManagerService {
 
         vo.setSoldRatio(computeSoldRatio(orderFormDao.sumSeatNumberGroupByVenue(), projectPriceDao.sumSeatNumberGroupByVenue()));
 
+        vo.setVenueNum(computeVenueNumberByLocation());
         return vo;
     }
 
