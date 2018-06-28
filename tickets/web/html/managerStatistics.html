@@ -47,8 +47,8 @@
 
 <header class="btnView">
     <ul class="nav navbar-fixed" style="top: 20%;">
-        <li><a class="btn-self">平台收益统计</a></li>
-        <li><a class="btn-self">演出信息统计</a></li>
+        <li><a id="platform_statistics" class="btn-self">平台收益统计</a></li>
+        <li><a id="perform_statistics" class="btn-self">演出信息统计</a></li>
         <li><a id="user_statistics" class="btn-self active">会员信息统计</a></li>
         <li><a id="venue_statistics" class="btn-self">场馆信息统计</a></li>
         <!--<li><a id="project_statistics" class="btn-self">活动信息统计</a></li>-->
@@ -63,18 +63,51 @@
     <div class="title">
         <span>经理中心</span> > <span>统计信息</span> > <span id="type"></span>
     </div>
-    <div id="user_list" style="margin-top: 20px">
-        <div id="user_level" style="width: 600px;height:400px;">
 
+    <!--平台统计-->
+    <div id="platform_list" style="display: none;margin-top: 20px">
+        <div class="title title_statistics">
+            <label>平台总收益</label>
         </div>
+        <div class="title title_statistics">
+            <label>各类别演出总收益</label>
+        </div>
+
     </div>
 
-    <div id="venues_list" style="display: none;margin-top: 20px">
+    <!--演出统计-->
+    <div id="perform_list" style="display: none;margin-top: 20px">
+        <div class="title title_statistics">
+            <label>各类别演出收益比</label>
+        </div>
+
+    </div>
+
+    <!--会员统计-->
+    <div id="user_list" style="margin-top: 20px">
+        <div class="title title_statistics">
+            <label>积分与优惠券</label>
+        </div>
+        <p>
+            平台至今已注册<span>5</span>名用户，为了给用户更好的体验，推出了积分兑换优惠券活动。活动推行至今，积分兑换率为
+            <span>50%</span>，收货颇丰。
+        </p>
+
+        <div class="title title_statistics">
+            <label>会员等级分布</label>
+        </div>
+        <div id="user_level" style="width: 600px;height:400px;"></div>
+    </div>
+
+    <!--场馆统计-->
+    <div id="venue_list" style="display: none;margin-top: 20px">
+        <div class="title title_statistics">
+            <label>收入前五名的场馆</label>
+        </div>
         <div id="venues_income" style="width: 600px;height:400px;">
 
         </div>
     </div>
-
 </div>
 
 

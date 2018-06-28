@@ -15,80 +15,74 @@
 
 <div class="container text-center orderState">
     <div class="col-lg-4">
+        <label>下单时间 : </label>
+        <label id="order_form_create_time">信息暂无</label>
+    </div>
+    <div class="col-lg-2">
         <label>订单号 : </label>
         <label id="order_form_id">信息暂无</label>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
         <label>购买类型 : </label>
         <label id="order_form_purchase_type">信息暂无</label>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
         <label>订单状态 : </label>
         <label id="order_form_state">信息暂无</label>
     </div>
 </div>
 
+<div class="main_detail">
 <div class="container orderInfo">
     <h5 id="order_form_project_name">信息暂无</h5>
     <label id="order_form_time_section">信息暂无</label><br>
     <span id="order_form_project_location">信息暂无</span>
 </div>
-<hr width="1100px">
 
 <div class="container">
     <div id="list" class="row text-center">
-        <div class="col-lg-3">
-            <label>下单时间 : </label>
-        </div>
-        <div class="col-lg-3">
-            <label id="order_form_create_time">信息暂无</label>
-        </div>
-        <div id="order_user_info">
-            <div class="col-lg-3">
-                <label>会员折扣 : </label>
-            </div>
-            <div class="col-lg-3">
-                <label id="order_form_discount">信息暂无</label>
-            </div>
-            <div class="col-lg-3">
-                <label>优惠券 : </label>
-            </div>
-            <div class="col-lg-3">
-                <label id="order_form_coupon_name">信息暂无</label>
-            </div>
-            <div class="col-lg-3">
-                <label>优惠金额 : </label>
-            </div>
-            <div class="col-lg-3">
-                <label id="order_form_coupon_money">信息暂无</label>
-            </div>
-        </div>
-
-        <hr width="1100px">
 
         <div class="col-lg-5">
-            <label>座位类型 : </label>
+            <span>座位类型 : </span>
         </div>
         <div class="col-lg-5">
             <label id="order_form_seat_type">信息暂无</label>
         </div>
         <div class="col-lg-5">
-            <label>座位价格 : </label>
+            <span>座位价格 : </span>
         </div>
         <div class="col-lg-5">
-            <label id="order_form_seat_price">信息暂无</label>
+            <label id="order_form_seat_price" style="color: chocolate">信息暂无</label>
         </div>
         <div class="col-lg-5">
-            <label>座位数 : </label>
+            <span>座位数 : </span>
         </div>
         <div class="col-lg-5">
             <label id="order_form_seat_number">信息暂无</label>
         </div>
         <div class="col-lg-5">
-            <label>座位号 : </label>
+            <span>座位号 : </span>
         </div>
         <div class="col-lg-5">
-            <label id="order_form_seat_list">信息暂无</label>
+            <label id="order_form_seat_list" style="color: #2a6496;">信息暂无</label>
+        </div>
+        <div class="col-lg-5">
+            <span>会员折扣 : </span>
+        </div>
+        <div class="col-lg-5">
+            <label id="order_form_discount" style="color: lightsalmon">信息暂无</label>
+        </div>
+        <div class="col-lg-5">
+            <span>优惠券 : </span>
+        </div>
+        <div class="col-lg-5">
+            <label id="order_form_coupon_name">信息暂无</label>
+        </div>
+        <div class="col-lg-5">
+            <span>优惠券优惠金额 : </span>
+        </div>
+        <div class="col-lg-5">
+            <label id="order_form_coupon_money">信息暂无</label>
         </div>
     </div>
     <hr width="1100px">
@@ -96,12 +90,16 @@
         <label style="margin-right: 2%">订单总金额 : </label>
         <span id="order_form_total_price" class="price">信息暂无</span>
     </div>
-    <div id="user_operation">
-        <button id="pay_now" class="btn btn-list" data-toggle="modal" data-target="#payOrderWindow">立即支付</button>
+    <div id="pay">
+        <button id="pay_now" class="btn btn-list" data-toggle="modal" data-target="#payOrderWindow"
+                style="margin-left: 44%">立即支付</button>
+    </div>
+    <div id="comment">
+        <button id="comment_now" class="btn btn-list" data-toggle="modal" data-target="#commentWindow">评分</button>
         <button id="refund_now" class="btn btn-list" style="margin-left: 50px">退款</button>
     </div>
 </div>
-
+</div>
 <!-- 支付弹窗 -->
 <div class="modal fade" id="payOrderWindow" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -114,6 +112,24 @@
             </div>
             <div class="modal-footer">
                 <button id="confirm_pay" class="btn login" data-dismiss="modal">确认支付</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--评分弹窗-->
+<div class="modal fade" id="commentWindow" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>评分</span>
+            </div>
+            <div class="modal-body">
+                <label>请输入您的分数：</label>
+                <input id="mark" class="input" placeholder="请输入分值（5分制）">
+            </div>
+            <div class="modal-footer">
+                <button id="confirm_comment" class="btn login" data-dismiss="modal">确认支付</button>
             </div>
         </div>
     </div>

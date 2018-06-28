@@ -44,6 +44,7 @@ function addOrderDetail(order) {
     $('#order_form_purchase_type').text(order.purchaseType);
     $('#order_form_state').text(order.state);
 
+    console.log(order.state);
     $('#order_form_project_name').text(order.projectInfoVO.name);
     $('#order_form_time_section').text(order.projectInfoVO.beginTime + ' - ' + order.projectInfoVO.endTime);
     $('#order_form_project_location').text(order.projectInfoVO.venueInfoVO.name + ' ' + order.projectInfoVO.venueInfoVO.location);
@@ -61,6 +62,16 @@ function addOrderDetail(order) {
     $('#order_form_seat_list').text(order.seatList == null ? '尚未分配' : order.seatList);
 
     $('#order_form_total_price').text('¥ ' + order.totalPrice);
+    
+    if (order.state === "已完成") {
+        $('#pay').hide();
+        $('#comment').show();
+    } else if (order.state === "待支付") {
+        $('#pay').show();
+        $('#comment').hide();
+    } else {
+
+    }
 }
 
 function addAccountList(accounts) {
@@ -138,3 +149,33 @@ $('#confirm_pay').click(function () {
     });
 });
 
+
+//评分
+$('#confirm_comment').click(function () {
+    let mark = $('#mark').val();
+
+    if (!(parseInt(mark) <=5 && parseInt(mark) >= 0)) {
+        alert("请输入正确评分!");
+    }
+
+    $.ajax({
+        type: 'POST',
+        url: '/api/orders/score',
+        data: {
+            id: $('#order_form_id').val(),
+            score: parseInt(mark),
+        },
+        success: function (result) {
+            if (result.success) {
+                alert('评分成功，感谢您的支持！');
+                location.reload();
+            } else {
+                alert("请勿重复评分！");
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log(xhr);
+            console.log(status);
+        }
+    })
+});
