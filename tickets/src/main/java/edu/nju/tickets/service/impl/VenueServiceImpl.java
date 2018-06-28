@@ -13,11 +13,9 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-import static edu.nju.tickets.util.Constants.NUMBER_FORMAT;
 import static edu.nju.tickets.util.Constants.VENUE_IDENTIFICATION_LENGTH;
 
 @Service
@@ -368,8 +366,8 @@ public class VenueServiceImpl implements VenueService, VenueInfo {
         vo.setProfitPerMonth(getProfitMap(allocations, 7));
         vo.setProfitPerYear(getProfitMap(allocations, 4));
 
-        vo.setPresentRatio(NUMBER_FORMAT.format(new Random().nextInt(30) / 100.0));
-        vo.setRefundRatio(NUMBER_FORMAT.format(new Random().nextInt(20) / 100.0));
+        vo.setPresentRatio("19%");
+        vo.setRefundRatio("7%");
 
         return vo;
     }
