@@ -56,10 +56,10 @@ public class AllocationDaoImpl extends BaseDaoImpl<Allocation, Integer> implemen
     public List<Object[]> sumPlatformIncomeGroupByProjectTypeAndYear() {
         Query query = hibernateTemplate.getSessionFactory()
                 .getCurrentSession()
-                .createQuery("select p.type, sum(a.platformIncome), YEAR(a.time)" +
+                .createQuery("select p.type, sum(a.platformIncome), YEAR(a.time) " +
                         "from Allocation a, Project p " +
                         "where a.projectId = p.id " +
-                        "group by p.type, YEAR(a.time)" +
+                        "group by p.type, YEAR(a.time) " +
                         "order by YEAR(a.time)");
 
         return query.list();

@@ -14,6 +14,8 @@ public class PlatformStatisticsVO {
     private Map<String, Map<String, Double>> typeProfitPerMonth;    // 不同类型活动月分成总额
     private Map<String, Map<String, Double>> typeProfitPerYear;     // 不同类型活动年分成总额
 
+    private Map<String, String> soldRatio;                          // 各场馆上座率
+
     public PlatformStatisticsVO() {}
 
     public Map<String, Double> getProfitPerDay() {
@@ -70,5 +72,13 @@ public class PlatformStatisticsVO {
 
     public void setTypeProfitPerYear(Map<String, Map<String, Double>> typeProfitPerYear) {
         this.typeProfitPerYear = typeProfitPerYear;
+    }
+
+    public Map<String, String> getSoldRatio() {
+        return soldRatio;
+    }
+
+    public void setSoldRatio(Map<String, String> soldRatio) {
+        this.soldRatio = soldRatio;
     }
 }

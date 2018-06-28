@@ -78,4 +78,15 @@ public class OrderFormDaoImpl extends BaseDaoImpl<OrderForm, Integer> implements
         return find("from OrderForm o where o.project_price_id=?", projectPriceId);
     }
 
+    @Override
+    public List<Object[]> sumSeatNumberGroupByVenue() {
+        Query query = hibernateTemplate.getSessionFactory()
+                .getCurrentSession()
+                .createQuery("select o.projectPrice.project.venue, sum(o.seatNumber) " +
+                        "from OrderForm o " +
+                        "group by o.projectPrice.project.venue");
+
+        return query.list();
+    }
+
 }

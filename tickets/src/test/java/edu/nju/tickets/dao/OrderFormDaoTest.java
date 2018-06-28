@@ -1,10 +1,13 @@
 package edu.nju.tickets.dao;
 
+import edu.nju.tickets.entity.Venue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration({"file:web/WEB-INF/applicationContext.xml"})
@@ -43,5 +46,11 @@ public class OrderFormDaoTest {
     @Test
     public void testCountByUserIdAndState() {
         System.out.println(orderFormDao.countByUserIdAndState(2, 1));
+    }
+
+    @Test
+    public void testSumSeatNumberGroupByVenue() {
+        List<Object[]> res = orderFormDao.sumSeatNumberGroupByVenue();
+        res.forEach(o -> System.out.println(((Venue)o[0]).getName() + " " + o[1]));
     }
 }
