@@ -8,16 +8,18 @@
 }
 
 .orderInfo {
-    margin-top: -8%;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
+    box-shadow: 0 1px gainsboro;
+    width: 95%;
 }
 
 .priceInfo {
-    margin-top: 4%;
+    margin: 20px;
+
 }
 
 .btn-list {
-    margin-top: 10%;
+    margin-top:5%;
     margin-left: 35%;
 }
 
@@ -25,4 +27,24 @@
     font-weight: normal;
     font-size: 30px;
     color: orange;
+}
+
+.main_detail {
+    box-shadow: 0 0 20px 0 #eee;
+    border-radius: 2em;
+    border-color: black;
+    position: absolute;
+    top: 30%;
+    left: 55px;
+    padding: 55px;
+    background-color: white;
+    width: 92%;
+}
+
+#list {
+    margin-top: 20px;
+}
+
+.input {
+    margin: 20px;
 }
