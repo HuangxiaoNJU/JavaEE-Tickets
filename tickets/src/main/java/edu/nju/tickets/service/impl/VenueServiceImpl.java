@@ -366,6 +366,10 @@ public class VenueServiceImpl implements VenueService, VenueInfo {
         vo.setProfitPerMonth(getProfitMap(allocations, 7));
         vo.setProfitPerYear(getProfitMap(allocations, 4));
 
+        vo.setTypeProfitPerDay(allocationDao.listToNestMap(allocationDao.sumVenueIncomeByVenueGroupByTypeAndDay(venue), 3));
+        vo.setTypeProfitPerMonth(allocationDao.listToNestMap(allocationDao.sumVenueIncomeByVenueGroupByTypeAndMonth(venue), 2));
+        vo.setTypeProfitPerYear(allocationDao.listToNestMap(allocationDao.sumVenueIncomeByVenueGroupByTypeAndYear(venue), 1));
+
         vo.setPresentRatio("19%");
         vo.setRefundRatio("7%");
 
