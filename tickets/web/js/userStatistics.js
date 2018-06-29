@@ -15,7 +15,7 @@ function getUserStatistics() {
             $('#couponPoints').text(result.data.couponPoints);
             $('#totalConsume').text(result.data.totalPoints);
             $('#refundRatio').text(result.data.refundRatio);
-            $('#averageEvaluation').text(result.data.averageEvaluation);
+            // $('#averageEvaluation').text(result.data.averageEvaluation);
             $('#payOrderNum').text(result.data.payOrderNum);
             $('#refundOrderNum').text(result.data.refundOrderNum);
 
@@ -40,6 +40,7 @@ function drawChart(chartName, consumePerDay) {
 
     let myChart = echarts.init(document.getElementById(chartName));
     let option = {
+        color: ['#3398DB'],
         tooltip : {
             trigger: 'axis',
             axisPointer : {

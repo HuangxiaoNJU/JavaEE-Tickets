@@ -31,6 +31,8 @@ public class ManagerServiceImpl implements ManagerService {
     private UserDao userDao;
     @Resource
     private ProjectPriceDao projectPriceDao;
+    @Resource
+    private VenueDao venueDao;
 
     @Override
     public boolean login(String managerName, String password) {
@@ -56,23 +58,6 @@ public class ManagerServiceImpl implements ManagerService {
                 );
     }
 
-    private Map<String, Map<String, Double>> listToNestMap(List<Object[]> list, int dateNum) {
-        return list.stream()
-                .collect(Collectors.groupingBy(
-                        objects -> {
-                            StringBuilder sb = new StringBuilder();
-                            sb.append(objects[2]);
-                            for (int i = 3; i < 2 + dateNum; i++) {
-                                sb.append("-").append(objects[i]);
-                            }
-                            return sb.toString();
-                        },
-                        TreeMap::new,
-                        Collectors.groupingBy(objects -> String.valueOf(objects[0]), Collectors.summingDouble(objects -> (Double) objects[1]))
-                    )
-                );
-    }
-
     private Map<String, String> computeSoldRatio(List<Object[]> soldSeats, List<Object[]> totalSeats) {
         Map<Integer, Long> soldMap = new HashMap<>();
         for (Object[] soldSeat : soldSeats) {
@@ -89,6 +74,17 @@ public class ManagerServiceImpl implements ManagerService {
             }
         }
         return res;
+    }
+
+    private Map<String, Long> computeVenueNumberByLocation() {
+        List<Venue> venues = venueDao.findAll();
+        return venues.stream()
+                .collect(
+                        Collectors.groupingBy(
+                            v -> v.getLocation().split("\\s+")[0],
+                            Collectors.counting()
+                        )
+                );
     }
 
     @Override
@@ -108,12 +104,13 @@ public class ManagerServiceImpl implements ManagerService {
         long remainPoints = userDao.sumPoints();
         vo.setExchangeRatio(NUMBER_FORMAT.format((totalPoints - remainPoints) / totalPoints));
 
-        vo.setTypeProfitPerDay(listToNestMap(allocationDao.sumPlatformIncomeGroupByProjectTypeAndDay(), 3));
-        vo.setTypeProfitPerMonth(listToNestMap(allocationDao.sumPlatformIncomeGroupByProjectTypeAndMonth(), 2));
-        vo.setTypeProfitPerYear(listToNestMap(allocationDao.sumPlatformIncomeGroupByProjectTypeAndYear(), 1));
+        vo.setTypeProfitPerDay(allocationDao.listToNestMap(allocationDao.sumPlatformIncomeGroupByProjectTypeAndDay(), 3));
+        vo.setTypeProfitPerMonth(allocationDao.listToNestMap(allocationDao.sumPlatformIncomeGroupByProjectTypeAndMonth(), 2));
+        vo.setTypeProfitPerYear(allocationDao.listToNestMap(allocationDao.sumPlatformIncomeGroupByProjectTypeAndYear(), 1));
 
         vo.setSoldRatio(computeSoldRatio(orderFormDao.sumSeatNumberGroupByVenue(), projectPriceDao.sumSeatNumberGroupByVenue()));
 
+        vo.setVenueNum(computeVenueNumberByLocation());
         return vo;
     }
 

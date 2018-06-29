@@ -9,7 +9,7 @@
 }
 
 .btn-pass:hover {
-    color: rrgba(14,71,165,0.7);
+    color: rgba(14,71,165,0.7);
     background-color: white;
     border-color: rgba(14,71,165,0.7);
 }

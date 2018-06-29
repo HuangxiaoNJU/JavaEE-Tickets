@@ -1,4 +1,5 @@
-#project_income, #online_offline,#consume, #monthConsume {
+#project_income, #online_offline,#consume, #monthConsume, #profitPerDay, #profitPerMonth,
+#profitPerYear, #typeCompare{
     margin-top: 20px;
     margin-left: 80px;
     width: 600px;

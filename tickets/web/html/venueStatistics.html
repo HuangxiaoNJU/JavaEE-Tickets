@@ -58,9 +58,9 @@
 <header class="btnView">
     <ul class="nav navbar-fixed" style="top: 20%">
         <span style="margin-left: 55px;color: #2a6496;font-size: 20px">统计信息项</span>
-        <li><a class="btn-self">总收益统计</a></li>
-        <li><a class="btn-self">演出统计</a></li>
-        <li><a class="btn-self">评价统计</a></li>
+        <li><a class="btn-self" id="total">总收益统计</a></li>
+        <li><a class="btn-self" id="perform">演出统计</a></li>
+        <li><a class="btn-self" id="comment">评价统计</a></li>
     </ul>
 </header>
 
@@ -68,18 +68,58 @@
     <div class="title">
         <span>场馆中心</span> > <span>统计信息</span> > <span id="type">总收益统计</span>
     </div>
-    <div style="margin-top: 20px">
-        <label>实时总收入： </label><span id="income">1000</span><br>
-        <label>结算所得收入：</label><span id="profit">2000</span>
-    </div>
 
-    <div id="list" class="table row">
-        <div id="online_offline">
+    <div id="list" style="margin-left: 20px">
+        <div id="total_view">
+            <div style="margin-top: 20px">
+                <label>实时总收入： </label><span id="income">1000</span><br>
+                <label>结算所得收入：</label><span id="profit">2000</span>
+            </div>
+            <div id="online_offline">
 
+            </div>
         </div>
-        <div id="project_income">
 
+        <div id="perform_view">
+            <div class="title title_statistics">
+                <label>场馆各活动收入明细</label>
+            </div>
+            <div id="project_income"></div>
+
+            <div class="title title_statistics">
+                <label>时间维收入明细</label>
+            </div>
+            <span>日收益</span>
+            <div id="profitPerDay"></div>
+            <span>月收益</span>
+            <div id="profitPerMonth"></div>
+            <span>年收益</span>
+            <div id="profitPerYear"></div>
+
+            <div class="title title_statistics">
+                <label>类别收入比较</label>
+            </div>
+            <div id="typeCompare"></div>
         </div>
+
+        <div id="comment_view" style="margin: 20px">
+            <p>
+                本场馆注册至今，共承办<label style="color: chocolate" id="totalProjectNum">1</label>次活动。
+            </p>
+            <p>
+                其中，平均每场活动的上座率为
+                <label style="color: lightsalmon" id="presentRatio"></label>，退票率为
+                <label style="color: darkred" id="refundRatio"></label>。
+            </p>
+            <p>
+                平均每场演出用户的评价星级为
+                <label style="color: #2a6496">4.7</label>分。
+            </p>
+            <p>
+                用户对本场馆的满意度为<label style="color: red">4.5</label>分。
+            </p>
+        </div>
+
     </div>
 </div>
 

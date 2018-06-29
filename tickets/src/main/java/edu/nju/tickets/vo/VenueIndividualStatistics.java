@@ -2,22 +2,30 @@ package edu.nju.tickets.vo;
 
 import java.util.Map;
 
-public class PlatformStatisticsVO {
+public class VenueIndividualStatistics {
 
-    private Map<String, Double> profitPerDay;                       // 平台日分成总额
-    private Map<String, Double> profitPerMonth;                     // 平台月度分成总额
-    private Map<String, Double> profitPerYear;                      // 平台年度分成总额
+    private int totalProjectNum;                    // 总活动数
 
-    private String exchangeRatio;                                   // 积分兑换率（百分数）
+    private Map<String, Double> profitPerDay;       // 场馆日收益
+    private Map<String, Double> profitPerMonth;     // 场馆月收益
+    private Map<String, Double> profitPerYear;      // 场馆年收益
 
-    private Map<String, Map<String, Double>> typeProfitPerDay;      // 不同类型活动日分成总额
-    private Map<String, Map<String, Double>> typeProfitPerMonth;    // 不同类型活动月分成总额
-    private Map<String, Map<String, Double>> typeProfitPerYear;     // 不同类型活动年分成总额
+    private Map<String, Map<String, Double>> typeProfitPerDay;
+    private Map<String, Map<String, Double>> typeProfitPerMonth;
+    private Map<String, Map<String, Double>> typeProfitPerYear;
 
-    private Map<String, String> soldRatio;                          // 各场馆上座率
-    private Map<String, Long> venueNum;                             // 各地区场馆数目
+    private String presentRatio;                    // 平均上座率
+    private String refundRatio;                     // 平均退票率
 
-    public PlatformStatisticsVO() {}
+    public VenueIndividualStatistics() {}
+
+    public int getTotalProjectNum() {
+        return totalProjectNum;
+    }
+
+    public void setTotalProjectNum(int totalProjectNum) {
+        this.totalProjectNum = totalProjectNum;
+    }
 
     public Map<String, Double> getProfitPerDay() {
         return profitPerDay;
@@ -41,14 +49,6 @@ public class PlatformStatisticsVO {
 
     public void setProfitPerYear(Map<String, Double> profitPerYear) {
         this.profitPerYear = profitPerYear;
-    }
-
-    public String getExchangeRatio() {
-        return exchangeRatio;
-    }
-
-    public void setExchangeRatio(String exchangeRatio) {
-        this.exchangeRatio = exchangeRatio;
     }
 
     public Map<String, Map<String, Double>> getTypeProfitPerDay() {
@@ -75,19 +75,19 @@ public class PlatformStatisticsVO {
         this.typeProfitPerYear = typeProfitPerYear;
     }
 
-    public Map<String, String> getSoldRatio() {
-        return soldRatio;
+    public String getPresentRatio() {
+        return presentRatio;
     }
 
-    public void setSoldRatio(Map<String, String> soldRatio) {
-        this.soldRatio = soldRatio;
+    public void setPresentRatio(String presentRatio) {
+        this.presentRatio = presentRatio;
     }
 
-    public Map<String, Long> getVenueNum() {
-        return venueNum;
+    public String getRefundRatio() {
+        return refundRatio;
     }
 
-    public void setVenueNum(Map<String, Long> venueNum) {
-        this.venueNum = venueNum;
+    public void setRefundRatio(String refundRatio) {
+        this.refundRatio = refundRatio;
     }
 }
