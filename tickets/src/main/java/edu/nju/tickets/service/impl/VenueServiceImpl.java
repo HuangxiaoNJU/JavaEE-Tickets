@@ -329,11 +329,9 @@ public class VenueServiceImpl implements VenueService, VenueInfo {
 
             }
         }
-<<<<<<< HEAD
+
         if(sum==0)
             return 0.0;
-        return score/sum;
-=======
         return score / sum;
     }
 
@@ -379,7 +377,6 @@ public class VenueServiceImpl implements VenueService, VenueInfo {
         vo.setRefundRatio("7%");
 
         return vo;
->>>>>>> a8dd8ef5a3c81c694f2be23e5c36d48a5afca861
     }
 
 }
