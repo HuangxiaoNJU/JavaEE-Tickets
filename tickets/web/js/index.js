@@ -11,7 +11,6 @@ function showVenues() {
         type: 'GET',
         url: '/api/venues',
         success: function (result) {
-            console.log(result.data);
             for (let i = 0; i < 5; i++ ) {
                 let venue = result.data[i];
                 $('#venue').append(`
@@ -44,7 +43,6 @@ function showProjects() {
         type: 'GET',
         url: '/api/projects',
         success: function (result) {
-            console.log(result.data);
             for (let i = 0; i < 6; i++ ) {
                 let project = result.data[i];
                 $('#list').append(`
@@ -81,4 +79,24 @@ $('#channel li').click(function(){
     $(this).attr('class', 'active');
     $('#channel li a div').hide();
     $(document.getSelection().anchorNode.nextSibling).show();
+
+    getProjectsByType(type);
 });
+
+function getProjectsByType(type) {
+    $.ajax({
+        type: 'GET',
+        url: '/api/projects/type',
+        data: {
+            type: type
+        },
+        success: function (result) {
+            if (result.success) {
+                console.log(result.data);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log(xhr.status);
+        }
+    })
+}
