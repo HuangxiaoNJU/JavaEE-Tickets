@@ -26,4 +26,6 @@ public interface ProjectDao extends BaseDao<Project, Integer> {
 
     List<Project> findByVenueId(Integer venueId);
 
+
+
 }

@@ -18,7 +18,7 @@
 }
 
 .projectDetail {
-    margin-top: 50px;
+    margin-top: 60px;
 }
 
 blockquote {
@@ -35,11 +35,11 @@ blockquote {
 }
 
 .projectImage {
-    width: 225px;
-    height: auto;
+    width: 235px;
+    height: 325px;
     position: absolute;
-    top: -20px;
-    left: 10%;
+    top: -25px;
+    left: 8%;
     border-radius: 2em;
     box-shadow: 0 0 5px 0 gainsboro;
 }

@@ -63,4 +63,13 @@ public class ProjectDaoTest {
 //        projects.forEach(p -> System.out.println(p.getName()));
 //    }
 
+    @Test
+    public void addPoster() throws Exception {
+        for (int i = 18; i < 55; i++) {
+            Project project = projectDao.get(i);
+            project.setPosterURL("/poster/pic/" + i + ".jpg");
+            projectDao.update(project);
+        }
+    }
+
 }

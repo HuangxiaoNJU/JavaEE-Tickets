@@ -40,6 +40,8 @@ function addProjectInfo(project) {
     $('#project_type').text(project.type);
     $('#project_total_people').text(project.totalPeople);
 
+    $('#project_img').attr('src', project.posterURL);
+
     // 座位价格信息及下单选项
     let seatPriceList = $('#seat_price_list');
     seatPriceList.empty();
