@@ -13,7 +13,23 @@ function showVenues() {
         success: function (result) {
             console.log(result.data);
             for (let i = 0; i < 5; i++ ) {
-
+                let venue = result.data[i];
+                $('#venue').append(`
+                <a target="_blank" class="sa_hot_click best-show-item">
+						<div class="show-index">${(i + 1)}</div>
+						<div class="show-detail">
+							<div class="show-name">
+								${venue.name}
+							</div>
+							<div class="show-info">
+								${venue.location}
+							</div>
+							<div class="show-info">
+								${venue.email}
+							</div>
+						</div>
+					</a>
+                `)
             }
 
         },
@@ -40,11 +56,12 @@ function showProjects() {
                     <div class="show-detail">
                         ${project.name}
                     </div>
-                    <div class="show-date">${project.beginTime.substr(0,10)}<span>起上映</span></div>
+                   
                     <div class="show-price">
                         ${project.prices[project.prices.length - 1].price}
                         <span class="price-unit">元起</span>		
 					</div>
+					<div class="show-date">${project.beginTime.substr(0,10)}<span>起上映</span></div>
                 </a>
             </div>
             `);
