@@ -1,0 +1,17 @@
+.pre-img {
+    width: 153px;
+    height: 206px;
+}
+
+.list-i {
+    padding: 25px 0 18px;
+    border-bottom: 1px dotted gainsboro;
+    margin: 0 10px;
+    height: 275px;
+}
+
+#list {
+    background-color: white;
+    min-height: 600px;
+    padding: 2% 5%;
+}

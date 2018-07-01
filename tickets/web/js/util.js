@@ -391,20 +391,17 @@ function addProjectInfo(projects) {
     for (let i = 0; i < projects.length; i++) {
         let item = projects[i];
         list.append(`
-            <div class="col-lg-6">
-                <div class="col-lg-8">
-                    <h5 id="id">${item.name}</h5>
+            <div class="list-i">
+                <div class="col-lg-3">
+                    <img src="${item.posterURL}" class="pre-img">
+                </div>
+                <div class="col-lg-9">
+                    <h5><a href="/project/detail?project_id=${item.id}">${item.name}</a></h5>
                     <span>${item.beginTime}&nbsp;至&nbsp;${item.endTime}</span><br><br>
-                    <label>活动简介 : </label><br>
                     <p  style="margin-left: 5%">
-                        ${item.description.substr(0, 40)} · · ·
+                        ${item.description}
                     </p>
                 </div>
-                <div class="col-lg-4">
-                    <span style="margin: 8%">${item.type}</span><br>
-                    <a href="/project/detail?project_id=${item.id}" class="btn btn-link">查看详情 >></a>   
-                </div>
-                <br>
             </div>
         `);
     }
