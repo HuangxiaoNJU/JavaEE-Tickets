@@ -75,7 +75,7 @@ public class OrderFormServiceImpl implements OrderFormService, OrderFormStateCha
         if (orderForm.getSeatList() != null) {
             vo.setSeatList(Arrays.asList(orderForm.getSeatList().split(",")));
         }
-
+        vo.setScore(orderForm.getScore());
         return vo;
     }
 
