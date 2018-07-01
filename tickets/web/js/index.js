@@ -45,7 +45,7 @@ function showProjects() {
         success: function (result) {
             for (let i = 0; i < 6; i++ ) {
                 let project = result.data[i];
-                $('#list').append(`
+                $('#project').append(`
             <div class="col-lg-4">
                 <a target="_blank" href="/project/detail?project_id=${project.id}" class="section-show sa_recent" data-sashowname="${project.name}">
                     <div class="image-holder">
@@ -80,6 +80,9 @@ $('#channel li').click(function(){
     $('#channel li a div').hide();
     $(document.getSelection().anchorNode.nextSibling).show();
 
+    $('#myCarousel').hide();
+    $('#index_view').hide();
+
     getProjectsByType(type);
 });
 
@@ -92,7 +95,7 @@ function getProjectsByType(type) {
         },
         success: function (result) {
             if (result.success) {
-                console.log(result.data);
+                addProjectInfo(result.data);
             }
         },
         error: function (xhr, status, error) {

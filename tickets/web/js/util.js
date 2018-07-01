@@ -30,7 +30,7 @@ $('#head').append(`
                             <div class="collapse navbar-collapse" id="menu">
                                 <ul class="nav navbar-nav navbar-right">
                                     <li class="active"><a href="/">主页</a></li>
-                                    <li><a href="/project">活动</a></li>
+                                    <li><a href="/project">全部活动</a></li>
                                     <li><a href="/venue">场馆</a></li>
                                     <li><a id="sign" data-toggle="modal" data-target="#loginWindow">登录/注册</a></li>
                                     <li id="user_item" style="display: none" class="dropdown">
@@ -438,9 +438,11 @@ $('#search_project').on('input', function () {
     let search_info = $('#search_project').val();
 
     if (search_info === "") {
-        $('#imageTurn').show();
+        $('#myCarousel').show();
+        $('#index_view').show();
     } else {
-        $('#imageTurn').hide();
+        $('#myCarousel').hide();
+        $('#index_view').hide();
     }
     $.ajax({
         type: 'GET',
