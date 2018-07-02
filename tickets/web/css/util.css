@@ -74,6 +74,10 @@
     color: black;
 }
 
+.btn-link:hover {
+    color: rgba(0, 84, 183, 0.85);
+}
+
 .btn-list {
     width: 150px;
     border-radius: 0.5em;

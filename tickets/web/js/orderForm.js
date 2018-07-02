@@ -24,14 +24,14 @@ function addOrderInfo(orders) {
         let item = orders[i];
         let discount = item.discount === 100 ? '不打折' : item.discount + '折';
         let couponInfo = item.couponVO === null ? '未使用' : item.couponVO.name;
-        let stateColor = (item.state === '已取消' || item.state === '已退款') ? 'darkred' : '#4cae4c';
-        let typeColor = (item.purchaseType === '选座购买' || item.state === '立即购买') ? 'lightblue' : '#4cae4c';
+        let typeColor = (item.purchaseType === '选座购买' || item.state === '立即购买') ? 'skyblue' : '#4cae4c';
 
         list.append(`
-            <div class="col-lg-8">
+            <div class="col-lg-9">
                 <label>${item.createTime}</label>
-                <h5>
-                    ${item.projectInfoVO.name}&nbsp;
+                <h5><a href="/order/detail?order_id=${item.id}" class="btn-link">
+                    ${item.projectInfoVO.name}
+                    </a>
                 </h5>
                 <span>${item.projectInfoVO.venueInfoVO.name} - ${item.projectInfoVO.venueInfoVO.location}</span><br>
                 <span style="color: ${typeColor}">${item.purchaseType}</span>
@@ -40,10 +40,11 @@ function addOrderInfo(orders) {
                 <!--<label>会员折扣 : </label><span>&nbsp;${discount}</span><br>-->
                 <!--<label>优惠券 : </label><span>&nbsp;${couponInfo}</span><br>-->
             </div>
-            <div class="col-lg-4 text-center">
-                <a href="/order/detail?order_id=${item.id}" class="btn btn-link">查看详情 >></a><br>
-                <span class="status" style="color: ${stateColor}">${item.state}</span><br><br><br>
-                <span class="price">¥ ${item.totalPrice}</span>
+            <div class="col-lg-3 text-center">
+                <img src="../image/${item.state}.png" class="status"/>
+                <div style="margin-top: 20px">
+                <span style="color: lightsalmon">¥ </span><span class="price">${item.totalPrice}</span>
+                </div>
             </div>
             <hr width="850px" style="margin-left: -15px">
         `);
