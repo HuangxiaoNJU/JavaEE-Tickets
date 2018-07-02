@@ -476,9 +476,9 @@ public class OrderFormServiceImpl implements OrderFormService, OrderFormStateCha
     @Override
     public Boolean updateOrderFormScore(Integer orderId,int score) {
         OrderForm orderForm = orderFormDao.get(orderId);
-        orderForm.setScore(score);
         try {
-            if(0<=orderForm.getScore()&&orderForm.getScore()<=5) {
+            if(orderForm.getScore()==-1) {
+                orderForm.setScore(score);
                 orderFormDao.update(orderForm);
                 return true;
             }
