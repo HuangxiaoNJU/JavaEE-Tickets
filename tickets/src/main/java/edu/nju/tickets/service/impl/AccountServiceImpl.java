@@ -28,7 +28,7 @@ public class AccountServiceImpl implements AccountService {
         AccountInfoVO vo = new AccountInfoVO();
         vo.setId(account.getId());
         vo.setNumber(account.getAccountNumber());
-        vo.setBalance(account.getBalance());
+        vo.setBalance((int)(account.getBalance() * 100) / 100.0);
         vo.setType(account.getType());
         return vo;
     }
