@@ -23,8 +23,8 @@ public class OrderFormController {
     /**
      * 获取订单信息
      *
-     * @param id        订单id
-     * @return          订单信息
+     * @param id 订单id
+     * @return 订单信息
      */
     @GetMapping("/id/{id}")
     public ResponseResult<OrderFormInfoVO> getOrderFormById(@PathVariable Integer id) {
@@ -38,9 +38,9 @@ public class OrderFormController {
     /**
      * 获取用户订单
      *
-     * @param email     cookie中用户邮箱
-     * @param state     订单状态码
-     * @return          订单列表
+     * @param email cookie中用户邮箱
+     * @param state 订单状态码
+     * @return 订单列表
      */
     @GetMapping("/user")
     public ResponseResult<List<OrderFormInfoVO>> getOrderFormByUser(@CookieValue(name = USER_COOKIE_NAME, required = false) String email,
@@ -52,9 +52,9 @@ public class OrderFormController {
     /**
      * 计算订单实时价格
      *
-     * @param email     cookie中用户邮箱
-     * @param vo        订单信息
-     * @return          订单价格
+     * @param email cookie中用户邮箱
+     * @param vo    订单信息
+     * @return 订单价格
      */
     @PostMapping("/price")
     public ResponseResult<Double> getRealTimeOrderPrice(@CookieValue(name = USER_COOKIE_NAME, required = false) String email,
@@ -69,10 +69,10 @@ public class OrderFormController {
     /**
      * 用户/场馆下单
      *
-     * @param email             cookie中用户邮箱
-     * @param identification    cookie中场馆识别码
-     * @param vo                订单信息
-     * @return                  下单结果
+     * @param email          cookie中用户邮箱
+     * @param identification cookie中场馆识别码
+     * @param vo             订单信息
+     * @return 下单结果
      */
     @PostMapping
     public ResponseResult<Integer> makeOrderForm(@CookieValue(name = USER_COOKIE_NAME, required = false) String email,
@@ -99,10 +99,10 @@ public class OrderFormController {
     /**
      * 支付订单
      *
-     * @param id            订单id
-     * @param accountId     账户id
-     * @param email         cookie中用户邮箱
-     * @return              支付结果
+     * @param id        订单id
+     * @param accountId 账户id
+     * @param email     cookie中用户邮箱
+     * @return 支付结果
      */
     @PostMapping("/pay/id/{id}")
     public ResponseResult<Void> payForOrderForm(@PathVariable Integer id,
@@ -122,9 +122,9 @@ public class OrderFormController {
     /**
      * 用户订单退款
      *
-     * @param id        订单id
-     * @param email     cookie中用户邮箱
-     * @return          退款结果
+     * @param id    订单id
+     * @param email cookie中用户邮箱
+     * @return 退款结果
      */
     @PostMapping("/refund/id/{id}")
     public ResponseResult<Void> refundOrderForm(@PathVariable Integer id,
@@ -144,9 +144,9 @@ public class OrderFormController {
     /**
      * 场馆检票
      *
-     * @param identification    cookie中场馆识别码
-     * @param id                订单id
-     * @return                  检票结果
+     * @param identification cookie中场馆识别码
+     * @param id             订单id
+     * @return 检票结果
      */
     @PostMapping("/check-in")
     public ResponseResult<Void> checkIn(@CookieValue(value = VENUE_COOKIE_NAME, required = false) String identification,
@@ -165,14 +165,16 @@ public class OrderFormController {
     /**
      * 场馆检票
      *
-     * @param score             活动评分
-     * @param id                订单id
-     * @return                  评分结果
+     * @param score 活动评分
+     * @param id    订单id
+     * @return 评分结果
      */
     @PostMapping("/score/{id}")
     public ResponseResult<Void> scorePorject(@PathVariable Integer id,
-                                        @RequestParam int score) {
-        return new ResponseResult<>(orderFormService.updateOrderFormScore(id,score), "评分成功");
+                                             @RequestParam int score) {
+        if (orderFormService.updateOrderFormScore(id, score))
+            return new ResponseResult<>(true, "评分成功");
+        return new ResponseResult<>(false, "评分失败，已评过分");
     }
 
 }
