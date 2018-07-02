@@ -61,7 +61,7 @@ function addOrderDetail(order) {
     $('#order_form_seat_number').text(order.seatNumber);
     $('#order_form_seat_list').text(order.seatList == null ? '尚未分配' : order.seatList);
 
-    $('#order_form_total_price').text('¥ ' + order.totalPrice);
+    $('#order_form_total_price').text(order.totalPrice);
     
     if (order.state === "已完成") {
         $('#pay').hide();

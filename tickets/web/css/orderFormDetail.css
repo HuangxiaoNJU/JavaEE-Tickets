@@ -14,19 +14,20 @@
 }
 
 .priceInfo {
-    margin: 20px;
-
+    position: absolute;
+    top: 10%;
 }
 
 .btn-list {
     margin-top:5%;
-    margin-left: 35%;
+    margin-left: 30%;
 }
 
 .price {
     font-weight: normal;
     font-size: 30px;
     color: orange;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .main_detail {
