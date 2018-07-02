@@ -76,14 +76,22 @@ $('#channel li').click(function(){
     let type = document.getSelection().anchorNode.data;
 
     $('#channel li').removeClass('active');
-    $(this).attr('class', 'active');
     $('#channel li a div').hide();
+    $(this).attr('class', 'active');
     $(document.getSelection().anchorNode.nextSibling).show();
 
     $('#myCarousel').hide();
     $('#index_view').hide();
 
-    getProjectsByType(type);
+    if (type === "首页") {
+        $('#myCarousel').show();
+        $('#index_view').show();
+
+        $('#list').empty();
+    } else {
+        $('#list').empty();
+        getProjectsByType(type);
+    }
 });
 
 function getProjectsByType(type) {

@@ -15,3 +15,18 @@
     min-height: 600px;
     padding: 2% 5%;
 }
+
+.list {
+    background-color: white;
+    padding: 25px 0 18px;
+    border-bottom: 1px dotted gainsboro;
+    color: #777;
+}
+
+#time_asc {
+    margin-left: 85%;
+}
+
+#time_desc {
+    margin-left: 10px;
+}

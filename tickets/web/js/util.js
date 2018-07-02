@@ -396,8 +396,8 @@ function addProjectInfo(projects) {
                     <img src="${item.posterURL}" class="pre-img">
                 </div>
                 <div class="col-lg-9">
-                    <h5><a href="/project/detail?project_id=${item.id}">${item.name}</a></h5>
-                    <span>${item.beginTime}&nbsp;至&nbsp;${item.endTime}</span><br><br>
+                    <h5><a href="/project/detail?project_id=${item.id}" class="btn-link">${item.name}</a></h5>
+                    <span>${item.beginTime.substr(0, 16)} - ${item.endTime.substr(0, 16)}</span><br><br>
                     <p  style="margin-left: 5%">
                         ${item.description}
                     </p>
