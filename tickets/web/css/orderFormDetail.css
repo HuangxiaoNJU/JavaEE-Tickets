@@ -31,14 +31,10 @@
 }
 
 .main_detail {
-    box-shadow: 0 0 20px 0 #eee;
-    border-radius: 2em;
-    border-color: black;
     position: absolute;
     top: 30%;
     left: 55px;
-    padding: 55px;
-    background-color: white;
+    padding: 0 55px;
     width: 92%;
 }
 
@@ -48,4 +44,12 @@
 
 .input {
     margin: 20px;
+}
+
+body {
+    background-color: white;
+}
+
+#pay, #comment {
+    margin-top:  -30px;
 }

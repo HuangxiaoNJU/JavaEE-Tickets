@@ -31,7 +31,7 @@ function showProjectDetail(projectId) {
 }
 
 function addProjectInfo(project) {
-    $('#project_name').text(project.name);
+    $('#project_name').text("【" + project.venueInfoVO.location.split(' ')[0] + "站】" +project.name);
     $('#project_location').text(project.venueInfoVO.name + ' ' + project.venueInfoVO.location);
     $('#project_description').text(project.description);
 
@@ -86,11 +86,7 @@ function addProjectInfo(project) {
             <div class="col-lg-3">
                 <button id="make_order_btn_${item.id}" class="btn btn-info online" 
                         onclick="judgeChoosePurchase(${project.id}, ${item.id})">
-                        选座购买
-                </button>
-                <button id="offline_order_btn_${item.id}" class="btn btn-info underline"
-                        onclick="judgeImmediatePurchase(${project.id}, ${item.id})">
-                        立即购买
+                        购票
                 </button>
             </div>
             `);
@@ -105,18 +101,6 @@ function judgeOfflinePurchase(projectId, itemId) {
     window.location.href = "/order/make-offline?project_id=" + projectId + "&project_price_id=" + itemId;
 }
 
-// 立即购买
-function judgeImmediatePurchase(projectId, itemId) {
-    let identity = checkIdentity();
-    if (identity === 'visitor') {
-        showSignInDialog();
-        return;
-    }
-    if (identity === 'user') {
-        window.location.href = "/order/make?project_id=" + projectId + "&project_price_id=" + itemId + "&type=immediate";
-    }
-}
-
 // 选座购买
 function judgeChoosePurchase(projectId, itemId) {
     let identity = checkIdentity();
@@ -125,6 +109,6 @@ function judgeChoosePurchase(projectId, itemId) {
         return;
     }
     if (identity === 'user') {
-        window.location.href = "/order/make?project_id=" + projectId + "&project_price_id=" + itemId + "&type=choose";
+        window.location.href = "/order/make?project_id=" + projectId + "&project_price_id=" + itemId;
     }
 }

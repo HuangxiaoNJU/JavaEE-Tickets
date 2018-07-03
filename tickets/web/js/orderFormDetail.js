@@ -70,7 +70,8 @@ function addOrderDetail(order) {
         $('#pay').show();
         $('#comment').hide();
     } else {
-
+        $('#pay').hide();
+        $('#comment').hide();
     }
 }
 
