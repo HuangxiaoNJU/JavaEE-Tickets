@@ -244,7 +244,7 @@ function drawTypeTable(chartName, consumePerDay) {
             $('#' + chartName).append(`
                 <tr>
                     <td>${i}</td>
-                    <td>${dayConsume["讲座"]}</td>
+                    <td>${dayConsume["讲座"] === undefined ? 0 : dayConsume["讲座"]}</td>
                     <td>${dayConsume["电子竞技"] === undefined ? 0 : dayConsume["电子竞技"]}</td>
                     <td>${dayConsume["戏剧"] === undefined ? 0 : dayConsume["戏剧"]}</td>
                     <td>${dayConsume["篮球比赛"] === undefined ? 0 : dayConsume["篮球比赛"]}</td>
